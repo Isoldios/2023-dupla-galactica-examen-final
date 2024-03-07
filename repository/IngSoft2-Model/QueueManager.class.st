@@ -10,9 +10,9 @@ Class {
 }
 
 { #category : #'Instance creation' }
-QueueManager class >> with: aPlayersCollection [
+QueueManager class >> with: aValuesCollection [
 
-	^ self new initializeWith: aPlayersCollection
+	^ self new initializeWith: aValuesCollection
 ]
 
 { #category : #ManageTurns }

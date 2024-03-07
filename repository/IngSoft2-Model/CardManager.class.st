@@ -10,9 +10,9 @@ Class {
 }
 
 { #category : #'Instance creation' }
-CardManager class >> using: cards with: aColorCollection [
+CardManager class >> using: aCardsCollection with: aColorsCollection [
 
-	^ self new initializeUsing: cards with: aColorCollection
+	^ self new initializeUsing: aCardsCollection with: aColorsCollection
 ]
 
 { #category : #Managing }

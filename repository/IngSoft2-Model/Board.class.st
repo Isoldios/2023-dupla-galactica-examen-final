@@ -15,8 +15,6 @@ Board class >> with: aBoxesCollection measure: aLengthMeasure [
 	aLengthMeasure nominalValue <= 0 ifTrue: [ 
 		Error signal:
 			'Cannot create a game with that parsec or lightYear value' ].
-	aBoxesCollection size < 4 ifTrue: [ 
-		Error signal: 'Cannot create a board with that amount of boxes' ].
 	(aBoxesCollection isKindOf: OrderedCollection) ifFalse: [ 
 		Error signal: 'That is not a boxes collection' ].
 	aBoxesCollection size < 4 ifTrue: [ 

@@ -8,14 +8,14 @@ Class {
 }
 
 { #category : #'Instance creation' }
-DuplaGalacticaGameProxy class >> with: aColorCollection and: aBoard usingToThrow: aDiceShaker winningWhenReach: aNumberOfLaps using: aCardDealer [
+DuplaGalacticaGameProxy class >> with: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhenReach: aNumberOfLaps using: aCardsCollection [
 
 	^ self new
-		  initializeWith: aColorCollection
+		  initializeWith: aColorsCollection
 		  and: aBoard
 		  usingToThrow: aDiceShaker
 		  winningWhen: aNumberOfLaps
-		  using: aCardDealer
+		  using: aCardsCollection
 ]
 
 { #category : #Cards }
