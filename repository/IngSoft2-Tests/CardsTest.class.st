@@ -630,7 +630,10 @@ CardsTest >> testQ018WhenPlayerTriesToUseASpeedCardAndItDoesNotHaveThatTypeOfCar
 CardsTest >> testQ019TryToCreateAGameWithCardsThatAreNotCardsThenFails [
 
 	| aLoadedDie aCardsCollection |
-	aCardsCollection := OrderedCollection with: 'orange' with: 'orange'.
+	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: NoEffectBox initializeNew
+				                       withChanceOf: 100))) create: 4.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 1
 			               with: 2
@@ -647,6 +650,29 @@ CardsTest >> testQ019TryToCreateAGameWithCardsThatAreNotCardsThenFails [
 				using: aCardsCollection ]
 		raise: Error
 		withMessage: 'That is not a valid card'
+]
+
+{ #category : #tests }
+CardsTest >> testQ020TryToCreateAGameWithNoCardsThenFails [
+
+	| aLoadedDie aCardsCollection |
+	aCardsCollection := OrderedCollection new.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	self
+		should: [ 
+			DuplaGalacticaGameProxy
+				with: aColorsCollection
+				and: self createBoard
+				usingToThrow:
+				(DiceShaker with: (OrderedCollection with: aLoadedDie))
+				winningWhenReach: 1
+				using: aCardsCollection ]
+		raise: Error
+		withMessage: 'Cannot create a game with that amount of cards'
 ]
 
 { #category : #tests }
@@ -683,6 +709,32 @@ CardsTest >> testQ021TryToApplyACardWhenPlayerDoNotHaveAnyMoreCardsThenFails [
 				to: 'blue' ]
 		raise: Error
 		withMessage: 'The player does not have that card in posetion'
+]
+
+{ #category : #tests }
+CardsTest >> testQ022TryToCreateAGameWithLessThanTwoCardsPerPlayerThenFails [
+
+	| aLoadedDie aCardsCollection |
+	aCardsCollection := (ObjectCreator use:
+		                     (OrderedCollection with: (ObjectProbability
+				                       using: AccelerationCard initializeNew
+				                       withChanceOf: 100))) create: 3.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	self
+		should: [ 
+			DuplaGalacticaGameProxy
+				with: aColorsCollection
+				and: self createBoard
+				usingToThrow:
+				(DiceShaker with: (OrderedCollection with: aLoadedDie))
+				winningWhenReach: 1
+				using: aCardsCollection ]
+		raise: Error
+		withMessage: 'Cannot create a game with that amount of cards'
 ]
 
 { #category : #tests }

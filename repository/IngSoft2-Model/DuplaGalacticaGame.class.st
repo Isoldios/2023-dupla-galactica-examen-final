@@ -14,22 +14,27 @@ Class {
 }
 
 { #category : #'Instance creation' }
-DuplaGalacticaGame class >> with: aColorCollection and: aBoard usingToThrow: aDiceShaker winningWhenReach: aNumberOfLaps using: aCardDealer [
+DuplaGalacticaGame class >> with: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhenReach: aNumberOfLaps using: aCardsCollection [
 
-	aColorCollection size <= 0 ifTrue: [ 
+	aColorsCollection size <= 0 ifTrue: [ 
 		Error signal: 'Cannot create a game with no players' ].
-	aColorCollection do: [ :colorToTest | 
-		(aColorCollection select: [ :color | color = colorToTest ]) size > 1 
-			ifTrue: [ 
+	aColorsCollection do: [ :colorToTest | 
+		(aColorsCollection select: [ :color | color = colorToTest ]) size
+		> 1 ifTrue: [ 
 			Error signal: 'Cannot create a game with duplicate colors' ] ].
 	aNumberOfLaps <= 0 ifTrue: [ 
 		Error signal: 'Cannot create a game with that goal laps' ].
+	([ aCardsCollection size ]
+		 on: MessageNotUnderstood
+		 do: [ Error signal: 'That is not a cardsCollection' ]) // 2
+	< aColorsCollection size ifTrue: [ 
+		Error signal: 'Cannot create a game with that amount of cards' ].
 	^ self new
-		  initializeWith: aColorCollection
+		  initializeWith: aColorsCollection
 		  and: aBoard
 		  usingToThrow: aDiceShaker
 		  winningWhen: aNumberOfLaps
-		  using: aCardDealer
+		  using: aCardsCollection
 ]
 
 { #category : #Cards }
