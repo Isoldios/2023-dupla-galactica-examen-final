@@ -1,9 +1,6 @@
 Class {
 	#name : #SpeedCard,
 	#superclass : #Object,
-	#instVars : [
-		'effect'
-	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -30,13 +27,7 @@ SpeedCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGam
 { #category : #Effect }
 SpeedCard >> applyEffect [
 
-	^ effect
-]
-
-{ #category : #Effect }
-SpeedCard >> boostEffect [
-
-	effect := effect * 2
+	^ 1
 ]
 
 { #category : #Information }
@@ -47,8 +38,6 @@ SpeedCard >> haveEffect [
 
 { #category : #Initialization }
 SpeedCard >> initializeNew [
-
-	effect := 1
 ]
 
 { #category : #Information }

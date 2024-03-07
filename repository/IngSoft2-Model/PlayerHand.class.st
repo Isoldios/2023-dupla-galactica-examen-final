@@ -30,5 +30,5 @@ PlayerHand >> holder [
 PlayerHand >> initializeOf: aColor with: aCard [
 
 	holder := aColor.
-	card := aCard
+	card := Card type: aCard
 ]

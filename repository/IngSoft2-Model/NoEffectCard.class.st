@@ -42,5 +42,5 @@ NoEffectCard >> initializeNew [
 { #category : #Information }
 NoEffectCard >> isPermanent [
 
-	^ false
+	^ true
 ]

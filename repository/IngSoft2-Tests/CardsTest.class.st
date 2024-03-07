@@ -536,7 +536,34 @@ CardsTest >> testQ015TryToApplyACancellationCardOnASpeedCardWhenThePlayerHasOnly
 				to: (PlayerHand of: 'blue' with: SpeedCard initializeNew) ]
 		raise: Error
 		withMessage:
-		'There are no that type of cards activate in this player'
+		'There are no that type of cards active in this player'
+]
+
+{ #category : #tests }
+CardsTest >> testQ016TryToPlayACardThatIsNotACardThenFails [
+
+	| aDuplaGalacticaGame aLoadedDie aCardsCollection |
+	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: NoEffectCard initializeNew
+				                       withChanceOf: 100))) create: 4.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aDuplaGalacticaGame := DuplaGalacticaGameProxy
+		                       with: aColorsCollection
+		                       and: self createBoard
+		                       usingToThrow:
+		                       (DiceShaker with:
+			                        (OrderedCollection with: aLoadedDie))
+		                       winningWhenReach: 1
+		                       using: aCardsCollection.
+	self
+		should: [ aDuplaGalacticaGame apply: 'red' to: 'blue' ]
+		raise: Error
+		withMessage: 'That is not a valid card objective'
 ]
 
 { #category : #tests }
@@ -597,6 +624,29 @@ CardsTest >> testQ018WhenPlayerTriesToUseASpeedCardAndItDoesNotHaveThatTypeOfCar
 				to: 'red' ]
 		raise: Error
 		withMessage: 'The player does not have that card in posetion'
+]
+
+{ #category : #tests }
+CardsTest >> testQ019TryToCreateAGameWithCardsThatAreNotCardsThenFails [
+
+	| aLoadedDie aCardsCollection |
+	aCardsCollection := OrderedCollection with: 'orange' with: 'orange'.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	self
+		should: [ 
+			DuplaGalacticaGameProxy
+				with: aColorsCollection
+				and: self createBoard
+				usingToThrow:
+				(DiceShaker with: (OrderedCollection with: aLoadedDie))
+				winningWhenReach: 1
+				using: aCardsCollection ]
+		raise: Error
+		withMessage: 'That is not a valid card'
 ]
 
 { #category : #tests }
@@ -1356,7 +1406,7 @@ CardsTest >> testQ059WhenPlayerTriesToPlayASpeedBoostCardOnANonExistentCardThenF
 				to: (PlayerHand of: 'blue' with: SpeedCard initializeNew) ]
 		raise: Error
 		withMessage:
-		'There are no that type of cards activate in this player'
+		'There are no that type of cards active in this player'
 ]
 
 { #category : #tests }

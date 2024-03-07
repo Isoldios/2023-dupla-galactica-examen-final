@@ -10,13 +10,14 @@ Class {
 }
 
 { #category : #'Instance creation' }
-Board class >> with: aBoxCollection measure: aLengthMeasure [
+Board class >> with: aBoxesCollection measure: aLengthMeasure [
 
 	aLengthMeasure nominalValue <= 0 ifTrue: [ 
-		Error signal: 'Cannot create a game with that parsec or lightYear value' ].
-	aBoxCollection size < 4 ifTrue: [ 
+		Error signal:
+			'Cannot create a game with that parsec or lightYear value' ].
+	aBoxesCollection size < 4 ifTrue: [ 
 		Error signal: 'Cannot create a board with that value' ].
-	^ self new initializeWith: aBoxCollection measure: aLengthMeasure
+	^ self new initializeWith: aBoxesCollection measure: aLengthMeasure
 ]
 
 { #category : #BoxManager }
@@ -36,7 +37,7 @@ Board >> effectAt: aBoxNumber In: aDuplaGalacticaGame [
 Board >> initializeWith: aBoxesCollection measure: aLengthMeasure [
 
 	lengthMeasure := aLengthMeasure.
-	boxes := aBoxesCollection.
+	boxes := aBoxesCollection collect: [ :box | Box type: box ].
 	lastBoxInvoked := 0
 ]
 

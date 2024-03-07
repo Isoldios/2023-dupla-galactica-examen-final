@@ -31,7 +31,7 @@ CardsInPosetionDeck >> hasBeenGiven: aCardInAPlayerHand [
 
 	playersHands
 		detect: [ :hand | 
-			hand card = aCardInAPlayerHand card and:
+			hand card type = aCardInAPlayerHand card type and:
 				hand holder = aCardInAPlayerHand holder ]
 		ifFound: [ :hand | ^ true ]
 		ifNone: [ ^ false ]
@@ -47,6 +47,6 @@ CardsInPosetionDeck >> initializeDeck [
 CardsInPosetionDeck >> takeOut: aCardInAPlayerHand [
 
 	playersHands remove: (playersHands detect: [ :hand | 
-			 hand card = aCardInAPlayerHand card and:
+			 hand card type = aCardInAPlayerHand card type and:
 				 hand holder = aCardInAPlayerHand holder ])
 ]

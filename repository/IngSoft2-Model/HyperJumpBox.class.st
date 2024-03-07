@@ -2,8 +2,7 @@ Class {
 	#name : #HyperJumpBox,
 	#superclass : #Object,
 	#instVars : [
-		'parsecManager',
-		'polarity'
+		'parsecManager'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -17,15 +16,9 @@ HyperJumpBox class >> with: aParsecCollection [
 ]
 
 { #category : #Effect }
-HyperJumpBox >> changePolarity [
+HyperJumpBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
 
-	polarity := polarity not
-]
-
-{ #category : #Effect }
-HyperJumpBox >> effect: aDuplaGalacticaGame [
-
-	polarity
+	aPolarityValue
 		ifTrue: [ 
 			aDuplaGalacticaGame moveCurrent:
 				parsecManager current parsecs nominalValue
@@ -45,11 +38,4 @@ HyperJumpBox >> initializeWith: aParsecsCollection [
 		                             value2 parsecs nominalValue
 		                             < value1 parsecs nominalValue ].
 	parsecManager := QueueManager with: aParsecsCollectionOrdered.
-	polarity := true
-]
-
-{ #category : #Effect }
-HyperJumpBox >> resetPolarity [
-
-	polarity := true
 ]

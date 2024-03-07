@@ -7,7 +7,7 @@ Class {
 { #category : #'Instance creation' }
 CancellationCard class >> initializeNew [
 
-	^ self new intializeNew
+	^ self new initializeNew
 ]
 
 { #category : #Information }
@@ -29,7 +29,7 @@ CancellationCard >> haveEffect [
 ]
 
 { #category : #Initialization }
-CancellationCard >> intializeNew [
+CancellationCard >> initializeNew [
 
 	
 ]

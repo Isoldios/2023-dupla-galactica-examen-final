@@ -1,9 +1,6 @@
 Class {
 	#name : #AccelerationCard,
 	#superclass : #Object,
-	#instVars : [
-		'effect'
-	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -31,13 +28,7 @@ AccelerationCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalac
 { #category : #Effect }
 AccelerationCard >> applyEffect [
 
-	^ effect
-]
-
-{ #category : #Effect }
-AccelerationCard >> boostEffect [
-
-	effect := effect * 2
+	^ 1
 ]
 
 { #category : #Information }
@@ -48,8 +39,6 @@ AccelerationCard >> haveEffect [
 
 { #category : #Initialization }
 AccelerationCard >> initializeNew [
-
-	effect := 1
 ]
 
 { #category : #Information }

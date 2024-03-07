@@ -1,9 +1,6 @@
 Class {
 	#name : #OverloadCard,
 	#superclass : #Object,
-	#instVars : [
-		'effect'
-	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -30,13 +27,7 @@ OverloadCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalactica
 { #category : #Effect }
 OverloadCard >> applyEffect [
 
-	^ effect
-]
-
-{ #category : #Effect }
-OverloadCard >> boostEffect [
-
-	effect := effect * 2
+	^ -2
 ]
 
 { #category : #Information }
@@ -47,8 +38,6 @@ OverloadCard >> haveEffect [
 
 { #category : #Initialization }
 OverloadCard >> initializeNew [
-
-	effect := -2
 ]
 
 { #category : #Information }
