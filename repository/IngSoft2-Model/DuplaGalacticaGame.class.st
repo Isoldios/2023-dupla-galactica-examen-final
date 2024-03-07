@@ -24,10 +24,9 @@ DuplaGalacticaGame class >> with: aColorsCollection and: aBoard usingToThrow: aD
 			Error signal: 'Cannot create a game with duplicate colors' ] ].
 	aNumberOfLaps <= 0 ifTrue: [ 
 		Error signal: 'Cannot create a game with that goal laps' ].
-	([ aCardsCollection size ]
-		 on: MessageNotUnderstood
-		 do: [ Error signal: 'That is not a cardsCollection' ]) // 2
-	< aColorsCollection size ifTrue: [ 
+	(aCardsCollection isKindOf: OrderedCollection) ifFalse: [ 
+		Error signal: 'That is not a cards collection' ].
+	aCardsCollection size // 2 < aColorsCollection size ifTrue: [ 
 		Error signal: 'Cannot create a game with that amount of cards' ].
 	^ self new
 		  initializeWith: aColorsCollection

@@ -574,3 +574,45 @@ BoxesTest >> testT005WhenPlayerReachesAHyperJumpBoxThenCheckIfItHasANegativeEffe
 		assert: aDuplaGalacticaGame playersBox
 		equals: (OrderedCollection with: 9 with: 10)
 ]
+
+{ #category : #tests }
+BoxesTest >> testT006TryToCreateABoardWithLessThanFourBoxesThenFails [
+
+	| aBoxesCollection |
+	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: NoEffectBox initializeNew
+				                       withChanceOf: 100))) create: 3.
+	self
+		should: [ 
+		Board with: aBoxesCollection measure: (ParsecMeasure worth: 100) ]
+		raise: Error
+		withMessage: 'Cannot create a board with that amount of boxes'
+]
+
+{ #category : #tests }
+BoxesTest >> testT007TryToCreateABoardWithBoxesThatAreNotBoxesThenFails [
+
+	| aBoxesCollection |
+	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: NoEffectCard initializeNew
+				                       withChanceOf: 100))) create: 10.
+	self
+		should: [ 
+		Board with: aBoxesCollection measure: (ParsecMeasure worth: 100) ]
+		raise: Error
+		withMessage: 'That is not a valid box'
+]
+
+{ #category : #tests }
+BoxesTest >> testT008TryToCreateABoardWithNoBoxesOrderedCollectionThenFails [
+
+	| aBoxesCollection |
+	aBoxesCollection := 'blue'.
+	self
+		should: [ 
+		Board with: aBoxesCollection measure: (ParsecMeasure worth: 100) ]
+		raise: Error
+		withMessage: 'That is not a boxes collection'
+]

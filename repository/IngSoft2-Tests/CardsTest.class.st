@@ -738,6 +738,29 @@ CardsTest >> testQ022TryToCreateAGameWithLessThanTwoCardsPerPlayerThenFails [
 ]
 
 { #category : #tests }
+CardsTest >> testQ023TryToCreateAGameWithNoCardsOrderedCollectionThenFails [
+
+	| aLoadedDie aCardsCollection |
+	aCardsCollection := 'blue'.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	self
+		should: [ 
+			DuplaGalacticaGameProxy
+				with: aColorsCollection
+				and: self createBoard
+				usingToThrow:
+				(DiceShaker with: (OrderedCollection with: aLoadedDie))
+				winningWhenReach: 1
+				using: aCardsCollection ]
+		raise: Error
+		withMessage: 'That is not a cards collection'
+]
+
+{ #category : #tests }
 CardsTest >> testQ026TryToApplyACancellationCardOnANonValidObjectiveThenFails [
 
 	| aDuplaGalacticaGame aLoadedDie aCardsCollection |
