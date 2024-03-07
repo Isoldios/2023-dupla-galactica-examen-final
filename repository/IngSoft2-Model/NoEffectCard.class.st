@@ -18,10 +18,15 @@ NoEffectCard >> = aCard [
 
 { #category : #Effect }
 NoEffectCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+
+	aCardManager activate:
+		(PlayerHand of: anObjective with: self initializeNew)
 ]
 
 { #category : #Effect }
 NoEffectCard >> applyEffect [
+
+	^ 0
 ]
 
 { #category : #Information }
