@@ -22,11 +22,10 @@ AccelerationCard >> = aCard [
 { #category : #Effect }
 AccelerationCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	anObjective = 'everyone'
-		ifTrue: [ 
-			aCardManager activate:
-				(PlayerHand of: anObjective with: self initializeNew) ]
-		ifFalse: [ Error signal: 'That is not a valid objective' ]
+	anObjective = 'everyone' ifFalse: [ 
+		Error signal: 'That is not a valid objective' ].
+	aCardManager activate:
+		(PlayerHand of: anObjective with: self initializeNew)
 ]
 
 { #category : #Effect }

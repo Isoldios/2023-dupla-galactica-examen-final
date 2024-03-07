@@ -1019,6 +1019,36 @@ CardsTest >> testQ048WhenPlayerTriesToPlayAnOverloadCardOnAnInvalidObjectiveThen
 ]
 
 { #category : #tests }
+CardsTest >> testQ049WhenPlayerTriesToPlayAnOverloadCardOnANonExistentPlayerThenFails [
+
+	| aDuplaGalacticaGame aLoadedDie aCardsCollection |
+	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: OverloadCard initializeNew
+				                       withChanceOf: 100))) create: 4.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aDuplaGalacticaGame := DuplaGalacticaGameProxy
+		                       with: aColorsCollection
+		                       and: self createBoard
+		                       usingToThrow:
+		                       (DiceShaker with:
+			                        (OrderedCollection with: aLoadedDie))
+		                       winningWhenReach: 1
+		                       using: aCardsCollection.
+	self
+		should: [ 
+			aDuplaGalacticaGame
+				apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+				to: 'orange' ]
+		raise: Error
+		withMessage: 'That is not a valid player objective'
+]
+
+{ #category : #tests }
 CardsTest >> testQ050WhenPlayerTriesToPlayASpeedCardOnAnInvalidObjectiveThenFails [
 
 	| aDuplaGalacticaGame aLoadedDie aCardsCollection |
