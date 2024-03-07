@@ -10,39 +10,36 @@ Class {
 }
 
 { #category : #'Instance creation' }
-Board class >> with: aBoxCollection measure: aLengthMeasure [
+Board class >> with: aBoxesCollection measure: aLengthMeasure [
 
 	aLengthMeasure nominalValue <= 0 ifTrue: [ 
-		Error signal: 'Cannot create a game with that parsec or lightYear value' ].
-	aBoxCollection size < 4 ifTrue: [ 
-		Error signal: 'Cannot create a board with that value' ].
-	^ self new initializeWith: aBoxCollection measure: aLengthMeasure
-]
-
-{ #category : #Information }
-Board >> boxes [
-
-	^ boxes size
+		Error signal:
+			'Cannot create a game with that parsec or lightYear value' ].
+	(aBoxesCollection isKindOf: OrderedCollection) ifFalse: [ 
+		Error signal: 'That is not a boxes collection' ].
+	aBoxesCollection size < 4 ifTrue: [ 
+		Error signal: 'Cannot create a board with that amount of boxes' ].
+	^ self new initializeWith: aBoxesCollection measure: aLengthMeasure
 ]
 
 { #category : #BoxManager }
-Board >> changePolarity: aPosition [
+Board >> changePolarityOf: aBoxNumber [
 
-	(boxes at: aPosition) changePolarity
+	(boxes at: aBoxNumber) changePolarity
 ]
 
 { #category : #BoxManager }
-Board >> effectAt: aPosition In: aGame [
+Board >> effectAt: aBoxNumber In: aDuplaGalacticaGame [
 
-	(boxes at: aPosition) effect: aGame.
-	lastBoxInvoked := aPosition
+	(boxes at: aBoxNumber) effect: aDuplaGalacticaGame.
+	lastBoxInvoked := aBoxNumber
 ]
 
 { #category : #Initialization }
-Board >> initializeWith: aBoxCollection measure: aLengthMeasure [
+Board >> initializeWith: aBoxesCollection measure: aLengthMeasure [
 
 	lengthMeasure := aLengthMeasure.
-	boxes := aBoxCollection.
+	boxes := aBoxesCollection collect: [ :box | Box type: box ].
 	lastBoxInvoked := 0
 ]
 
@@ -50,6 +47,12 @@ Board >> initializeWith: aBoxCollection measure: aLengthMeasure [
 Board >> lastBoxInvoked [
 
 	^ lastBoxInvoked
+]
+
+{ #category : #Information }
+Board >> length [
+
+	^ boxes size
 ]
 
 { #category : #Information }
@@ -62,4 +65,10 @@ Board >> lightYears [
 Board >> parsecs [
 
 	^ lengthMeasure parsecs
+]
+
+{ #category : #BoxManager }
+Board >> resetPolarities [
+
+	boxes do: [ :box | box resetPolarity ]
 ]

@@ -1,9 +1,6 @@
 Class {
 	#name : #WormHoleBox,
 	#superclass : #Object,
-	#instVars : [
-		'polarity'
-	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -14,21 +11,13 @@ WormHoleBox class >> initializeNew [
 ]
 
 { #category : #Effect }
-WormHoleBox >> changePolarity [
+WormHoleBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
 
-	polarity := polarity not
-]
-
-{ #category : #Effect }
-WormHoleBox >> effect: aGame [
-
-	polarity
-		ifTrue: [ aGame moveCurrent: -4 ]
-		ifFalse: [ aGame moveOthers: -4 ]
+	aPolarityValue
+		ifTrue: [ aDuplaGalacticaGame moveCurrent: -4 ]
+		ifFalse: [ aDuplaGalacticaGame moveOthers: -4 ]
 ]
 
 { #category : #Initialization }
 WormHoleBox >> initializeNew [
-
-	polarity := true
 ]

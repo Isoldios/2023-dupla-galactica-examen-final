@@ -2,8 +2,7 @@ Class {
 	#name : #HyperJumpBox,
 	#superclass : #Object,
 	#instVars : [
-		'parsecManager',
-		'polarity'
+		'parsecManager'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -17,32 +16,26 @@ HyperJumpBox class >> with: aParsecCollection [
 ]
 
 { #category : #Effect }
-HyperJumpBox >> changePolarity [
+HyperJumpBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
 
-	polarity := polarity not
-]
-
-{ #category : #Effect }
-HyperJumpBox >> effect: aGame [
-
-	polarity
+	aPolarityValue
 		ifTrue: [ 
-			aGame moveCurrent:
-				parsecManager current parsecs nominalValue // aGame boxesByParsecs ]
+			aDuplaGalacticaGame moveCurrent:
+				parsecManager current parsecs nominalValue
+				// aDuplaGalacticaGame boxesByParsecs ]
 		ifFalse: [ 
-			aGame moveOthers:
-				parsecManager current parsecs nominalValue // aGame boxesByParsecs ].
-
+			aDuplaGalacticaGame moveOthers:
+				parsecManager current parsecs nominalValue
+				// aDuplaGalacticaGame boxesByParsecs ].
 	parsecManager goNext
 ]
 
 { #category : #Initialization }
-HyperJumpBox >> initializeWith: aParsecCollection [
+HyperJumpBox >> initializeWith: aParsecsCollection [
 
-	| aParsecCollectionOrdered |
-	aParsecCollectionOrdered := aParsecCollection sort: [ :value1 :value2 | 
-		                            value2 parsecs nominalValue
-		                            < value1 parsecs nominalValue ].
-	parsecManager := QueueManager with: aParsecCollectionOrdered.
-	polarity := true
+	| aParsecsCollectionOrdered |
+	aParsecsCollectionOrdered := aParsecsCollection sort: [ :value1 :value2 | 
+		                             value2 parsecs nominalValue
+		                             < value1 parsecs nominalValue ].
+	parsecManager := QueueManager with: aParsecsCollectionOrdered.
 ]

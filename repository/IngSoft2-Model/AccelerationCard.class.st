@@ -1,9 +1,6 @@
 Class {
 	#name : #AccelerationCard,
 	#superclass : #Object,
-	#instVars : [
-		'effect'
-	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -13,28 +10,25 @@ AccelerationCard class >> initializeNew [
 	^ self new initializeNew
 ]
 
-{ #category : #comparing }
+{ #category : #Initialization }
 AccelerationCard >> = aCard [
 
 	^ aCard isKindOf: self class
 ]
 
 { #category : #Effect }
-AccelerationCard >> applyCardUsing: aCardManager to: anObjective at: aGame [
+AccelerationCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	aCardManager activate: (Hand of: 'everyone' with: self initializeNew)
+	anObjective = 'everyone' ifFalse: [ 
+		Error signal: 'That is not a valid objective' ].
+	aCardManager activate:
+		(PlayerHand of: anObjective with: self initializeNew)
 ]
 
 { #category : #Effect }
 AccelerationCard >> applyEffect [
 
-	^ effect
-]
-
-{ #category : #Effect }
-AccelerationCard >> boostEffect [
-
-	effect := effect * 2
+	^ 1
 ]
 
 { #category : #Information }
@@ -45,8 +39,6 @@ AccelerationCard >> haveEffect [
 
 { #category : #Initialization }
 AccelerationCard >> initializeNew [
-
-	effect := 1
 ]
 
 { #category : #Information }

@@ -11,12 +11,7 @@ NoEffectBox class >> initializeNew [
 ]
 
 { #category : #Effect }
-NoEffectBox >> changePolarity [
-	
-]
-
-{ #category : #Effect }
-NoEffectBox >> effect: aGame [
+NoEffectBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
 
 	
 ]

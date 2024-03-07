@@ -2,104 +2,114 @@ Class {
 	#name : #CardManager,
 	#superclass : #Object,
 	#instVars : [
-		'cardsInPosetion',
 		'lastCardPlay',
-		'activeCards'
+		'activeCardsDeck',
+		'cardsInPosetionDeck'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-CardManager class >> using: cards with: aColorCollection [
+CardManager class >> using: aCardsCollection with: aColorsCollection [
 
-	^ self new initializeUsing: cards with: aColorCollection
+	^ self new initializeUsing: aCardsCollection with: aColorsCollection
 ]
 
 { #category : #Managing }
-CardManager >> activate: aCard [
+CardManager >> activate: aCardInAPlayerHand [
 
-	activeCards activate: aCard
+	activeCardsDeck activate: aCardInAPlayerHand
 ]
 
 { #category : #Managing }
-CardManager >> add: aCardInPlayerHand [
+CardManager >> add: aCardInAPlayerHand [
 
-	cardsInPosetion add: aCardInPlayerHand
+	cardsInPosetionDeck add: aCardInAPlayerHand
 ]
 
 { #category : #Managing }
-CardManager >> apply: aCardInHand to: anObjective at: aGame [
+CardManager >> apply: aCardInAPlayerHand to: anObjective at: aDuplaGalacticaGame [
 
-	(self hasBeenGiven: aCardInHand) ifFalse: [ 
+	(self hasBeenGiven: aCardInAPlayerHand) ifFalse: [ 
 		Error signal: 'The player does not have that card in posetion' ].
-
-	aCardInHand card haveEffect ifTrue: [ 
-		lastCardPlay := aCardInHand card ].
-	aCardInHand card applyCardUsing: self to: anObjective at: aGame.
-
-	cardsInPosetion takeOut: aCardInHand
+	aCardInAPlayerHand card haveEffect ifTrue: [ 
+		lastCardPlay := aCardInAPlayerHand card ].
+	aCardInAPlayerHand card
+		applyCardUsing: self
+		to: anObjective
+		at: aDuplaGalacticaGame.
+	cardsInPosetionDeck takeOut: aCardInAPlayerHand
 ]
 
 { #category : #Managing }
 CardManager >> calculateEffectOn: aColorPlayer [
 
-	^ activeCards calculateEffectOn: aColorPlayer
+	^ activeCardsDeck calculateEffectOn: aColorPlayer
 ]
 
 { #category : #Information }
-CardManager >> canBeUse: aCardInHand whenPlay: aPlayer [
+CardManager >> canBeUse: aCardInAPlayerHand whenPlay: aPlayerColor [
 
-	^ (aCardInHand card isPermanent and: aCardInHand holder = aPlayer) 
-		  or: aCardInHand card isPermanent not
+	^ ((self isValidCard: aCardInAPlayerHand) isPermanent and:
+		   aCardInAPlayerHand holder = aPlayerColor) or:
+		  aCardInAPlayerHand card isPermanent not
 ]
 
 { #category : #Information }
-CardManager >> cardsInPosetionOf: players [
+CardManager >> cardsInPosetionOf: aPlayersCollection [
 
-	^ cardsInPosetion cardsOf: players
+	^ cardsInPosetionDeck cardsOf: aPlayersCollection
 ]
 
 { #category : #Managing }
 CardManager >> checkPolarityAt: aDuplaGalacticaGame [
 
-	activeCards checkPolarityAt: aDuplaGalacticaGame
+	activeCardsDeck checkPolarityAt: aDuplaGalacticaGame
 ]
 
 { #category : #Initialization }
-CardManager >> deal: cards to: aColorCollection [
+CardManager >> deal: aCardsCollection to: aColorsCollection [
 
 	| cardsPerColor |
-	cardsPerColor := cards size // aColorCollection size.
-	aColorCollection do: [ :color | 
+	cardsPerColor := aCardsCollection size // aColorsCollection size.
+	aColorsCollection do: [ :color | 
 		cardsPerColor timesRepeat: [ 
-			self add: (Hand of: color with: cards removeLast) ] ]
+			self add: (PlayerHand of: color with: aCardsCollection removeLast) ] ]
 ]
 
 { #category : #Managing }
-CardManager >> desactivate: anObjectiveCardInHand [
+CardManager >> desactivate: anObjectiveCardInAPlayerHand [
 
-	activeCards desactivate: anObjectiveCardInHand
+	activeCardsDeck desactivate: anObjectiveCardInAPlayerHand
 ]
 
 { #category : #Managing }
-CardManager >> duplicateEffectOf: anObjectiveCard [
+CardManager >> duplicateEffectOf: anObjectiveCardInAPlayerHand [
 
-	activeCards duplicateEffectOf: anObjectiveCard
+	activeCardsDeck duplicateEffectOf: anObjectiveCardInAPlayerHand
 ]
 
 { #category : #Information }
-CardManager >> hasBeenGiven: aCardInHand [
+CardManager >> hasBeenGiven: aCardInAPlayerHand [
 
-	^ cardsInPosetion hasBeenGiven: aCardInHand
+	^ cardsInPosetionDeck hasBeenGiven: aCardInAPlayerHand
 ]
 
 { #category : #Initialization }
-CardManager >> initializeUsing: cards with: aColorCollection [
+CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 
-	lastCardPlay := NullCard new.
-	activeCards := ActiveCards createDeck.
-	cardsInPosetion := CardsInPosetion createDeck.
-	self deal: cards to: aColorCollection
+	lastCardPlay := NoEffectCard initializeNew.
+	activeCardsDeck := ActiveCardsDeck createDeck.
+	cardsInPosetionDeck := CardsInPosetionDeck createDeck.
+	self deal: aCardsCollection to: aColorsCollection
+]
+
+{ #category : #Information }
+CardManager >> isValidCard: anObjectiveCardInAPlayerHand [
+
+	^ [ anObjectiveCardInAPlayerHand card ]
+		  on: MessageNotUnderstood
+		  do: [ Error signal: 'That is not a valid card objective' ]
 ]
 
 { #category : #Information }

@@ -1,9 +1,6 @@
 Class {
 	#name : #SpeedUpBox,
 	#superclass : #Object,
-	#instVars : [
-		'polarity'
-	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -14,21 +11,13 @@ SpeedUpBox class >> initializeNew [
 ]
 
 { #category : #Effect }
-SpeedUpBox >> changePolarity [
+SpeedUpBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
 
-	polarity := polarity not
-]
-
-{ #category : #Effect }
-SpeedUpBox >> effect: aGame [
-
-	polarity
-		ifTrue: [ aGame moveCurrent: 4 ]
-		ifFalse: [ aGame moveOthers: 4 ]
+	aPolarityValue
+		ifTrue: [ aDuplaGalacticaGame moveCurrent: 4 ]
+		ifFalse: [ aDuplaGalacticaGame moveOthers: 4 ]
 ]
 
 { #category : #Initialization }
 SpeedUpBox >> initializeNew [
-
-	polarity := true
 ]

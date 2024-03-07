@@ -17,12 +17,17 @@ RedoCard >> = aCard [
 ]
 
 { #category : #Effect }
-RedoCard >> applyCardUsing: aCardManager to: anObjective at: aGame [
+RedoCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	aCardManager lastCardPlay
-		applyCardUsing: aCardManager
-		to: anObjective
-		at: aGame
+	aCardManager lastCardPlay = NoEffectCard initializeNew
+		ifTrue: [ 
+			Error signal:
+				'Redo card cannot be played because there are no cards that have been played before' ]
+		ifFalse: [ 
+			aCardManager lastCardPlay
+				applyCardUsing: aCardManager
+				to: anObjective
+				at: aDuplaGalacticaGame ]
 ]
 
 { #category : #Information }

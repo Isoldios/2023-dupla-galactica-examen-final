@@ -1,9 +1,6 @@
 Class {
 	#name : #ReversePolarityCard,
 	#superclass : #Object,
-	#instVars : [
-		'effect'
-	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -20,17 +17,24 @@ ReversePolarityCard >> = aCard [
 ]
 
 { #category : #Effect }
-ReversePolarityCard >> applyCardUsing: cardManager to: anObjective at: aGame [
+ReversePolarityCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	cardManager activate: (Hand of: anObjective with: self initializeNew)
+	aDuplaGalacticaGame isValidBox: anObjective.
+	aCardManager activate:
+		(PlayerHand of: anObjective with: self initializeNew)
 ]
 
 { #category : #Effect }
-ReversePolarityCard >> changePolarity: aBoxNumber at: aDuplaGalacticaGame [
+ReversePolarityCard >> applyEffect [
 
-	effect ifFalse: [ ^ self ].
-	aDuplaGalacticaGame changePolarity: aBoxNumber.
-	effect := false
+	^ 0
+]
+
+{ #category : #Effect }
+ReversePolarityCard >> changePolarityOf: aBoxNumber at: aDuplaGalacticaGame with: aFlag [
+
+	aFlag timesRepeat: [ 
+		aDuplaGalacticaGame changePolarityOf: aBoxNumber ]
 ]
 
 { #category : #Information }
@@ -41,8 +45,6 @@ ReversePolarityCard >> haveEffect [
 
 { #category : #Initialization }
 ReversePolarityCard >> initializeNew [
-
-	effect := true
 ]
 
 { #category : #Information }
