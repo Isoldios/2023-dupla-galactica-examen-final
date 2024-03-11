@@ -10,7 +10,13 @@ Class {
 { #category : #'Instance creation' }
 ObjectCreator class >> use: anObjectProbabilitiesCollection [
 
-	(anObjectProbabilitiesCollection sum: #probability) = 100 ifFalse: [ 
+	(anObjectProbabilitiesCollection isKindOf: OrderedCollection) 
+		ifFalse: [ 
+		Error signal: 'That is not an object probabilities collection' ].
+	([ anObjectProbabilitiesCollection sum: #probability ]
+		 on: MessageNotUnderstood
+		 do: [ Error signal: 'That is not a valid object probability' ])
+	= 100 ifFalse: [ 
 		Error signal: 'The sum of probabilities must be 100' ].
 	^ self new initializeUse: anObjectProbabilitiesCollection
 ]

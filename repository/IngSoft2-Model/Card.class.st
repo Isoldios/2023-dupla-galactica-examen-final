@@ -53,7 +53,7 @@ Card >> haveEffect [
 Card >> initializeType: aCard [
 
 	card := aCard.
-	(self isValidCard: aCard) ifFalse: [ ^ self ].
+	card isPermanent ifFalse: [ ^ self ].
 	effect := card applyEffect.
 	flag := 1
 ]
@@ -62,14 +62,6 @@ Card >> initializeType: aCard [
 Card >> isPermanent [
 
 	^ card isPermanent
-]
-
-{ #category : #Information }
-Card >> isValidCard: aCard [
-
-	^ [ aCard isPermanent ]
-		  on: MessageNotUnderstood
-		  do: [ Error signal: 'That is not a valid card' ]
 ]
 
 { #category : #Information }

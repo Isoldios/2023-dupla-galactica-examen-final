@@ -10,6 +10,8 @@ Class {
 { #category : #'Instance creation' }
 ParsecMeasure class >> worth: aNominalValue [
 
+	aNominalValue isNumber ifFalse: [ 
+		Error signal: 'Cannot create a ligth year measure with that value' ].
 	^ self new initializeWith: aNominalValue
 ]
 

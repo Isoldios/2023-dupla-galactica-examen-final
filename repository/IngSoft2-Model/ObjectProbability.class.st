@@ -11,6 +11,9 @@ Class {
 { #category : #'Instance creation' }
 ObjectProbability class >> using: anObject withChanceOf: aProbability [
 
+	((anObject respondsTo: #isPermanent) or:
+		 (anObject respondsTo: #effect:with:)) ifFalse: [ 
+		Error signal: 'That object is neither a card nor a box' ].
 	^ self new initializeUsing: anObject withChanceOf: aProbability
 ]
 

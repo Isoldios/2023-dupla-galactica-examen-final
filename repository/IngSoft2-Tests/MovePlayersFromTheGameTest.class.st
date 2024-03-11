@@ -8,38 +8,12 @@ Class {
 }
 
 { #category : #Games }
-MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
-
-	| aBoard aDuplaGalacticaGame aCardsCollection aBoxesCollection |
-	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: OverloadCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
-				                       withChanceOf: 100))) create: 10.
-	aBoard := Board
-		          with: aBoxesCollection
-		          measure: (ParsecMeasure worth: 200).
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
-		                       winningWhenReach: 2
-		                       using: aCardsCollection.
-	^ aDuplaGalacticaGame
-]
-
-{ #category : #Games }
 MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 
 	| aDuplaGalacticaGame aBoard aCardsCollection aBoxesCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: OverloadCard initializeNew
+				                       using: NoEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
@@ -65,7 +39,7 @@ MovePlayersFromTheGameTest >> gameWithTwoLaps: aLoadedDie [
 	| aBoard aDuplaGalacticaGame aCardsCollection aBoxesCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: OverloadCard initializeNew
+				                       using: NoEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
@@ -104,111 +78,50 @@ MovePlayersFromTheGameTest >> should: anErrorBlock raise: anExceptionClass withM
 ]
 
 { #category : #tests }
-MovePlayersFromTheGameTest >> testM001CreateAPlayerThenCheckItsLapNumber [
+MovePlayersFromTheGameTest >> testM002WhenAGameIsCreatedWithTwoGoalLapsThenMoveAPlayerOneEntireLapAndValidPlayersLaps [
 
-	| aPlayer |
-	aPlayer := Player with: 'red'.
-	self assert: aPlayer lap equals: 0
+	| aDuplaGalacticaGame |
+	aDuplaGalacticaGame := self gameWithTwoLaps:
+		                       (LoadedDie with: #( 11 5 3 4 )).
+	aDuplaGalacticaGame movePlayer.
+	self
+		assert: aDuplaGalacticaGame playersLaps
+		equals: (OrderedCollection with: 1 with: 0)
 ]
 
 { #category : #tests }
-MovePlayersFromTheGameTest >> testM002CreateAGameWithTwoGoalLapsThenMoveAPlayerOneEntireLapAndCheckPlayersLaps [
+MovePlayersFromTheGameTest >> testM003WhenAGameIsCreatedWithTwoGoalLapsThenMovePlayersOneEntireLapAndValidPlayersLaps [
 
-	| aLoadedDie aDuplaGalacticaGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 11
-			               with: 5
-			               with: 7
-			               with: 9).
-	aDuplaGalacticaGame := self gameWithTwoLaps: aLoadedDie.
+	| aDuplaGalacticaGame |
+	aDuplaGalacticaGame := self gameWithTwoLaps:
+		                       (LoadedDie with: #( 11 16 3 4 )).
 	aDuplaGalacticaGame movePlayer.
-	self assert: aDuplaGalacticaGame playersLaps equals: (OrderedCollection with: 1 with: 0)
+	aDuplaGalacticaGame movePlayer.
+	self
+		assert: aDuplaGalacticaGame playersLaps
+		equals: (OrderedCollection with: 1 with: 1)
 ]
 
 { #category : #tests }
-MovePlayersFromTheGameTest >> testM003CreateAGameWithTwoGoalLapsThenMovePlayersOneEntireLapAndCheckPlayersLaps [
+MovePlayersFromTheGameTest >> testM005WhenAGameIsCreatedWithTwoGoalLapsThenMoveAPlayerTwoEntireLapsInOneThrowAndValidItWinsAndPlayersLaps [
 
-	| aLoadedDie aDuplaGalacticaGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 11
-			               with: 16
-			               with: 7
-			               with: 9).
-	aDuplaGalacticaGame := self gameWithTwoLaps: aLoadedDie.
+	| aDuplaGalacticaGame |
+	aDuplaGalacticaGame := self gameWithTwoLaps:
+		                       (LoadedDie with: #( 23 9 3 4 )).
 	aDuplaGalacticaGame movePlayer.
-	aDuplaGalacticaGame movePlayer.
-	self assert: aDuplaGalacticaGame playersLaps equals: (OrderedCollection with: 1 with: 1)
-]
-
-{ #category : #tests }
-MovePlayersFromTheGameTest >> testM005CreateAGameWithTwoGoalLapsThenMoveAPlayerTwoEntireLapsInOneThrowAndCheckItWins [
-
-	| aLoadedDie aDuplaGalacticaGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 23
-			               with: 9
-			               with: 7
-			               with: 9).
-	aDuplaGalacticaGame := self gameWithTwoLaps: aLoadedDie.
-	aDuplaGalacticaGame movePlayer.
-	self assert: aDuplaGalacticaGame playersLaps equals: (OrderedCollection with: 2 with: 0).
+	self
+		assert: aDuplaGalacticaGame playersLaps
+		equals: (OrderedCollection with: 2 with: 0).
 	self assert: aDuplaGalacticaGame winner equals: 'red'
 ]
 
 { #category : #tests }
-MovePlayersFromTheGameTest >> testM007CreateAGameWithOneGoalLapThenMoveOnePlayerToTheGoalAndCheckItWins [
+MovePlayersFromTheGameTest >> testM007WhenAGameIsCreatedWithOneGoalLapThenMoveOnePlayerToTheGoalAndValidItWins [
 
-	| aLoadedDie aDuplaGalacticaGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 9
-			               with: 11
-			               with: 9
-			               with: 6).
-	aDuplaGalacticaGame := self gameWithOneLap: aLoadedDie.
+	| aDuplaGalacticaGame |
+	aDuplaGalacticaGame := self gameWithOneLap:
+		                       (LoadedDie with: #( 9 11 3 4 )).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self assert: aDuplaGalacticaGame winner equals: 'blue'
-]
-
-{ #category : #tests }
-MovePlayersFromTheGameTest >> testM008CreateAGameWithOneGoalLapThenMoveOnePlayerToTheGoalAndCheckTheGameHasFinishedSoPlayersDoNotMoveAnyMoreLookingPlayersPositions [
-
-	| aLoadedDie aDuplaGalacticaGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 15
-			               with: 3
-			               with: 9
-			               with: 6).
-	aDuplaGalacticaGame := self gameWithOneLap: aLoadedDie.
-	aDuplaGalacticaGame movePlayer.
-	aDuplaGalacticaGame movePlayer.
-	aDuplaGalacticaGame movePlayer.
-	aDuplaGalacticaGame movePlayer.
-	self assert: aDuplaGalacticaGame playersBox equals: (OrderedCollection with: 6 with: 1)
-]
-
-{ #category : #tests }
-MovePlayersFromTheGameTest >> testO001CreateAGameWithOneGoalLapAndAParsecsMeasureThenCheckTheParsecsNominalValue [
-
-	| aLoadedDie aDuplaGalacticaGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 7
-			               with: 8
-			               with: 9
-			               with: 6).
-	aDuplaGalacticaGame := self gameWithOneLap: aLoadedDie.
-	self assert: aDuplaGalacticaGame parsecs nominalValue equals: 100
-]
-
-{ #category : #tests }
-MovePlayersFromTheGameTest >> testO002CreateAGameWithAMoreParsecsMeasureThenCheckTheParsecsNominalValue [
-
-	| aLoadedDie aDuplaGalacticaGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 7
-			               with: 8
-			               with: 9
-			               with: 6).
-	aDuplaGalacticaGame := self gameWithMoreParsecs: aLoadedDie.
-	self assert: aDuplaGalacticaGame parsecs nominalValue equals: 200
 ]

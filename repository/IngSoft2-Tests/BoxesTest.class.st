@@ -16,7 +16,7 @@ BoxesTest >> setUp [
 	aColorsCollection := OrderedCollection with: 'red' with: 'blue'.
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: OverloadCard initializeNew
+				                       using: NoEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4
 ]
 
@@ -33,12 +33,7 @@ BoxesTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMe
 { #category : #tests }
 BoxesTest >> testN001WhenPlayerReachesANoEffectBoxThenCheckThatNoEffectsWereAppliedAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 6
-			               with: 8
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
 				                       using: NoEffectBox initializeNew
@@ -49,9 +44,9 @@ BoxesTest >> testN001WhenPlayerReachesANoEffectBoxThenCheckThatNoEffectsWereAppl
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 6 8 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -64,12 +59,7 @@ BoxesTest >> testN001WhenPlayerReachesANoEffectBoxThenCheckThatNoEffectsWereAppl
 { #category : #tests }
 BoxesTest >> testN002WhenPlayerReachesAWormHoleBoxThenCheckThatANegativeEffectWasAppliedAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 5
-			               with: 8
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
 				                       using: WormHoleBox initializeNew
@@ -80,9 +70,9 @@ BoxesTest >> testN002WhenPlayerReachesAWormHoleBoxThenCheckThatANegativeEffectWa
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 5 8 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -95,12 +85,7 @@ BoxesTest >> testN002WhenPlayerReachesAWormHoleBoxThenCheckThatANegativeEffectWa
 { #category : #tests }
 BoxesTest >> testN003WhenPlayerReachesASpeedUpBoxThenCheckThatAPositiveEffectWasAppliedAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 1
-			               with: 8
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
 				                       using: SpeedUpBox initializeNew
@@ -111,9 +96,9 @@ BoxesTest >> testN003WhenPlayerReachesASpeedUpBoxThenCheckThatAPositiveEffectWas
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 1 8 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -126,12 +111,7 @@ BoxesTest >> testN003WhenPlayerReachesASpeedUpBoxThenCheckThatAPositiveEffectWas
 { #category : #tests }
 BoxesTest >> testN004WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectWasAppliedOnOtherPlayersAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 8
-			               with: 3
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
 				                       using: (MoonWalkBox with: -2)
@@ -142,9 +122,9 @@ BoxesTest >> testN004WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectWasAppli
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 8 3 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -157,12 +137,7 @@ BoxesTest >> testN004WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectWasAppli
 { #category : #tests }
 BoxesTest >> testN005WhenPlayerReachesAnAtomicBombBoxThenCheckThatAllPlayersWereMovedToTheBeginningOfTheLapAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 1
-			               with: 8
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using: AtomicBombBox initializeNew
@@ -173,9 +148,9 @@ BoxesTest >> testN005WhenPlayerReachesAnAtomicBombBoxThenCheckThatAllPlayersWere
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 1 8 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -188,12 +163,7 @@ BoxesTest >> testN005WhenPlayerReachesAnAtomicBombBoxThenCheckThatAllPlayersWere
 { #category : #tests }
 BoxesTest >> testN006WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnAParsecNominalValueWasAppliedAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 3
-			               with: 3
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using:
@@ -207,27 +177,22 @@ BoxesTest >> testN006WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependi
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 3 4 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
 		assert: aDuplaGalacticaGame playersBox
-		equals: (OrderedCollection with: 8 with: 7)
+		equals: (OrderedCollection with: 8 with: 9)
 ]
 
 { #category : #tests }
 BoxesTest >> testN007WhenPlayerReachesAWormHoleBoxInTheFirstLapThenCheckThatTheNegativeEffectCannotSendPlayerToAnOutOfRangeBoardPositionAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 1
-			               with: 8
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
 				                       using: WormHoleBox initializeNew
@@ -238,9 +203,9 @@ BoxesTest >> testN007WhenPlayerReachesAWormHoleBoxInTheFirstLapThenCheckThatTheN
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 1 8 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -253,12 +218,7 @@ BoxesTest >> testN007WhenPlayerReachesAWormHoleBoxInTheFirstLapThenCheckThatTheN
 { #category : #tests }
 BoxesTest >> testN008WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectCannotSendOtherPlayersToAnOutOfRangeBoardPositionInTheFirstLapAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 3
-			               with: 4
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
 				                       using: (MoonWalkBox with: -4)
@@ -269,9 +229,9 @@ BoxesTest >> testN008WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectCannotSe
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 3 4 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -284,12 +244,7 @@ BoxesTest >> testN008WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectCannotSe
 { #category : #tests }
 BoxesTest >> testN009WhenPlayerReachesAHyperJumpBoxInTheFirstLapThenCheckThatANegativeEffectCannotSendPlayerToAnOutOfRangeBoardPositionAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 3
-			               with: 3
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using:
@@ -303,9 +258,9 @@ BoxesTest >> testN009WhenPlayerReachesAHyperJumpBoxInTheFirstLapThenCheckThatANe
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 3 3 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -316,14 +271,9 @@ BoxesTest >> testN009WhenPlayerReachesAHyperJumpBoxInTheFirstLapThenCheckThatANe
 ]
 
 { #category : #tests }
-BoxesTest >> testN010WhenPlayerReachesTheGoalButAlsoReachAMoonWalkBoxThenCheckThatTheEffectMakesItNotWinAndCheckingWinnerFails [
+BoxesTest >> testN010WhenPlayerReachesTheGoalButAlsoLandsOnAWormHoleBoxThenVerifyThatTheEffectPreventsWinningAndThatCheckingTheWinnerFails [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 13
-			               with: 8
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
 				                       using: WormHoleBox initializeNew
@@ -334,9 +284,9 @@ BoxesTest >> testN010WhenPlayerReachesTheGoalButAlsoReachAMoonWalkBoxThenCheckTh
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 13 8 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -347,14 +297,9 @@ BoxesTest >> testN010WhenPlayerReachesTheGoalButAlsoReachAMoonWalkBoxThenCheckTh
 ]
 
 { #category : #tests }
-BoxesTest >> testN011CheckHyperJumpBoxMovesTheCorrectAmountOfParsecsWhenThatAreNotEntireValuesThenValidPlayersPositions [
+BoxesTest >> testN011WhenPlayerReachesAHyperJumpBoxWithNoEntireValueMeasuresThenCheckThatTheEffectMovesPlayerAnEntireValueAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 3
-			               with: 3
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using:
@@ -368,9 +313,38 @@ BoxesTest >> testN011CheckHyperJumpBoxMovesTheCorrectAmountOfParsecsWhenThatAreN
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 3 3 5 8 ))))
+		                       winningWhenReach: 1
+		                       using: aCardsCollection.
+	aDuplaGalacticaGame movePlayer.
+	aDuplaGalacticaGame movePlayer.
+	self
+		assert: aDuplaGalacticaGame playersBox
+		equals: (OrderedCollection with: 8 with: 7)
+]
+
+{ #category : #tests }
+BoxesTest >> testN012WhenPlayersReachTheSameHyperJumpBoxThenCheckThatTheEffectDependingOnAParsecNominalValueWasAppliedAndValidPlayersPositions [
+
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
+	aBoxesCollection := (ObjectCreator use:
+		                     (OrderedCollection with: (ObjectProbability
+				                       using:
+					                       (HyperJumpBox with: (OrderedCollection
+							                         with: (ParsecMeasure worth: 30)
+							                         with: (ParsecMeasure worth: 40)))
+				                       withChanceOf: 100))) create: 10.
+	aBoard := Board
+		          with: aBoxesCollection
+		          measure: (ParsecMeasure worth: 100).
+	aDuplaGalacticaGame := DuplaGalacticaGameProxy
+		                       with: aColorsCollection
+		                       and: aBoard
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 3 3 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -383,19 +357,14 @@ BoxesTest >> testN011CheckHyperJumpBoxMovesTheCorrectAmountOfParsecsWhenThatAreN
 { #category : #tests }
 BoxesTest >> testR001WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMoreCardInPosetion [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 6
-			               with: 8
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using:
 					                       (RandomCardBox with:
 						                        (OrderedCollection with:
 							                         (ObjectProbability
-								                          using: OverloadCard initializeNew
+								                          using: NoEffectCard initializeNew
 								                          withChanceOf: 100)))
 				                       withChanceOf: 100))) create: 10.
 	aBoard := Board
@@ -404,9 +373,9 @@ BoxesTest >> testR001WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMor
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 6 8 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -416,7 +385,7 @@ BoxesTest >> testR001WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMor
 ]
 
 { #category : #tests }
-BoxesTest >> testR003TryToCreateARandomCardBoxWithCardsProbabilitiesLessThan100ThenFails [
+BoxesTest >> testR003TryToCreateARandomCardBoxWithCardsProbabilitiesNotEqualsTo100ThenFails [
 
 	self
 		should: [ 
@@ -425,18 +394,21 @@ BoxesTest >> testR003TryToCreateARandomCardBoxWithCardsProbabilitiesLessThan100T
 						  using: OverloadCard initializeNew
 						  withChanceOf: 10)) ]
 		raise: Error
+		withMessage: 'The sum of probabilities must be 100'.
+	self
+		should: [ 
+			RandomCardBox with: (OrderedCollection with:
+					 (ObjectProbability
+						  using: OverloadCard initializeNew
+						  withChanceOf: 150)) ]
+		raise: Error
 		withMessage: 'The sum of probabilities must be 100'
 ]
 
 { #category : #tests }
-BoxesTest >> testT001CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAreGivenInLightYearsThenValidPlayersPositions [
+BoxesTest >> testT001WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearNominalValueWasAppliedAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 3
-			               with: 3
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using:
@@ -450,9 +422,9 @@ BoxesTest >> testT001CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 3 3 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -463,14 +435,9 @@ BoxesTest >> testT001CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 ]
 
 { #category : #tests }
-BoxesTest >> testT002CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAreGivenInLightYearsAndParsecsThenValidPlayersPositions [
+BoxesTest >> testT002WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearAndAParsecNominalValueWasAppliedAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 3
-			               with: 3
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using:
@@ -484,9 +451,9 @@ BoxesTest >> testT002CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 3 3 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -509,14 +476,9 @@ BoxesTest >> testT003TryToCreateAHyperJumpBoxWithNoValuesToUseThenFails [
 ]
 
 { #category : #tests }
-BoxesTest >> testT004CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAreGivenInLightYearsAndParsecsAndAlsoTheyAreNegativeThenValidPlayersPositions [
+BoxesTest >> testT004WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearAndAParsecNegativeNominalValueWasAppliedAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 3
-			               with: 3
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using:
@@ -530,9 +492,9 @@ BoxesTest >> testT004CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 3 3 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -545,12 +507,7 @@ BoxesTest >> testT004CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 { #category : #tests }
 BoxesTest >> testT005WhenPlayerReachesAHyperJumpBoxThenCheckIfItHasANegativeEffectThatMakesPlayerMoveBackwardMoreThanOneLapAndValidPlayersPositions [
 
-	| aLoadedDie aDuplaGalacticaGame aBoxesCollection aBoard |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 30
-			               with: 31
-			               with: 5
-			               with: 8).
+	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
 		                     (OrderedCollection with: (ObjectProbability
 				                       using: (HyperJumpBox with:
@@ -563,9 +520,9 @@ BoxesTest >> testT005WhenPlayerReachesAHyperJumpBoxThenCheckIfItHasANegativeEffe
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
 		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 30 31 5 8 ))))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
@@ -608,11 +565,71 @@ BoxesTest >> testT007TryToCreateABoardWithBoxesThatAreNotBoxesThenFails [
 { #category : #tests }
 BoxesTest >> testT008TryToCreateABoardWithNoBoxesOrderedCollectionThenFails [
 
-	| aBoxesCollection |
-	aBoxesCollection := 'blue'.
 	self
-		should: [ 
-		Board with: aBoxesCollection measure: (ParsecMeasure worth: 100) ]
+		should: [ Board with: 'blue' measure: (ParsecMeasure worth: 100) ]
+		raise: Error
+		withMessage: 'That is not a boxes collection'.
+	self
+		should: [ Board with: 100 measure: (ParsecMeasure worth: 100) ]
 		raise: Error
 		withMessage: 'That is not a boxes collection'
+]
+
+{ #category : #tests }
+BoxesTest >> testT009TryToCreateAHyperJumpBoxWithNoMeasuresOrderedCollectionThenFails [
+
+	self
+		should: [ 
+			(ObjectCreator use: (OrderedCollection with:
+					  (ObjectProbability
+						   using: (HyperJumpBox with: 'p')
+						   withChanceOf: 100))) create: 10 ]
+		raise: Error
+		withMessage: 'That is not a measures collection'.
+	self
+		should: [ 
+			(ObjectCreator use: (OrderedCollection with:
+					  (ObjectProbability
+						   using: (HyperJumpBox with: 100)
+						   withChanceOf: 100))) create: 10 ]
+		raise: Error
+		withMessage: 'That is not a measures collection'
+]
+
+{ #category : #tests }
+BoxesTest >> testT010TryToCreateAHyperJumpBoxWithMeasuresThatAreNotMeasuresThenFails [
+
+	self
+		should: [ 
+			(ObjectCreator use: (OrderedCollection with: (ObjectProbability
+						   using: (HyperJumpBox with: (OrderedCollection
+									     with: (ParsecMeasure worth: 45)
+									     with: 'p'
+									     with: (LigthYearMeasure worth: 60)))
+						   withChanceOf: 100))) create: 10 ]
+		raise: Error
+		withMessage: 'Cannot create a hyper jump box with that values'
+]
+
+{ #category : #tests }
+BoxesTest >> testT011TryToCreateABoardWithAMeasureThatIsNotAMeasureThenFails [
+
+	| aBoxesCollection |
+	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: NoEffectBox initializeNew
+				                       withChanceOf: 100))) create: 10.
+	self
+		should: [ Board with: aBoxesCollection measure: 'p' ]
+		raise: Error
+		withMessage: 'That is not a measure'.
+	self
+		should: [ Board with: aBoxesCollection measure: 100 ]
+		raise: Error
+		withMessage: 'That is not a measure'.
+	self
+		should: [ 
+		Board with: aBoxesCollection measure: (OrderedCollection with: 100) ]
+		raise: Error
+		withMessage: 'That is not a measure'
 ]

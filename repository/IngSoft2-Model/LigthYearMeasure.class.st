@@ -10,6 +10,8 @@ Class {
 { #category : #'Instance creation' }
 LigthYearMeasure class >> worth: aNominalValue [
 
+	aNominalValue isNumber ifFalse: [ 
+		Error signal: 'Cannot create a ligth year measure with that value' ].
 	^ self new initializeWorth: aNominalValue
 ]
 

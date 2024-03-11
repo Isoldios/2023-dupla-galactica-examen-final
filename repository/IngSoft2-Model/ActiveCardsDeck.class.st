@@ -56,7 +56,7 @@ ActiveCardsDeck >> initializeDeck [
 { #category : #Information }
 ActiveCardsDeck >> isEmpty [
 
-	playersHands isEmpty ifTrue: [ Error signal: 'There are no permanent cards' ]
+	playersHands isEmpty ifTrue: [ Error signal: 'There are no active permanent cards' ]
 ]
 
 { #category : #Information }
@@ -79,5 +79,5 @@ ActiveCardsDeck >> searching: anObjectiveCardInAPlayerHand [
 		ifFound: [ :hand | ^ hand ]
 		ifNone: [ 
 			Error signal:
-				'There are no that type of cards active in this player' ]
+				'There are no cards of that type active in this player' ]
 ]

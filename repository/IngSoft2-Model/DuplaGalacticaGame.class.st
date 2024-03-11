@@ -16,7 +16,7 @@ Class {
 { #category : #'Instance creation' }
 DuplaGalacticaGame class >> with: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhenReach: aNumberOfLaps using: aCardsCollection [
 
-	aColorsCollection size <= 0 ifTrue: [ 
+	aColorsCollection isEmpty ifTrue: [ 
 		Error signal: 'Cannot create a game with no players' ].
 	aColorsCollection do: [ :colorToTest | 
 		(aColorsCollection select: [ :color | color = colorToTest ]) size
@@ -28,6 +28,10 @@ DuplaGalacticaGame class >> with: aColorsCollection and: aBoard usingToThrow: aD
 		Error signal: 'That is not a cards collection' ].
 	aCardsCollection size // 2 < aColorsCollection size ifTrue: [ 
 		Error signal: 'Cannot create a game with that amount of cards' ].
+	aCardsCollection do: [ :card | 
+		[ card isPermanent ]
+			on: MessageNotUnderstood
+			do: [ Error signal: 'That is not a valid card' ] ].
 	^ self new
 		  initializeWith: aColorsCollection
 		  and: aBoard
@@ -53,6 +57,7 @@ DuplaGalacticaGame >> addToOthers: aCardInAPlayerHand [
 { #category : #Cards }
 DuplaGalacticaGame >> apply: aCardInAPlayerHand to: anObjective [
 
+	self isValidCardInAHand: aCardInAPlayerHand.
 	(cardManager canBeUse: aCardInAPlayerHand whenPlay: current color) 
 		ifFalse: [ 
 			Error signal:
@@ -97,7 +102,7 @@ DuplaGalacticaGame >> goalLaps [
 ]
 
 { #category : #Initialization }
-DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhen: reachAValue using: cards [
+DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhen: reachAValue using: aCardsCollection [
 
 	players := aColorsCollection collect: [ :color | Player with: color ].
 	board := aBoard.
@@ -105,7 +110,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	turnManager := QueueManager with: players.
 	current := turnManager current.
 	goalLaps := reachAValue.
-	cardManager := CardManager using: cards with: aColorsCollection
+	cardManager := CardManager using: aCardsCollection with: aColorsCollection
 ]
 
 { #category : #Boxes }
@@ -116,6 +121,15 @@ DuplaGalacticaGame >> isValidBox: aBoxNumber [
 			(aBoxNumber <= self boardLength and: aBoxNumber > 0) ifFalse: [ 
 				Error signal: 'That is not a valid box number' ] ]
 		ifFalse: [ Error signal: 'That is not a box number' ]
+]
+
+{ #category : #Cards }
+DuplaGalacticaGame >> isValidCardInAHand: aCardInAPlayerHand [
+
+	self playersColors
+		detect: [ :color | color = aCardInAPlayerHand holder ]
+		ifFound: [ ^ self ]
+		ifNone: [ Error signal: 'That player does not exist' ]
 ]
 
 { #category : #Cards }
@@ -156,7 +170,8 @@ DuplaGalacticaGame >> moveOthers: aValue [
 DuplaGalacticaGame >> movePlayer [
 
 	| boxesToMove |
-	self winnerExists ifTrue: [ ^ self ].
+	self winnerExists ifTrue: [ 
+		Error signal: 'The game has finished because someone won' ].
 	boxesToMove := shaker throwDice
 	               + (cardManager calculateEffectOn: current color).
 	current move: boxesToMove andUpdateLap: self boardLength.

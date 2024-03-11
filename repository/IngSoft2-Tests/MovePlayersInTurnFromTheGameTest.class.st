@@ -10,38 +10,39 @@ Class {
 { #category : #running }
 MovePlayersInTurnFromTheGameTest >> setUp [
 
-	| aColorsCollection aLoadedDie aCardsCollection aBoxesCollection aBoard |
+	| aColorsCollection aCardsCollection aBoxesCollection |
 	super setUp.
 
 	aColorsCollection := OrderedCollection with: 'red' with: 'blue'.
-	aLoadedDie := LoadedDie with:
-		              (OrderedCollection with: 1 with: 2 with: 3).
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: OverloadCard initializeNew
+				                       using: NoEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
 				                       using: NoEffectBox initializeNew
 				                       withChanceOf: 100))) create: 10.
-	aBoard := Board with: aBoxesCollection measure: (ParsecMeasure worth: 100).
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		         with: aColorsCollection
-		         and: aBoard
-		         usingToThrow:
-		         (DiceShaker with: (OrderedCollection with: aLoadedDie))
-		         winningWhenReach: 1
-		         using: aCardsCollection
+		                       with: aColorsCollection
+		                       and:
+		                       (Board
+			                        with: aBoxesCollection
+			                        measure: (ParsecMeasure worth: 100))
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 1 2 3 ))))
+		                       winningWhenReach: 1
+		                       using: aCardsCollection
 ]
 
 { #category : #tests }
-MovePlayersInTurnFromTheGameTest >> testJ001CreateAGameWithTwoColorsPlayersThenValidPlayersTurn [
+MovePlayersInTurnFromTheGameTest >> testJ001WhenAGameIsCreatedWithTwoColorsPlayersThenValidPlayersTurn [
 
 	self assert: aDuplaGalacticaGame currentPlayer equals: 'red'
 ]
 
 { #category : #tests }
-MovePlayersInTurnFromTheGameTest >> testJ003CreateAGameWithTwoColorsPlayersThenMoveBothPlayersAndValidPlayersTurn [
+MovePlayersInTurnFromTheGameTest >> testJ003WhenAGameIsCreatedWithTwoColorsPlayersThenMoveBothPlayersOnceAndValidPlayersTurn [
 
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.

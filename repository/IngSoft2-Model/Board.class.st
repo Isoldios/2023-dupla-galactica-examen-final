@@ -12,13 +12,18 @@ Class {
 { #category : #'Instance creation' }
 Board class >> with: aBoxesCollection measure: aLengthMeasure [
 
-	aLengthMeasure nominalValue <= 0 ifTrue: [ 
+	([ aLengthMeasure nominalValue ]
+		 on: MessageNotUnderstood
+		 do: [ Error signal: 'That is not a measure' ]) <= 0 ifTrue: [ 
 		Error signal:
 			'Cannot create a game with that parsec or lightYear value' ].
 	(aBoxesCollection isKindOf: OrderedCollection) ifFalse: [ 
 		Error signal: 'That is not a boxes collection' ].
 	aBoxesCollection size < 4 ifTrue: [ 
 		Error signal: 'Cannot create a board with that amount of boxes' ].
+	aBoxesCollection do: [ :box | 
+		(box respondsTo: #effect:with:) ifFalse: [ 
+			Error signal: 'That is not a valid box' ] ].
 	^ self new initializeWith: aBoxesCollection measure: aLengthMeasure
 ]
 
