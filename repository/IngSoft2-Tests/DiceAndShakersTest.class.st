@@ -1,11 +1,11 @@
 Class {
-	#name : #CreateDiceAndDiceShakersTest,
+	#name : #DiceAndShakersTest,
 	#superclass : #TestCase,
 	#category : #'IngSoft2-Tests'
 }
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMessage [
+DiceAndShakersTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMessage [
 
 	self
 		should: anErrorBlock
@@ -15,7 +15,7 @@ CreateDiceAndDiceShakersTest >> should: anErrorBlock raise: anExceptionClass wit
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE002WhenADieIsCreatedThenValidItsNumberOfFaces [
+DiceAndShakersTest >> testK001WhenADieIsCreatedThenValidItsNumberOfFaces [
 
 	| aDie |
 	aDie := Die with: 3.
@@ -23,7 +23,7 @@ CreateDiceAndDiceShakersTest >> testE002WhenADieIsCreatedThenValidItsNumberOfFac
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE004WhenALoadedDieIsCreatedWithAnOrderedCollectionOfValuesThenCheckItsNumberOfFaces [
+DiceAndShakersTest >> testK002WhenALoadedDieIsCreatedWithAnOrderedCollectionOfValuesThenCheckItsNumberOfFaces [
 
 	| aLoadedDie |
 	aLoadedDie := LoadedDie with: #( 1 2 3 ).
@@ -31,7 +31,7 @@ CreateDiceAndDiceShakersTest >> testE004WhenALoadedDieIsCreatedWithAnOrderedColl
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE006WhenALoadedDieWithAnOrderedCollectionOfValuesIsThrownThenValidItReturnsTheFirstValue [
+DiceAndShakersTest >> testK003WhenALoadedDieWithAnOrderedCollectionOfValuesIsThrownThenValidItReturnsTheFirstValue [
 
 	| aLoadedDie |
 	aLoadedDie := LoadedDie with: #( 5 4 3 ).
@@ -39,7 +39,7 @@ CreateDiceAndDiceShakersTest >> testE006WhenALoadedDieWithAnOrderedCollectionOfV
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE007WhenADieIsThrownThenValidTheValueReturnesIsInTheDieRange [
+DiceAndShakersTest >> testK004WhenADieIsThrownThenValidTheValueReturnesIsInTheDieRange [
 
 	| aDie |
 	aDie := Die with: 5.
@@ -47,7 +47,7 @@ CreateDiceAndDiceShakersTest >> testE007WhenADieIsThrownThenValidTheValueReturne
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE009WhenALoadedDieWithAnOrderedCollectionOfValuesIsThrownTwiceThenValidItReturnsTheSecondValue [
+DiceAndShakersTest >> testK005WhenALoadedDieWithAnOrderedCollectionOfValuesIsThrownTwiceThenValidItReturnsTheSecondValue [
 
 	| aLoadedDie |
 	aLoadedDie := LoadedDie with: #( 3 5 7 9 ).
@@ -56,7 +56,7 @@ CreateDiceAndDiceShakersTest >> testE009WhenALoadedDieWithAnOrderedCollectionOfV
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE010WhenALoadedDieWithAnOrderedCollectionOfValuesIsThrownAllPossibleValuesTimesThenValidItReturnsTheFirstValueAgain [
+DiceAndShakersTest >> testK006WhenALoadedDieWithAnOrderedCollectionOfValuesIsThrownAllPossibleValuesTimesThenValidItReturnsTheFirstValueAgain [
 
 	| aLoadedDie |
 	aLoadedDie := LoadedDie with: #( 3 5 7 9 ).
@@ -68,45 +68,7 @@ CreateDiceAndDiceShakersTest >> testE010WhenALoadedDieWithAnOrderedCollectionOfV
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE011TryToCreateALoadedDieWithNegativeValuesAtFacesThenFails [
-
-	self
-		should: [ LoadedDie with: #( 3 5 -7 9 ) ]
-		raise: Error
-		withMessage: 'Cannot create with negative values at faces'
-]
-
-{ #category : #tests }
-CreateDiceAndDiceShakersTest >> testE012TryToCreateALoadedDieWithLessThanThreeFacesThenFails [
-
-	self
-		should: [ LoadedDie with: #( 3 5 ) ]
-		raise: Error
-		withMessage: 'Cannot create with faces less than 3'
-]
-
-{ #category : #tests }
-CreateDiceAndDiceShakersTest >> testE013TryToCreateADieWithNegativeNumberOfFacesThenFails [
-
-	self
-		should: [ Die with: -2 ]
-		raise: Error
-		withMessage:
-		'Cannot create with negative values at faces or less than 2 faces'
-]
-
-{ #category : #tests }
-CreateDiceAndDiceShakersTest >> testE014TryToCreateADieWithNumberOfFacesLessThanThreeThenFails [
-
-	self
-		should: [ Die with: 2 ]
-		raise: Error
-		withMessage:
-		'Cannot create with negative values at faces or less than 2 faces'
-]
-
-{ #category : #tests }
-CreateDiceAndDiceShakersTest >> testE017WhenAShakerIsCreatedWithALoadedDieThenUseItToThrowAndCheckTheValueReturned [
+DiceAndShakersTest >> testK007WhenAShakerIsCreatedWithALoadedDieThenUseItToThrowAndCheckTheValueReturned [
 
 	| aShaker |
 	aShaker := DiceShaker with:
@@ -115,7 +77,7 @@ CreateDiceAndDiceShakersTest >> testE017WhenAShakerIsCreatedWithALoadedDieThenUs
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE018WhenAShakerIsCreatedWithTwoLoadedDieThenUseItToThrowAndCheckTheValueReturned [
+DiceAndShakersTest >> testK008WhenAShakerIsCreatedWithTwoLoadedDieThenUseItToThrowAndCheckTheValueReturned [
 
 	| aShaker |
 	aShaker := DiceShaker with:
@@ -125,7 +87,7 @@ CreateDiceAndDiceShakersTest >> testE018WhenAShakerIsCreatedWithTwoLoadedDieThen
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE019WhenAShakerIsCreatedWithADieThenUseItToThrowAndCheckTheValueReturnedIsInTheDieRange [
+DiceAndShakersTest >> testK009WhenAShakerIsCreatedWithADieThenUseItToThrowAndCheckTheValueReturnedIsInTheDieRange [
 
 	| aShaker |
 	aShaker := DiceShaker with: (OrderedCollection with: (Die with: 3)).
@@ -133,7 +95,7 @@ CreateDiceAndDiceShakersTest >> testE019WhenAShakerIsCreatedWithADieThenUseItToT
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE020WhenAShakerIsCreatedWithTwoDiceThenUseItToThrowAndCheckTheValueReturnedIsInTheSumOfDiceFacesRange [
+DiceAndShakersTest >> testK010WhenAShakerIsCreatedWithTwoDiceThenUseItToThrowAndCheckTheValueReturnedIsInTheSumOfDiceFacesRange [
 
 	| aShaker |
 	aShaker := DiceShaker with: (OrderedCollection with: (Die with: 3)).
@@ -142,7 +104,45 @@ CreateDiceAndDiceShakersTest >> testE020WhenAShakerIsCreatedWithTwoDiceThenUseIt
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE021TryToCreateADiceShakerWithANoDiceCollectionThenFails [
+DiceAndShakersTest >> testL001TryToCreateALoadedDieWithNegativeValuesAtFacesThenFails [
+
+	self
+		should: [ LoadedDie with: #( 3 5 -7 9 ) ]
+		raise: Error
+		withMessage: 'Cannot create with negative values at faces'
+]
+
+{ #category : #tests }
+DiceAndShakersTest >> testL002TryToCreateALoadedDieWithLessThanThreeFacesThenFails [
+
+	self
+		should: [ LoadedDie with: #( 3 5 ) ]
+		raise: Error
+		withMessage: 'Cannot create with faces less than 3'
+]
+
+{ #category : #tests }
+DiceAndShakersTest >> testL003TryToCreateADieWithNegativeNumberOfFacesThenFails [
+
+	self
+		should: [ Die with: -2 ]
+		raise: Error
+		withMessage:
+		'Cannot create with negative values at faces or less than 2 faces'
+]
+
+{ #category : #tests }
+DiceAndShakersTest >> testL004TryToCreateADieWithNumberOfFacesLessThanThreeThenFails [
+
+	self
+		should: [ Die with: 2 ]
+		raise: Error
+		withMessage:
+		'Cannot create with negative values at faces or less than 2 faces'
+]
+
+{ #category : #tests }
+DiceAndShakersTest >> testL005TryToCreateADiceShakerWithANoDiceCollectionThenFails [
 
 	self
 		should: [ DiceShaker with: 1 ]
@@ -159,7 +159,7 @@ CreateDiceAndDiceShakersTest >> testE021TryToCreateADiceShakerWithANoDiceCollect
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE022TryToCreateADiceShakerWithADiceCollectionThatDoesNotHaveDiceThenFails [
+DiceAndShakersTest >> testL006TryToCreateADiceShakerWithADiceCollectionThatDoesNotHaveDiceThenFails [
 
 	self
 		should: [ 
@@ -186,7 +186,7 @@ CreateDiceAndDiceShakersTest >> testE022TryToCreateADiceShakerWithADiceCollectio
 ]
 
 { #category : #tests }
-CreateDiceAndDiceShakersTest >> testE022TryToCreateADiceShakerWithAnEmptyOrderedCollectionThenFails [
+DiceAndShakersTest >> testL007TryToCreateADiceShakerWithAnEmptyOrderedCollectionThenFails [
 
 	self
 		should: [ DiceShaker with: OrderedCollection new ]

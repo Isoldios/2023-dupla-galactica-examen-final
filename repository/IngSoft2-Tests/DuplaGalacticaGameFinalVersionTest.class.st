@@ -1,5 +1,5 @@
 Class {
-	#name : #CreateAFunctionalDuplaGalacticaGameTest,
+	#name : #DuplaGalacticaGameFinalVersionTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'aLoadedDie',
@@ -11,13 +11,37 @@ Class {
 }
 
 { #category : #Games }
-CreateAFunctionalDuplaGalacticaGameTest >> createGameWithBoxEffects [
+DuplaGalacticaGameFinalVersionTest >> createDuplaGalacticaGameFinalVersion [
 
-	| aBoard1 aBoxCreator aBoxesCollection boxesProbabilities aCardsCollection1 |
-	aCardsCollection1 := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NoEffectCard initializeNew
-				                       withChanceOf: 100))) create: 4.
+	| anotherBoard aBoxesCollection boxesProbabilities anotherCardsCollection cardsProbabilities |
+	cardsProbabilities := OrderedCollection
+		                      with: (ObjectProbability
+				                       using: AccelerationCard initializeNew
+				                       withChanceOf: 12.5)
+		                      with: (ObjectProbability
+				                       using: OverloadCard initializeNew
+				                       withChanceOf: 12.5)
+		                      with: (ObjectProbability
+				                       using: ReversePolarityCard initializeNew
+				                       withChanceOf: 12.5)
+		                      with: (ObjectProbability
+				                       using: CancellationCard initializeNew
+				                       withChanceOf: 12.5)
+		                      with:
+		                      (ObjectProbability
+			                       using: RedoCard initializeNew
+			                       withChanceOf: 12.5)
+		                      with:
+		                      (ObjectProbability
+			                       using: RepeatCard initializeNew
+			                       withChanceOf: 12.5).
+	cardsProbabilities addLast: (ObjectProbability
+			 using: SpeedBoostCard initializeNew
+			 withChanceOf: 12.5).
+	cardsProbabilities addLast:
+		(ObjectProbability using: SpeedCard initializeNew withChanceOf: 12.5).
+	anotherCardsCollection := (ObjectCreator use: cardsProbabilities) 
+		                          create: 4.
 	boxesProbabilities := OrderedCollection
 		                      with:
 		                      (ObjectProbability
@@ -51,69 +75,22 @@ CreateAFunctionalDuplaGalacticaGameTest >> createGameWithBoxEffects [
 							    using: CancellationCard initializeNew
 							    withChanceOf: 100)))
 			 withChanceOf: 10).
-	aBoxCreator := ObjectCreator use: boxesProbabilities.
-	aBoxesCollection := aBoxCreator create: 10.
-	aBoard1 := Board
-		          with: aBoxesCollection
-		          measure: (ParsecMeasure worth: 200).
+	aBoxesCollection := (ObjectCreator use: boxesProbabilities) create:
+		                    10.
+	anotherBoard := Board
+		                with: aBoxesCollection
+		                measure: (ParsecMeasure worth: 200).
 	^ DuplaGalacticaGameProxy
 		  with: aColorsCollection
-		  and: aBoard1
+		  and: anotherBoard
 		  usingToThrow:
 		  (DiceShaker with: (OrderedCollection with: aLoadedDie))
 		  winningWhenReach: 1
-		  using: aCardsCollection1
-]
-
-{ #category : #Games }
-CreateAFunctionalDuplaGalacticaGameTest >> createGameWithRandomCards [
-
-	| aBoard1 aBoxesCollection cardsProbabilities aCardsCollection1 |
-	cardsProbabilities := OrderedCollection
-		                      with: (ObjectProbability
-				                       using: AccelerationCard initializeNew
-				                       withChanceOf: 12.5)
-		                      with: (ObjectProbability
-				                       using: OverloadCard initializeNew
-				                       withChanceOf: 12.5)
-		                      with: (ObjectProbability
-				                       using: ReversePolarityCard initializeNew
-				                       withChanceOf: 12.5)
-		                      with: (ObjectProbability
-				                       using: CancellationCard initializeNew
-				                       withChanceOf: 12.5)
-		                      with:
-		                      (ObjectProbability
-			                       using: RedoCard initializeNew
-			                       withChanceOf: 12.5)
-		                      with:
-		                      (ObjectProbability
-			                       using: RepeatCard initializeNew
-			                       withChanceOf: 12.5).
-	cardsProbabilities addLast: (ObjectProbability
-			 using: SpeedBoostCard initializeNew
-			 withChanceOf: 12.5).
-	cardsProbabilities addLast:
-		(ObjectProbability using: SpeedCard initializeNew withChanceOf: 12.5).
-	aCardsCollection1 := (ObjectCreator use: cardsProbabilities) create: 4.
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
-				                       withChanceOf: 100))) create: 10.
-	aBoard1 := Board
-		          with: aBoxesCollection
-		          measure: (ParsecMeasure worth: 200).
-	^ DuplaGalacticaGameProxy
-		  with: aColorsCollection
-		  and: aBoard1
-		  usingToThrow:
-		  (DiceShaker with: (OrderedCollection with: aLoadedDie))
-		  winningWhenReach: 1
-		  using: aCardsCollection1
+		  using: anotherCardsCollection
 ]
 
 { #category : #running }
-CreateAFunctionalDuplaGalacticaGameTest >> setUp [
+DuplaGalacticaGameFinalVersionTest >> setUp [
 
 	super setUp.
 
@@ -134,7 +111,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> setUp [
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMessage [
+DuplaGalacticaGameFinalVersionTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMessage [
 
 	self
 		should: anErrorBlock
@@ -144,42 +121,33 @@ CreateAFunctionalDuplaGalacticaGameTest >> should: anErrorBlock raise: anExcepti
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP001WhenAGameIsCreatedWithABoardWhoseBoxesHaveRandomEffectsThenValidBoardBoxesSize [
+DuplaGalacticaGameFinalVersionTest >> testI001WhenAGameIsCreatedWithABoardWhoseBoxesHaveRandomEffectsThenValidBoardBoxesSize [
 
 	| aDuplaGalacticaGame |
-	aDuplaGalacticaGame := self createGameWithBoxEffects.
+	aDuplaGalacticaGame := self createDuplaGalacticaGameFinalVersion.
 	self assert: aDuplaGalacticaGame boardLength identicalTo: 10
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP002WhenAGameIsCreatedWithRandomCardsProbabilitiesThenValidPlayersCardsInPosetion [
+DuplaGalacticaGameFinalVersionTest >> testI002WhenAGameIsCreatedWithRandomCardsProbabilitiesThenValidPlayersCardsInPosetion [
 
 	| aDuplaGalacticaGame |
-	aDuplaGalacticaGame := self createGameWithRandomCards.
+	aDuplaGalacticaGame := self createDuplaGalacticaGameFinalVersion.
 	self
 		assert: aDuplaGalacticaGame playersCardInPosetion
 		equals: (OrderedCollection with: 2 with: 2)
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP003WhenAGameIsCreatedThenMovePlayersOneTimeAndValidPlayersTurn [
+DuplaGalacticaGameFinalVersionTest >> testI003WhenAGameIsCreatedThenValidGoalLaps [
 
 	| aDuplaGalacticaGame |
-	aDuplaGalacticaGame := self createGameWithBoxEffects.
-	aDuplaGalacticaGame movePlayer.
-	self assert: aDuplaGalacticaGame currentPlayer equals: 'blue'
-]
-
-{ #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP004WhenAGameIsCreatedThenValidGoalLaps [
-
-	| aDuplaGalacticaGame |
-	aDuplaGalacticaGame := self createGameWithBoxEffects.
+	aDuplaGalacticaGame := self createDuplaGalacticaGameFinalVersion.
 	self assert: aDuplaGalacticaGame goalLaps identicalTo: 1
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP017TryToCreateAGameWithAnEmptyColorsCollectionThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ001TryToCreateAGameWithAnEmptyColorsCollectionThenFails [
 
 	self
 		should: [ 
@@ -195,7 +163,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> testP017TryToCreateAGameWithAnEmptyCo
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP018TryToCreateAGameWithANegativeAmountOfGoalLapsThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ002TryToCreateAGameWithANegativeAmountOfGoalLapsThenFails [
 
 	self
 		should: [ 
@@ -211,7 +179,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> testP018TryToCreateAGameWithANegative
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP019TryToCreateAGameWithALessOrEqualToZeroAmountOfParsecsMeasureThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ003TryToCreateAGameWithALessOrEqualToZeroAmountOfParsecsMeasureThenFails [
 
 	self
 		should: [ 
@@ -252,7 +220,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> testP019TryToCreateAGameWithALessOrEq
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP020TryToCreateAGameWithDuplicatedColorsThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ004TryToCreateAGameWithDuplicatedColorsThenFails [
 
 	self
 		should: [ 
@@ -268,7 +236,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> testP020TryToCreateAGameWithDuplicate
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP021TryToCreateABoxesCollectionWithMoreThan100PercentProbabilityOfBoxAppearancesThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ005TryToCreateABoxesCollectionWithMoreThan100PercentProbabilityOfBoxAppearancesThenFails [
 
 	self
 		should: [ 
@@ -281,7 +249,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> testP021TryToCreateABoxesCollectionWi
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP022TryToCreateACardsCollectionWithMoreThan100PercentProbabilityOfCardAppearancesThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ006TryToCreateACardsCollectionWithMoreThan100PercentProbabilityOfCardAppearancesThenFails [
 
 	self
 		should: [ 
@@ -294,7 +262,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> testP022TryToCreateACardsCollectionWi
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP023TryToCreateAnObjectWithANonObjectProbabilitiesCollectionThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ007TryToCreateAnObjectWithANonObjectProbabilitiesCollectionThenFails [
 
 	self
 		should: [ ObjectCreator use: 1 ]
@@ -307,7 +275,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> testP023TryToCreateAnObjectWithANonOb
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP024TryToCreateAnObjectWithoutObjectProbabilitiesThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ008TryToCreateAnObjectWithoutObjectProbabilitiesThenFails [
 
 	self
 		should: [ ObjectCreator use: (OrderedCollection with: 1) ]
@@ -320,7 +288,7 @@ CreateAFunctionalDuplaGalacticaGameTest >> testP024TryToCreateAnObjectWithoutObj
 ]
 
 { #category : #tests }
-CreateAFunctionalDuplaGalacticaGameTest >> testP025TryToCreateAnObjectProbabilityThatIsNeitherACardNorABoxThenFails [
+DuplaGalacticaGameFinalVersionTest >> testJ009TryToCreateAnObjectProbabilityThatIsNeitherACardNorABoxThenFails [
 
 	self
 		should: [ ObjectProbability using: PlayerHand new withChanceOf: 100 ]

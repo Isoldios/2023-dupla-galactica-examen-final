@@ -58,10 +58,7 @@ DuplaGalacticaGame >> addToOthers: aCardInAPlayerHand [
 DuplaGalacticaGame >> apply: aCardInAPlayerHand to: anObjective [
 
 	self isValidCardInAHand: aCardInAPlayerHand.
-	(cardManager canBeUse: aCardInAPlayerHand whenPlay: current color) 
-		ifFalse: [ 
-			Error signal:
-				'A permanent card can only be use when it is your turn' ].
+	self canBeUse: aCardInAPlayerHand.
 	cardManager apply: aCardInAPlayerHand to: anObjective at: self
 ]
 
@@ -75,6 +72,16 @@ DuplaGalacticaGame >> boardLength [
 DuplaGalacticaGame >> boxesByParsecs [
 
 	^ self parsecs nominalValue // self boardLength
+]
+
+{ #category : #Validation }
+DuplaGalacticaGame >> canBeUse: aCardInAPlayerHand [
+
+	(((cardManager isValidCardObjective: aCardInAPlayerHand) isPermanent 
+		  and: aCardInAPlayerHand holder = self currentPlayer) or:
+		 aCardInAPlayerHand card isPermanent not) ifFalse: [ 
+		Error signal:
+			'A permanent card can only be use when it is your turn' ]
 ]
 
 { #category : #Boxes }
@@ -113,7 +120,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	cardManager := CardManager using: aCardsCollection with: aColorsCollection
 ]
 
-{ #category : #Boxes }
+{ #category : #Validation }
 DuplaGalacticaGame >> isValidBox: aBoxNumber [
 
 	aBoxNumber isNumber
@@ -123,16 +130,18 @@ DuplaGalacticaGame >> isValidBox: aBoxNumber [
 		ifFalse: [ Error signal: 'That is not a box number' ]
 ]
 
-{ #category : #Cards }
+{ #category : #Validation }
 DuplaGalacticaGame >> isValidCardInAHand: aCardInAPlayerHand [
 
 	self playersColors
-		detect: [ :color | color = aCardInAPlayerHand holder ]
-		ifFound: [ ^ self ]
+		detect: [ :color | 
+			[ color = aCardInAPlayerHand holder ]
+				on: MessageNotUnderstood
+				do: [ Error signal: 'That is not a valid card to apply' ] ]
 		ifNone: [ Error signal: 'That player does not exist' ]
 ]
 
-{ #category : #Cards }
+{ #category : #Validation }
 DuplaGalacticaGame >> isValidPlayer: anObjectivePlayerColor [
 
 	self playersColors

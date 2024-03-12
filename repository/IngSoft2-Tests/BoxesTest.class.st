@@ -31,7 +31,7 @@ BoxesTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMe
 ]
 
 { #category : #tests }
-BoxesTest >> testN001WhenPlayerReachesANoEffectBoxThenCheckThatNoEffectsWereAppliedAndValidPlayersPositions [
+BoxesTest >> testA001WhenPlayerReachesANoEffectBoxThenCheckThatNoEffectsWereAppliedAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -57,7 +57,7 @@ BoxesTest >> testN001WhenPlayerReachesANoEffectBoxThenCheckThatNoEffectsWereAppl
 ]
 
 { #category : #tests }
-BoxesTest >> testN002WhenPlayerReachesAWormHoleBoxThenCheckThatANegativeEffectWasAppliedAndValidPlayersPositions [
+BoxesTest >> testA002WhenPlayerReachesAWormHoleBoxThenCheckThatANegativeEffectWasAppliedAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -83,7 +83,7 @@ BoxesTest >> testN002WhenPlayerReachesAWormHoleBoxThenCheckThatANegativeEffectWa
 ]
 
 { #category : #tests }
-BoxesTest >> testN003WhenPlayerReachesASpeedUpBoxThenCheckThatAPositiveEffectWasAppliedAndValidPlayersPositions [
+BoxesTest >> testA003WhenPlayerReachesASpeedUpBoxThenCheckThatAPositiveEffectWasAppliedAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -109,7 +109,7 @@ BoxesTest >> testN003WhenPlayerReachesASpeedUpBoxThenCheckThatAPositiveEffectWas
 ]
 
 { #category : #tests }
-BoxesTest >> testN004WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectWasAppliedOnOtherPlayersAndValidPlayersPositions [
+BoxesTest >> testA004WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectWasAppliedOnOtherPlayersAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -135,7 +135,7 @@ BoxesTest >> testN004WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectWasAppli
 ]
 
 { #category : #tests }
-BoxesTest >> testN005WhenPlayerReachesAnAtomicBombBoxThenCheckThatAllPlayersWereMovedToTheBeginningOfTheLapAndValidPlayersPositions [
+BoxesTest >> testA005WhenPlayerReachesAnAtomicBombBoxThenCheckThatAllPlayersWereMovedToTheBeginningOfTheLapAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -161,7 +161,7 @@ BoxesTest >> testN005WhenPlayerReachesAnAtomicBombBoxThenCheckThatAllPlayersWere
 ]
 
 { #category : #tests }
-BoxesTest >> testN006WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnAParsecNominalValueWasAppliedAndValidPlayersPositions [
+BoxesTest >> testA006WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnAParsecNominalValueWasAppliedAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -190,7 +190,7 @@ BoxesTest >> testN006WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependi
 ]
 
 { #category : #tests }
-BoxesTest >> testN007WhenPlayerReachesAWormHoleBoxInTheFirstLapThenCheckThatTheNegativeEffectCannotSendPlayerToAnOutOfRangeBoardPositionAndValidPlayersPositions [
+BoxesTest >> testA007WhenPlayerReachesAWormHoleBoxInTheFirstLapThenCheckThatTheNegativeEffectCannotSendPlayerToAnOutOfRangeBoardPositionAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -216,7 +216,7 @@ BoxesTest >> testN007WhenPlayerReachesAWormHoleBoxInTheFirstLapThenCheckThatTheN
 ]
 
 { #category : #tests }
-BoxesTest >> testN008WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectCannotSendOtherPlayersToAnOutOfRangeBoardPositionInTheFirstLapAndValidPlayersPositions [
+BoxesTest >> testA008WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectCannotSendOtherPlayersToAnOutOfRangeBoardPositionInTheFirstLapAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -242,7 +242,7 @@ BoxesTest >> testN008WhenPlayerReachesAMoonWalkBoxThenCheckThatTheEffectCannotSe
 ]
 
 { #category : #tests }
-BoxesTest >> testN009WhenPlayerReachesAHyperJumpBoxInTheFirstLapThenCheckThatANegativeEffectCannotSendPlayerToAnOutOfRangeBoardPositionAndValidPlayersPositions [
+BoxesTest >> testA009WhenPlayerReachesAHyperJumpBoxInTheFirstLapThenCheckThatANegativeEffectCannotSendPlayerToAnOutOfRangeBoardPositionAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -271,7 +271,7 @@ BoxesTest >> testN009WhenPlayerReachesAHyperJumpBoxInTheFirstLapThenCheckThatANe
 ]
 
 { #category : #tests }
-BoxesTest >> testN010WhenPlayerReachesTheGoalButAlsoLandsOnAWormHoleBoxThenVerifyThatTheEffectPreventsWinningAndThatCheckingTheWinnerFails [
+BoxesTest >> testA010WhenPlayerReachesTheGoalButAlsoLandsOnAWormHoleBoxThenVerifyThatTheEffectPreventsWinningAndThatCheckingTheWinnerFails [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -297,7 +297,7 @@ BoxesTest >> testN010WhenPlayerReachesTheGoalButAlsoLandsOnAWormHoleBoxThenVerif
 ]
 
 { #category : #tests }
-BoxesTest >> testN011WhenPlayerReachesAHyperJumpBoxWithNoEntireValueMeasuresThenCheckThatTheEffectMovesPlayerAnEntireValueAndValidPlayersPositions [
+BoxesTest >> testA011WhenPlayerReachesAHyperJumpBoxWithNoEntireValueMeasuresThenCheckThatTheEffectMovesPlayerAnEntireValueAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -326,7 +326,7 @@ BoxesTest >> testN011WhenPlayerReachesAHyperJumpBoxWithNoEntireValueMeasuresThen
 ]
 
 { #category : #tests }
-BoxesTest >> testN012WhenPlayersReachTheSameHyperJumpBoxThenCheckThatTheEffectDependingOnAParsecNominalValueWasAppliedAndValidPlayersPositions [
+BoxesTest >> testA012WhenPlayersReachTheSameHyperJumpBoxThenCheckThatTheEffectDependingOnAParsecNominalValueWasAppliedAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -355,7 +355,7 @@ BoxesTest >> testN012WhenPlayersReachTheSameHyperJumpBoxThenCheckThatTheEffectDe
 ]
 
 { #category : #tests }
-BoxesTest >> testR001WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMoreCardInPosetion [
+BoxesTest >> testA013WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMoreCardInPosetion [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -385,28 +385,7 @@ BoxesTest >> testR001WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMor
 ]
 
 { #category : #tests }
-BoxesTest >> testR003TryToCreateARandomCardBoxWithCardsProbabilitiesNotEqualsTo100ThenFails [
-
-	self
-		should: [ 
-			RandomCardBox with: (OrderedCollection with:
-					 (ObjectProbability
-						  using: OverloadCard initializeNew
-						  withChanceOf: 10)) ]
-		raise: Error
-		withMessage: 'The sum of probabilities must be 100'.
-	self
-		should: [ 
-			RandomCardBox with: (OrderedCollection with:
-					 (ObjectProbability
-						  using: OverloadCard initializeNew
-						  withChanceOf: 150)) ]
-		raise: Error
-		withMessage: 'The sum of probabilities must be 100'
-]
-
-{ #category : #tests }
-BoxesTest >> testT001WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearNominalValueWasAppliedAndValidPlayersPositions [
+BoxesTest >> testA014WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearNominalValueWasAppliedAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -435,7 +414,7 @@ BoxesTest >> testT001WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependi
 ]
 
 { #category : #tests }
-BoxesTest >> testT002WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearAndAParsecNominalValueWasAppliedAndValidPlayersPositions [
+BoxesTest >> testA015WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearAndAParsecNominalValueWasAppliedAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -464,19 +443,7 @@ BoxesTest >> testT002WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependi
 ]
 
 { #category : #tests }
-BoxesTest >> testT003TryToCreateAHyperJumpBoxWithNoValuesToUseThenFails [
-
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with: (ObjectProbability
-						   using: (HyperJumpBox with: OrderedCollection new)
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'There are no values to use in the hyper jump box'
-]
-
-{ #category : #tests }
-BoxesTest >> testT004WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearAndAParsecNegativeNominalValueWasAppliedAndValidPlayersPositions [
+BoxesTest >> testA016WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependingOnALigthYearAndAParsecNegativeNominalValueWasAppliedAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -505,7 +472,7 @@ BoxesTest >> testT004WhenPlayerReachesAHyperJumpBoxThenCheckThatTheEffectDependi
 ]
 
 { #category : #tests }
-BoxesTest >> testT005WhenPlayerReachesAHyperJumpBoxThenCheckIfItHasANegativeEffectThatMakesPlayerMoveBackwardMoreThanOneLapAndValidPlayersPositions [
+BoxesTest >> testA017WhenPlayerReachesAHyperJumpBoxThenCheckIfItHasANegativeEffectThatMakesPlayerMoveBackwardMoreThanOneLapAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use:
@@ -533,7 +500,40 @@ BoxesTest >> testT005WhenPlayerReachesAHyperJumpBoxThenCheckIfItHasANegativeEffe
 ]
 
 { #category : #tests }
-BoxesTest >> testT006TryToCreateABoardWithLessThanFourBoxesThenFails [
+BoxesTest >> testB001TryToCreateARandomCardBoxWithCardsProbabilitiesNotEqualsTo100ThenFails [
+
+	self
+		should: [ 
+			RandomCardBox with: (OrderedCollection with:
+					 (ObjectProbability
+						  using: OverloadCard initializeNew
+						  withChanceOf: 10)) ]
+		raise: Error
+		withMessage: 'The sum of probabilities must be 100'.
+	self
+		should: [ 
+			RandomCardBox with: (OrderedCollection with:
+					 (ObjectProbability
+						  using: OverloadCard initializeNew
+						  withChanceOf: 150)) ]
+		raise: Error
+		withMessage: 'The sum of probabilities must be 100'
+]
+
+{ #category : #tests }
+BoxesTest >> testB002TryToCreateAHyperJumpBoxWithNoValuesToUseThenFails [
+
+	self
+		should: [ 
+			(ObjectCreator use: (OrderedCollection with: (ObjectProbability
+						   using: (HyperJumpBox with: OrderedCollection new)
+						   withChanceOf: 100))) create: 10 ]
+		raise: Error
+		withMessage: 'There are no values to use in the hyper jump box'
+]
+
+{ #category : #tests }
+BoxesTest >> testB003TryToCreateABoardWithLessThanFourBoxesThenFails [
 
 	| aBoxesCollection |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -548,7 +548,7 @@ BoxesTest >> testT006TryToCreateABoardWithLessThanFourBoxesThenFails [
 ]
 
 { #category : #tests }
-BoxesTest >> testT007TryToCreateABoardWithBoxesThatAreNotBoxesThenFails [
+BoxesTest >> testB004TryToCreateABoardWithBoxesThatAreNotBoxesThenFails [
 
 	| aBoxesCollection |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
@@ -563,7 +563,7 @@ BoxesTest >> testT007TryToCreateABoardWithBoxesThatAreNotBoxesThenFails [
 ]
 
 { #category : #tests }
-BoxesTest >> testT008TryToCreateABoardWithNoBoxesOrderedCollectionThenFails [
+BoxesTest >> testB005TryToCreateABoardWithNoBoxesOrderedCollectionThenFails [
 
 	self
 		should: [ Board with: 'blue' measure: (ParsecMeasure worth: 100) ]
@@ -576,7 +576,7 @@ BoxesTest >> testT008TryToCreateABoardWithNoBoxesOrderedCollectionThenFails [
 ]
 
 { #category : #tests }
-BoxesTest >> testT009TryToCreateAHyperJumpBoxWithNoMeasuresOrderedCollectionThenFails [
+BoxesTest >> testB006TryToCreateAHyperJumpBoxWithNoMeasuresOrderedCollectionThenFails [
 
 	self
 		should: [ 
@@ -597,7 +597,7 @@ BoxesTest >> testT009TryToCreateAHyperJumpBoxWithNoMeasuresOrderedCollectionThen
 ]
 
 { #category : #tests }
-BoxesTest >> testT010TryToCreateAHyperJumpBoxWithMeasuresThatAreNotMeasuresThenFails [
+BoxesTest >> testB007TryToCreateAHyperJumpBoxWithMeasuresThatAreNotMeasuresThenFails [
 
 	self
 		should: [ 
@@ -612,7 +612,7 @@ BoxesTest >> testT010TryToCreateAHyperJumpBoxWithMeasuresThatAreNotMeasuresThenF
 ]
 
 { #category : #tests }
-BoxesTest >> testT011TryToCreateABoardWithAMeasureThatIsNotAMeasureThenFails [
+BoxesTest >> testB008TryToCreateABoardWithAMeasureThatIsNotAMeasureThenFails [
 
 	| aBoxesCollection |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:

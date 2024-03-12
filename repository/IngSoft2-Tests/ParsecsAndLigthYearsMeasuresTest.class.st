@@ -1,5 +1,5 @@
 Class {
-	#name : #CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest,
+	#name : #ParsecsAndLigthYearsMeasuresTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'aLoadedDie',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #running }
-CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> setUp [
+ParsecsAndLigthYearsMeasuresTest >> setUp [
 
 	super setUp.
 
@@ -28,7 +28,7 @@ CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> setUp [
 ]
 
 { #category : #running }
-CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMessage [
+ParsecsAndLigthYearsMeasuresTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMessage [
 
 	self
 		should: anErrorBlock
@@ -38,7 +38,7 @@ CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> should: anErrorBlock
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS001WhenAGameIsCreaterWithAParsecMeasureThenAskForParsecsNominalValue [
+ParsecsAndLigthYearsMeasuresTest >> testG001WhenAGameIsCreaterWithAParsecMeasureThenAskForParsecsNominalValue [
 
 	| aBoard aDuplaGalacticaGame |
 	aBoard := Board
@@ -56,7 +56,7 @@ CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS001WhenAGameIsC
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS002WhenAGameIsCreatedWithALightYearMeasureThenAskForLightYearsNominalValue [
+ParsecsAndLigthYearsMeasuresTest >> testG002WhenAGameIsCreatedWithALightYearMeasureThenAskForLightYearsNominalValue [
 
 	| aBoard aDuplaGalacticaGame |
 	aBoard := Board
@@ -74,7 +74,7 @@ CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS002WhenAGameIsC
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS003WhenAGameIsCreatedWithAParsecMeasureThenAskForLightYearsNominalValue [
+ParsecsAndLigthYearsMeasuresTest >> testG003WhenAGameIsCreatedWithAParsecMeasureThenAskForLightYearsNominalValue [
 
 	| aBoard aDuplaGalacticaGame |
 	aBoard := Board
@@ -92,7 +92,7 @@ CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS003WhenAGameIsC
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS004WhenAGameIsCreatedWithALightYearMeasureThenAskForParsecsNominalValue [
+ParsecsAndLigthYearsMeasuresTest >> testG004WhenAGameIsCreatedWithALightYearMeasureThenAskForParsecsNominalValue [
 
 	| aBoard aDuplaGalacticaGame |
 	aBoard := Board
@@ -110,7 +110,7 @@ CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS004WhenAGameIsC
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS005TryToCreateALigthYearMeasureWithANonNumericNominalValueThenFails [
+ParsecsAndLigthYearsMeasuresTest >> testH001TryToCreateALigthYearMeasureWithANonNumericNominalValueThenFails [
 
 	self
 		should: [ LigthYearMeasure worth: 'a' ]
@@ -123,7 +123,7 @@ CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS005TryToCreateA
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentLengthMeasuresTest >> testS006TryToCreateAParsecMeasureWithANonNumericNominalValueThenFails [
+ParsecsAndLigthYearsMeasuresTest >> testH002TryToCreateAParsecMeasureWithANonNumericNominalValueThenFails [
 
 	self
 		should: [ ParsecMeasure worth: 'a' ]

@@ -1,9 +1,6 @@
 Class {
 	#name : #EveryPlayer,
 	#superclass : #Object,
-	#instVars : [
-		'players'
-	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -16,11 +13,5 @@ EveryPlayer class >> initializeNew [
 { #category : #Initialization }
 EveryPlayer >> initializeNew [
 
-	players := 'everyone'
-]
-
-{ #category : #Information }
-EveryPlayer >> players [
-
-	^ players
+	^ 'everyone'
 ]

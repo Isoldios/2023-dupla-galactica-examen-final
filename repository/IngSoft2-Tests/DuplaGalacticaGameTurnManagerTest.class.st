@@ -1,5 +1,5 @@
 Class {
-	#name : #CreateADuplaGalacticaGameWithDifferentDiceShakersTest,
+	#name : #DuplaGalacticaGameTurnManagerTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'aColorsCollection'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #Games }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> gameWithLoadedDie [
+DuplaGalacticaGameTurnManagerTest >> gameWithLoadedDie [
 
 	| aBoard aBoxesCollection aCardsCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
@@ -32,7 +32,7 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> gameWithLoadedDie [
 ]
 
 { #category : #Games }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> gameWithTwoLoadedDie [
+DuplaGalacticaGameTurnManagerTest >> gameWithTwoLoadedDie [
 
 	| aBoard aBoxesCollection aCardsCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
@@ -57,16 +57,15 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> gameWithTwoLoadedDie [
 ]
 
 { #category : #running }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> setUp [
+DuplaGalacticaGameTurnManagerTest >> setUp [
 
 	super setUp.
-
 
 	aColorsCollection := OrderedCollection with: 'red' with: 'blue'
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMessage [
+DuplaGalacticaGameTurnManagerTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMessage [
 
 	self
 		should: anErrorBlock
@@ -76,7 +75,7 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> should: anErrorBlock ra
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testD001WhenAGameWithALoadedDieIsCreatedThenAskForCurrentPlayer [
+DuplaGalacticaGameTurnManagerTest >> testE001WhenAGameWithALoadedDieIsCreatedThenAskForCurrentPlayer [
 
 	| aDuplaGalacticaGame |
 	aDuplaGalacticaGame := self gameWithLoadedDie.
@@ -84,7 +83,7 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testD001WhenAGameWithAL
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testD002WhenAGameIsCreatedWithALoadedDieThenMovePlayersAndAskForWinner [
+DuplaGalacticaGameTurnManagerTest >> testE002WhenAGameIsCreatedWithALoadedDieThenMovePlayersAndAskForWinner [
 
 	| aDuplaGalacticaGame |
 	aDuplaGalacticaGame := self gameWithLoadedDie.
@@ -95,7 +94,7 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testD002WhenAGameIsCrea
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testF001WhenAGameIsCreatedWithALoadedDieThenMovePlayersAndValidPlayersPositions [
+DuplaGalacticaGameTurnManagerTest >> testE003WhenAGameIsCreatedWithALoadedDieThenMovePlayersAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame |
 	aDuplaGalacticaGame := self gameWithLoadedDie.
@@ -106,7 +105,7 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testF001WhenAGameIsCrea
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testG002WhenAGameIsCreatedWithTwoLoadedDiceThenMovePlayersAndValidPlayersPositions [
+DuplaGalacticaGameTurnManagerTest >> testE004WhenAGameIsCreatedWithTwoLoadedDiceThenMovePlayersAndValidPlayersPositions [
 
 	| aDuplaGalacticaGame |
 	aDuplaGalacticaGame := self gameWithTwoLoadedDie.
@@ -118,7 +117,30 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testG002WhenAGameIsCrea
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testH001TryToMovePlayersWhenSomeoneHasReachedTheGoalThenFails [
+DuplaGalacticaGameTurnManagerTest >> testE005WhenTheGameAskForRankingThenValidWhoIsAheadOfOtherPlayers [
+
+	| aDuplaGalacticaGame |
+	aDuplaGalacticaGame := self gameWithTwoLoadedDie.
+	aDuplaGalacticaGame movePlayer.
+	aDuplaGalacticaGame movePlayer.
+	aDuplaGalacticaGame movePlayer.
+	aDuplaGalacticaGame movePlayer.
+	self
+		assert: aDuplaGalacticaGame ranking
+		equals: (OrderedCollection with: 'blue' with: 'red')
+]
+
+{ #category : #tests }
+DuplaGalacticaGameTurnManagerTest >> testE006WhenAGameWithALoadedDieIsCreatedThenMovePlayersAndAskForCurrentPlayer [
+
+	| aDuplaGalacticaGame |
+	aDuplaGalacticaGame := self gameWithLoadedDie.
+	aDuplaGalacticaGame movePlayer.
+	self assert: aDuplaGalacticaGame currentPlayer equals: 'blue'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameTurnManagerTest >> testF001TryToMovePlayersWhenSomeoneHasReachedTheGoalThenFails [
 
 	| aDuplaGalacticaGame |
 	aDuplaGalacticaGame := self gameWithTwoLoadedDie.
@@ -133,7 +155,7 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testH001TryToMovePlayer
 ]
 
 { #category : #tests }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testL002TryToAskForWinnerWhenNoOneReachesTheGoalThenFails [
+DuplaGalacticaGameTurnManagerTest >> testF002TryToAskForWinnerWhenNoOneReachesTheGoalThenFails [
 
 	| aDuplaGalacticaGame |
 	aDuplaGalacticaGame := self gameWithLoadedDie.
@@ -142,18 +164,4 @@ CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testL002TryToAskForWinn
 		should: [ aDuplaGalacticaGame winner ]
 		raise: Error
 		withMessage: 'There is no winner'
-]
-
-{ #category : #tests }
-CreateADuplaGalacticaGameWithDifferentDiceShakersTest >> testL003WhenTheGameAskForRankingThenValidWhoIsAheadOfOtherPlayers [
-
-	| aDuplaGalacticaGame |
-	aDuplaGalacticaGame := self gameWithTwoLoadedDie.
-	aDuplaGalacticaGame movePlayer.
-	aDuplaGalacticaGame movePlayer.
-	aDuplaGalacticaGame movePlayer.
-	aDuplaGalacticaGame movePlayer.
-	self
-		assert: aDuplaGalacticaGame ranking
-		equals: (OrderedCollection with: 'blue' with: 'red')
 ]

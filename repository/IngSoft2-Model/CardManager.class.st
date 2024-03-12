@@ -30,8 +30,7 @@ CardManager >> add: aCardInAPlayerHand [
 { #category : #Managing }
 CardManager >> apply: aCardInAPlayerHand to: anObjective at: aDuplaGalacticaGame [
 
-	(self hasBeenGiven: aCardInAPlayerHand) ifFalse: [ 
-		Error signal: 'The player does not have that card in posetion' ].
+	cardsInPosetionDeck hasBeenGiven: aCardInAPlayerHand.
 	aCardInAPlayerHand card haveEffect ifTrue: [ 
 		lastCardPlay := aCardInAPlayerHand card ].
 	aCardInAPlayerHand card
@@ -45,14 +44,6 @@ CardManager >> apply: aCardInAPlayerHand to: anObjective at: aDuplaGalacticaGame
 CardManager >> calculateEffectOn: aColorPlayer [
 
 	^ activeCardsDeck calculateEffectOn: aColorPlayer
-]
-
-{ #category : #Information }
-CardManager >> canBeUse: aCardInAPlayerHand whenPlay: aPlayerColor [
-
-	^ ((self isValidCard: aCardInAPlayerHand) isPermanent and:
-		   aCardInAPlayerHand holder = aPlayerColor) or:
-		  aCardInAPlayerHand card isPermanent not
 ]
 
 { #category : #Information }
@@ -80,32 +71,28 @@ CardManager >> deal: aCardsCollection to: aColorsCollection [
 { #category : #Managing }
 CardManager >> desactivate: anObjectiveCardInAPlayerHand [
 
+	self isValidCardObjective: anObjectiveCardInAPlayerHand.
 	activeCardsDeck desactivate: anObjectiveCardInAPlayerHand
 ]
 
 { #category : #Managing }
 CardManager >> duplicateEffectOf: anObjectiveCardInAPlayerHand [
 
+	self isValidCardObjective: anObjectiveCardInAPlayerHand.
 	activeCardsDeck duplicateEffectOf: anObjectiveCardInAPlayerHand
-]
-
-{ #category : #Information }
-CardManager >> hasBeenGiven: aCardInAPlayerHand [
-
-	^ cardsInPosetionDeck hasBeenGiven: aCardInAPlayerHand
 ]
 
 { #category : #Initialization }
 CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 
 	lastCardPlay := NoEffectCard initializeNew.
-	activeCardsDeck := ActiveCardsDeck createDeck.
-	cardsInPosetionDeck := CardsInPosetionDeck createDeck.
+	activeCardsDeck := ActiveCardsInPlayersHandsDeck createDeck.
+	cardsInPosetionDeck := CardsInPlayersHandsDeck createDeck.
 	self deal: aCardsCollection to: aColorsCollection
 ]
 
-{ #category : #Information }
-CardManager >> isValidCard: anObjectiveCardInAPlayerHand [
+{ #category : #Validation }
+CardManager >> isValidCardObjective: anObjectiveCardInAPlayerHand [
 
 	^ [ anObjectiveCardInAPlayerHand card ]
 		  on: MessageNotUnderstood
