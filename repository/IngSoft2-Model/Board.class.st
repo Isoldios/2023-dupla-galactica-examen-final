@@ -48,6 +48,13 @@ Board >> initializeWith: aBoxesCollection measure: aLengthMeasure [
 	lastBoxInvoked := 0
 ]
 
+{ #category : #Validation }
+Board >> isValidBox: aBoxNumber [
+
+	(aBoxNumber <= self length and: aBoxNumber > 0) ifFalse: [ 
+		Error signal: 'That is not a valid box number' ]
+]
+
 { #category : #Information }
 Board >> lastBoxInvoked [
 

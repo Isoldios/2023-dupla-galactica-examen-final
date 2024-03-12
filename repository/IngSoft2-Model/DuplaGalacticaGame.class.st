@@ -124,9 +124,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 DuplaGalacticaGame >> isValidBox: aBoxNumber [
 
 	aBoxNumber isNumber
-		ifTrue: [ 
-			(aBoxNumber <= self boardLength and: aBoxNumber > 0) ifFalse: [ 
-				Error signal: 'That is not a valid box number' ] ]
+		ifTrue: [ board isValidBox: aBoxNumber ]
 		ifFalse: [ Error signal: 'That is not a box number' ]
 ]
 
@@ -146,7 +144,6 @@ DuplaGalacticaGame >> isValidPlayer: anObjectivePlayerColor [
 
 	self playersColors
 		detect: [ :color | color = anObjectivePlayerColor ]
-		ifFound: [ ^ true ]
 		ifNone: [ Error signal: 'That is not a valid player objective' ]
 ]
 
@@ -187,8 +184,7 @@ DuplaGalacticaGame >> movePlayer [
 	self checkPolarity.
 	board effectAt: current box In: self.
 	board resetPolarities.
-	turnManager goNext.
-	current := turnManager current
+	current := turnManager goNext current
 ]
 
 { #category : #Information }
