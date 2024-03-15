@@ -29,12 +29,6 @@ LigthYearMeasure >> initializeWorth: aNominalValue [
 ]
 
 { #category : #Information }
-LigthYearMeasure >> lightYears [
-
-	^ self
-]
-
-{ #category : #Information }
 LigthYearMeasure >> nominalValue [
 
 	^ nominalValue

@@ -29,12 +29,6 @@ ParsecMeasure >> initializeWorth: aNominalValue [
 ]
 
 { #category : #Information }
-ParsecMeasure >> lightYears [
-
-	^ LigthYearMeasure worth: nominalValue * 3
-]
-
-{ #category : #Information }
 ParsecMeasure >> nominalValue [
 
 	^ nominalValue

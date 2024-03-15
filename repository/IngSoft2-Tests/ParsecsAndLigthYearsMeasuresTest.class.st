@@ -70,42 +70,6 @@ ParsecsAndLigthYearsMeasuresTest >> testG002WhenAGameIsCreatedWithALightYearMeas
 			                        (OrderedCollection with: aLoadedDie))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
-	self assert: aDuplaGalacticaGame lightYears nominalValue equals: 300
-]
-
-{ #category : #tests }
-ParsecsAndLigthYearsMeasuresTest >> testG003WhenAGameIsCreatedWithAParsecMeasureThenAskForLightYearsNominalValue [
-
-	| aBoard aDuplaGalacticaGame |
-	aBoard := Board
-		          with: aBoxesCollection
-		          measure: (ParsecMeasure worth: 100).
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self assert: aDuplaGalacticaGame lightYears nominalValue equals: 300
-]
-
-{ #category : #tests }
-ParsecsAndLigthYearsMeasuresTest >> testG004WhenAGameIsCreatedWithALightYearMeasureThenAskForParsecsNominalValue [
-
-	| aBoard aDuplaGalacticaGame |
-	aBoard := Board
-		          with: aBoxesCollection
-		          measure: (LigthYearMeasure worth: 300).
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: aBoard
-		                       usingToThrow:
-		                       (DiceShaker with:
-			                        (OrderedCollection with: aLoadedDie))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
 	self assert: aDuplaGalacticaGame parsecs nominalValue equals: 100
 ]
 
