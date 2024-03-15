@@ -147,6 +147,14 @@ DuplaGalacticaGameFinalVersionTest >> testI003WhenAGameIsCreatedThenValidGoalLap
 ]
 
 { #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testI004WhenAGameIsCreatedThenValidShakerDiceAmount [
+
+	| aDuplaGalacticaGame |
+	aDuplaGalacticaGame := self createDuplaGalacticaGameFinalVersion.
+	self assert: aDuplaGalacticaGame diceAmount identicalTo: 1
+]
+
+{ #category : #tests }
 DuplaGalacticaGameFinalVersionTest >> testJ001TryToCreateAGameWithAnEmptyColorsCollectionThenFails [
 
 	self
@@ -167,7 +175,7 @@ DuplaGalacticaGameFinalVersionTest >> testJ002TryToCreateAGameWithANegativeAmoun
 
 	self
 		should: [ 
-			DuplaGalacticaGame
+			DuplaGalacticaGameProxy
 				with: aColorsCollection
 				and: aBoard
 				usingToThrow:
@@ -175,7 +183,8 @@ DuplaGalacticaGameFinalVersionTest >> testJ002TryToCreateAGameWithANegativeAmoun
 				winningWhenReach: -1
 				using: aCardsCollection ]
 		raise: Error
-		withMessage: 'Cannot create a game with that goal laps'
+		withMessage:
+		'Cannot create a game with a nagative value of goal laps'
 ]
 
 { #category : #tests }
@@ -240,10 +249,15 @@ DuplaGalacticaGameFinalVersionTest >> testJ005TryToCreateABoxesCollectionWithMor
 
 	self
 		should: [ 
-			ObjectCreator use: (OrderedCollection with:
+			ObjectCreator use: (OrderedCollection
+					 with:
 					 (ObjectProbability
-						  using: NoEffectBox initializeNew
-						  withChanceOf: 130)) ]
+						  using: AtomicBombBox initializeNew
+						  withChanceOf: 60)
+					 with:
+					 (ObjectProbability
+						  using: SpeedUpBox initializeNew
+						  withChanceOf: 70)) ]
 		raise: Error
 		withMessage: 'The sum of probabilities must be 100'
 ]
@@ -253,10 +267,15 @@ DuplaGalacticaGameFinalVersionTest >> testJ006TryToCreateACardsCollectionWithMor
 
 	self
 		should: [ 
-			ObjectCreator use: (OrderedCollection with:
+			ObjectCreator use: (OrderedCollection
+					 with:
 					 (ObjectProbability
-						  using: NoEffectCard initializeNew
-						  withChanceOf: 130)) ]
+						  using: OverloadCard initializeNew
+						  withChanceOf: 80)
+					 with:
+					 (ObjectProbability
+						  using: SpeedCard initializeNew
+						  withChanceOf: 70)) ]
 		raise: Error
 		withMessage: 'The sum of probabilities must be 100'
 ]
@@ -294,4 +313,126 @@ DuplaGalacticaGameFinalVersionTest >> testJ009TryToCreateAnObjectProbabilityThat
 		should: [ ObjectProbability using: PlayerHand new withChanceOf: 100 ]
 		raise: Error
 		withMessage: 'That object is neither a card nor a box'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testJ010TryToCreateAGameWithANoColorsCollectionThenFails [
+
+	self
+		should: [ 
+			DuplaGalacticaGameProxy
+				with: 'red'
+				and: aBoard
+				usingToThrow:
+				(DiceShaker with: (OrderedCollection with: aLoadedDie))
+				winningWhenReach: 1
+				using: aCardsCollection ]
+		raise: Error
+		withMessage: 'That is not a colors collection'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testJ011TryToCreateAGameWithoutABoardThenFails [
+
+	self
+		should: [ 
+			DuplaGalacticaGameProxy
+				with: aColorsCollection
+				and: 'pepito'
+				usingToThrow:
+				(DiceShaker with: (OrderedCollection with: aLoadedDie))
+				winningWhenReach: 1
+				using: aCardsCollection ]
+		raise: Error
+		withMessage: 'Cannot create a game without a board'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testJ012TryToCreateAGameWithANotANumberAmountOfGoalLapsThenFails [
+
+	self
+		should: [ 
+			DuplaGalacticaGameProxy
+				with: aColorsCollection
+				and: aBoard
+				usingToThrow:
+				(DiceShaker with: (OrderedCollection with: aLoadedDie))
+				winningWhenReach: 'pepito'
+				using: aCardsCollection ]
+		raise: Error
+		withMessage: 'The goal laps must be a number'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testJ013TryToCreateAGameWithoutADiceShakerThenFails [
+
+	self
+		should: [ 
+			DuplaGalacticaGameProxy
+				with: aColorsCollection
+				and: aBoard
+				usingToThrow: aLoadedDie
+				winningWhenReach: 1
+				using: aCardsCollection ]
+		raise: Error
+		withMessage: 'Cannot create a game without a dice shaker'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testJ014TryToCreateLessOrEqualToZeroObjectsThenFails [
+
+	| anObjectCreator |
+	anObjectCreator := ObjectCreator use: (OrderedCollection with:
+			                    (ObjectProbability
+				                     using: NoEffectBox initializeNew
+				                     withChanceOf: 100)).
+	self
+		should: [ anObjectCreator create: 0 ]
+		raise: Error
+		withMessage:
+		'The amount of objects to create must be greater than zero'.
+	self
+		should: [ anObjectCreator create: -5 ]
+		raise: Error
+		withMessage:
+		'The amount of objects to create must be greater than zero'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testJ015TryToCreateANotANumberAmountOfObjectsThenFails [
+
+	| anObjectCreator |
+	anObjectCreator := ObjectCreator use: (OrderedCollection with:
+			                    (ObjectProbability
+				                     using: NoEffectBox initializeNew
+				                     withChanceOf: 100)).
+	self
+		should: [ anObjectCreator create: 'pepito' ]
+		raise: Error
+		withMessage: 'The amount of objects to create must be a number'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testJ016TryToCreateAnObjectProbabilityWithANotANumberProbabilityThenFails [
+
+	self
+		should: [ 
+			ObjectProbability
+				using: NoEffectBox initializeNew
+				withChanceOf: 'pepito' ]
+		raise: Error
+		withMessage:
+		'Cannot create an object probability with a not a number probability'
+]
+
+{ #category : #tests }
+DuplaGalacticaGameFinalVersionTest >> testJ017TryToCreateAnObjectProbabilityWithGreaterTo100ProbabilityThenFails [
+
+	self
+		should: [ 
+			ObjectProbability
+				using: NoEffectBox initializeNew
+				withChanceOf: 150 ]
+		raise: Error
+		withMessage: 'The probability cannot be greater than 100'
 ]

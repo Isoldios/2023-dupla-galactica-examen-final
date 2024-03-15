@@ -512,10 +512,15 @@ BoxesTest >> testB001TryToCreateARandomCardBoxWithCardsProbabilitiesNotEqualsTo1
 		withMessage: 'The sum of probabilities must be 100'.
 	self
 		should: [ 
-			RandomCardBox with: (OrderedCollection with:
+			RandomCardBox with: (OrderedCollection
+					 with:
 					 (ObjectProbability
 						  using: OverloadCard initializeNew
-						  withChanceOf: 150)) ]
+						  withChanceOf: 80)
+					 with:
+					 (ObjectProbability
+						  using: SpeedCard initializeNew
+						  withChanceOf: 80)) ]
 		raise: Error
 		withMessage: 'The sum of probabilities must be 100'
 ]
@@ -632,4 +637,34 @@ BoxesTest >> testB008TryToCreateABoardWithAMeasureThatIsNotAMeasureThenFails [
 		Board with: aBoxesCollection measure: (OrderedCollection with: 100) ]
 		raise: Error
 		withMessage: 'That is not a measure'
+]
+
+{ #category : #tests }
+BoxesTest >> testB009TryToCreateAMoonWalkBoxWithANotANumberEffectValueThenFails [
+
+	self
+		should: [ MoonWalkBox with: 'pepito' ]
+		raise: Error
+		withMessage:
+		'Cannot create a Moon Walk Box with a not a number effect value'
+]
+
+{ #category : #tests }
+BoxesTest >> testB010TryToCreateARandomCardBoxWithANoCardsProbabilitiesCollectionThenFails [
+
+	self
+		should: [ RandomCardBox with: OverloadCard initializeNew ]
+		raise: Error
+		withMessage: 'That is not a cards probabilities collection'
+]
+
+{ #category : #tests }
+BoxesTest >> testB011TryToCreateARandomCardBoxWithANoObjectProbabilitiesCollectionThenFails [
+
+	self
+		should: [ 
+			RandomCardBox with:
+				(OrderedCollection with: OverloadCard initializeNew) ]
+		raise: Error
+		withMessage: 'That is not a valid object probability'
 ]

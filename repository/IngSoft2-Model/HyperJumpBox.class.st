@@ -7,8 +7,8 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-HyperJumpBox class >> with: aMeasuresCollection [
+{ #category : #Validation }
+HyperJumpBox class >> validateMeasures: aMeasuresCollection [
 
 	(aMeasuresCollection isKindOf: OrderedCollection) ifFalse: [ 
 		Error signal: 'That is not a measures collection' ].
@@ -18,7 +18,13 @@ HyperJumpBox class >> with: aMeasuresCollection [
 		[ measure nominalValue ]
 			on: MessageNotUnderstood
 			do: [ 
-			Error signal: 'Cannot create a hyper jump box with that values' ] ].
+			Error signal: 'Cannot create a hyper jump box with that values' ] ]
+]
+
+{ #category : #'Instance creation' }
+HyperJumpBox class >> with: aMeasuresCollection [
+
+	self validateMeasures: aMeasuresCollection.
 	^ self new initializeWith: aMeasuresCollection
 ]
 

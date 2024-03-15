@@ -8,33 +8,48 @@ Class {
 }
 
 { #category : #'Instance creation' }
-ObjectCreator class >> use: anObjectProbabilitiesCollection [
+ObjectCreator class >> use: anObjectsProbabilitiesCollection [
 
-	(anObjectProbabilitiesCollection isKindOf: OrderedCollection) 
+	self validateObjectsProbabilities: anObjectsProbabilitiesCollection.
+	^ self new initializeUse: anObjectsProbabilitiesCollection
+]
+
+{ #category : #Validation }
+ObjectCreator class >> validateObjectsProbabilities: anObjectsProbabilitiesCollection [
+
+	(anObjectsProbabilitiesCollection isKindOf: OrderedCollection) 
 		ifFalse: [ 
 		Error signal: 'That is not an object probabilities collection' ].
-	([ anObjectProbabilitiesCollection sum: #probability ]
+	([ anObjectsProbabilitiesCollection sum: #probability ]
 		 on: MessageNotUnderstood
 		 do: [ Error signal: 'That is not a valid object probability' ])
 	= 100 ifFalse: [ 
-		Error signal: 'The sum of probabilities must be 100' ].
-	^ self new initializeUse: anObjectProbabilitiesCollection
+		Error signal: 'The sum of probabilities must be 100' ]
 ]
 
 { #category : #Creation }
 ObjectCreator >> create: aNumberOfObjects [
 
-	| anObjectCollection |
-	anObjectCollection := OrderedCollection new.
-	aNumberOfObjects timesRepeat: [ 
-		anObjectCollection addLast: self oneRandomObject ].
-	^ anObjectCollection
+	| anObjectsCollection |
+	aNumberOfObjects isNumber
+		ifTrue: [ 
+			aNumberOfObjects > 0
+				ifTrue: [ 
+					anObjectsCollection := OrderedCollection new.
+					aNumberOfObjects timesRepeat: [ 
+						anObjectsCollection addLast: self oneRandomObject ].
+					^ anObjectsCollection ]
+				ifFalse: [ 
+					Error signal:
+						'The amount of objects to create must be greater than zero' ] ]
+		ifFalse: [ 
+		Error signal: 'The amount of objects to create must be a number' ]
 ]
 
 { #category : #Initialization }
-ObjectCreator >> initializeUse: anObjectProbabilitiesCollection [
+ObjectCreator >> initializeUse: anObjectsProbabilitiesCollection [
 
-	objectsProbabilities := anObjectProbabilitiesCollection
+	objectsProbabilities := anObjectsProbabilitiesCollection
 ]
 
 { #category : #Creation }

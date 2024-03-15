@@ -7,11 +7,18 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #Validation }
+LigthYearMeasure class >> validateValue: aNominalValue [
+
+	aNominalValue isNumber ifFalse: [ 
+		Error signal:
+			'Cannot create a ligth year measure with a not a number value' ]
+]
+
 { #category : #'Instance creation' }
 LigthYearMeasure class >> worth: aNominalValue [
 
-	aNominalValue isNumber ifFalse: [ 
-		Error signal: 'Cannot create a ligth year measure with that value' ].
+	self validateValue: aNominalValue.
 	^ self new initializeWorth: aNominalValue
 ]
 

@@ -194,3 +194,13 @@ DiceAndShakersTest >> testL007TryToCreateADiceShakerWithAnEmptyOrderedCollection
 		withMessage:
 		'Cannot create a dice shaker with an empty dice collection'
 ]
+
+{ #category : #tests }
+DiceAndShakersTest >> testL008TryToCreateADieWithANotANumberQuantityOfFacesThenFails [
+
+	self
+		should: [ Die with: 'pepito' ]
+		raise: Error
+		withMessage:
+		'Cannot create a die with a not a number quantity of faces'
+]

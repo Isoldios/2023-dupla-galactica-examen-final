@@ -115,11 +115,13 @@ ParsecsAndLigthYearsMeasuresTest >> testH001TryToCreateALigthYearMeasureWithANon
 	self
 		should: [ LigthYearMeasure worth: 'a' ]
 		raise: Error
-		withMessage: 'Cannot create a ligth year measure with that value'.
+		withMessage:
+		'Cannot create a ligth year measure with a not a number value'.
 	self
 		should: [ LigthYearMeasure worth: (OrderedCollection with: 1) ]
 		raise: Error
-		withMessage: 'Cannot create a ligth year measure with that value'
+		withMessage:
+		'Cannot create a ligth year measure with a not a number value'
 ]
 
 { #category : #tests }
@@ -128,9 +130,11 @@ ParsecsAndLigthYearsMeasuresTest >> testH002TryToCreateAParsecMeasureWithANonNum
 	self
 		should: [ ParsecMeasure worth: 'a' ]
 		raise: Error
-		withMessage: 'Cannot create a ligth year measure with that value'.
+		withMessage:
+		'Cannot create a parsec measure with a not a number value'.
 	self
 		should: [ ParsecMeasure worth: (OrderedCollection with: 1) ]
 		raise: Error
-		withMessage: 'Cannot create a ligth year measure with that value'
+		withMessage:
+		'Cannot create a parsec measure with a not a number value'
 ]

@@ -2,9 +2,9 @@ Class {
 	#name : #CardManager,
 	#superclass : #Object,
 	#instVars : [
-		'lastCardPlay',
 		'activeCardsDeck',
-		'cardsInPosetionDeck'
+		'cardsInPosetionDeck',
+		'lastCardPlayed'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -32,7 +32,7 @@ CardManager >> apply: aCardInAPlayerHand to: anObjective at: aDuplaGalacticaGame
 
 	cardsInPosetionDeck hasBeenGiven: aCardInAPlayerHand.
 	aCardInAPlayerHand card haveEffect ifTrue: [ 
-		lastCardPlay := aCardInAPlayerHand card ].
+		lastCardPlayed := aCardInAPlayerHand card ].
 	aCardInAPlayerHand card
 		applyCardUsing: self
 		to: anObjective
@@ -65,7 +65,7 @@ CardManager >> deal: aCardsCollection to: aColorsCollection [
 	cardsPerColor := aCardsCollection size // aColorsCollection size.
 	aColorsCollection do: [ :color | 
 		cardsPerColor timesRepeat: [ 
-			self add: (PlayerHand of: color with: aCardsCollection removeLast) ] ]
+			self add: (PlayerHand of: color with: aCardsCollection removeFirst) ] ]
 ]
 
 { #category : #Managing }
@@ -85,7 +85,7 @@ CardManager >> duplicateEffectOf: anObjectiveCardInAPlayerHand [
 { #category : #Initialization }
 CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 
-	lastCardPlay := NoEffectCard initializeNew.
+	lastCardPlayed := NoEffectCard initializeNew.
 	activeCardsDeck := ActiveCardsInPlayersHandsDeck createDeck.
 	cardsInPosetionDeck := CardsInPlayersHandsDeck createDeck.
 	self deal: aCardsCollection to: aColorsCollection
@@ -102,5 +102,5 @@ CardManager >> isValidCardObjective: anObjectiveCardInAPlayerHand [
 { #category : #Information }
 CardManager >> lastCardPlay [
 
-	^ lastCardPlay
+	^ lastCardPlayed
 ]

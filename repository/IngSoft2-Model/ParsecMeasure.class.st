@@ -7,16 +7,23 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #Validation }
+ParsecMeasure class >> validateValue: aNominalValue [
+
+	aNominalValue isNumber ifFalse: [ 
+		Error signal:
+			'Cannot create a parsec measure with a not a number value' ]
+]
+
 { #category : #'Instance creation' }
 ParsecMeasure class >> worth: aNominalValue [
 
-	aNominalValue isNumber ifFalse: [ 
-		Error signal: 'Cannot create a ligth year measure with that value' ].
-	^ self new initializeWith: aNominalValue
+	self validateValue: aNominalValue.
+	^ self new initializeWorth: aNominalValue
 ]
 
 { #category : #Initialization }
-ParsecMeasure >> initializeWith: aNominalValue [
+ParsecMeasure >> initializeWorth: aNominalValue [
 
 	nominalValue := aNominalValue
 ]
