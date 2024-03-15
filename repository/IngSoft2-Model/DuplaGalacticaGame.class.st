@@ -127,15 +127,15 @@ DuplaGalacticaGame >> canBeUse: aCardInAPlayerHand [
 ]
 
 { #category : #Boxes }
-DuplaGalacticaGame >> changePolarityOf: aBoxNumber [
+DuplaGalacticaGame >> changePolarityOf: aBox [
 
-	board changePolarityOf: aBoxNumber
+	board changePolarityOf: aBox
 ]
 
 { #category : #Boxes }
 DuplaGalacticaGame >> checkPolarity [
 
-	cardManager checkPolarityAt: self
+	board checkPolarityAt: self of: cardManager
 ]
 
 { #category : #Information }
@@ -173,9 +173,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 { #category : #Validation }
 DuplaGalacticaGame >> isValidBox: aBoxNumber [
 
-	aBoxNumber isNumber
-		ifTrue: [ board isValidBox: aBoxNumber ]
-		ifFalse: [ Error signal: 'That is not a box number' ]
+	^ board isValidBox: aBoxNumber.
 ]
 
 { #category : #Validation }
@@ -195,12 +193,6 @@ DuplaGalacticaGame >> isValidPlayer: anObjectivePlayerColor [
 	self playersColors
 		detect: [ :color | color = anObjectivePlayerColor ]
 		ifNone: [ Error signal: 'That is not a valid player objective' ]
-]
-
-{ #category : #Information }
-DuplaGalacticaGame >> lightYears [
-
-	^ board lightYears
 ]
 
 { #category : #Boxes }
@@ -233,7 +225,6 @@ DuplaGalacticaGame >> movePlayer [
 	currentPlayer move: boxesToMove andUpdateLap: self boardLength.
 	self checkPolarity.
 	board effectAt: currentPlayer box In: self.
-	board resetPolarities.
 	currentPlayer := playersTurnManager goNext current
 ]
 

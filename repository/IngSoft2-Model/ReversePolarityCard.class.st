@@ -31,10 +31,10 @@ ReversePolarityCard >> applyEffect [
 ]
 
 { #category : #Effect }
-ReversePolarityCard >> changePolarityOf: aBoxNumber at: aDuplaGalacticaGame with: aFlag [
+ReversePolarityCard >> changePolarityOf: aBox at: aDuplaGalacticaGame with: aFlag [
 
 	aFlag timesRepeat: [ 
-		aDuplaGalacticaGame changePolarityOf: aBoxNumber ]
+		aDuplaGalacticaGame changePolarityOf: aBox ]
 ]
 
 { #category : #Information }

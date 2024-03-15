@@ -38,3 +38,9 @@ Box >> resetPolarity [
 
 	polarity := true
 ]
+
+{ #category : #Information }
+Box >> type [
+
+	^ box
+]

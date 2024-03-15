@@ -53,9 +53,9 @@ CardManager >> cardsInPosetionOf: aPlayersCollection [
 ]
 
 { #category : #Managing }
-CardManager >> checkPolarityAt: aDuplaGalacticaGame [
+CardManager >> checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection [
 
-	activeCardsDeck checkPolarityAt: aDuplaGalacticaGame
+	activeCardsDeck checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection
 ]
 
 { #category : #Initialization }

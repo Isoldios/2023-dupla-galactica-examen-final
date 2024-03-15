@@ -29,10 +29,12 @@ ActiveCardsInPlayersHandsDeck >> calculateEffectOn: aColorPlayer [
 ]
 
 { #category : #Cards }
-ActiveCardsInPlayersHandsDeck >> checkPolarityAt: aDuplaGalacticaGame [
+ActiveCardsInPlayersHandsDeck >> checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection [
 
-	(activeCardsInPlayersHands select: [ :hand | hand holder isNumber ]) do: [ :hand | 
-		hand card changePolarityOf: hand holder at: aDuplaGalacticaGame ]
+	activeCardsInPlayersHands do: [ :hand | 
+		(aBoxesCollection anySatisfy: [ :box | hand holder = box type ]) 
+			ifTrue: [ 
+			hand card changePolarityOf: hand holder at: aDuplaGalacticaGame ] ]
 ]
 
 { #category : #Cards }

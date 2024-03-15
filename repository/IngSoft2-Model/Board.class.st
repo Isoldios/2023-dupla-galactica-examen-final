@@ -40,16 +40,24 @@ Board class >> with: aBoxesCollection measure: aLengthMeasure [
 ]
 
 { #category : #BoxManager }
-Board >> changePolarityOf: aBoxNumber [
+Board >> changePolarityOf: aBox [
 
-	(boxes at: aBoxNumber) changePolarity
+	(boxes select: [ :box | aBox = box type ]) do: [ :box | 
+		box changePolarity ]
+]
+
+{ #category : #BoxManager }
+Board >> checkPolarityAt: aDuplaGalacticaGame of: aCardManager [
+
+	aCardManager checkPolarityAt: aDuplaGalacticaGame of: boxes
 ]
 
 { #category : #BoxManager }
 Board >> effectAt: aBoxNumber In: aDuplaGalacticaGame [
 
 	(boxes at: aBoxNumber) effect: aDuplaGalacticaGame.
-	lastBoxInvoked := aBoxNumber
+	lastBoxInvoked := aBoxNumber.
+	self resetPolarities
 ]
 
 { #category : #Initialization }
@@ -61,10 +69,14 @@ Board >> initializeWith: aBoxesCollection measure: aLengthMeasure [
 ]
 
 { #category : #Validation }
-Board >> isValidBox: aBoxNumber [
+Board >> isValidBox: aBox [
 
-	(aBoxNumber <= self length and: aBoxNumber > 0) ifFalse: [ 
-		Error signal: 'That is not a valid box number' ]
+	boxes
+		detect: [ :box | box type = aBox ]
+		ifFound: [ :box | ^ boxes indexOf: box ]
+		ifNone: [ 
+			Error signal:
+				'That is not a box created at the dupla galactica game' ]
 ]
 
 { #category : #Information }
@@ -77,12 +89,6 @@ Board >> lastBoxInvoked [
 Board >> length [
 
 	^ boxes size
-]
-
-{ #category : #Information }
-Board >> lightYears [
-
-	^ lengthMeasure lightYears
 ]
 
 { #category : #Information }

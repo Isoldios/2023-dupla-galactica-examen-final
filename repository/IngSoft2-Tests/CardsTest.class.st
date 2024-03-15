@@ -1013,7 +1013,7 @@ CardsTest >> testC031WhenPlayerPlaysAReversePolarityCardOnASpeedUpBoxThenCheckTh
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 2.
+		to: (aBoxesCollection at: 2).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1047,7 +1047,7 @@ CardsTest >> testC032WhenPlayerPlaysAReversePolarityCardOnAWormHoleBoxThenCheckT
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 9.
+		to: (aBoxesCollection at: 9).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1081,7 +1081,7 @@ CardsTest >> testC033WhenPlayerPlaysAReversePolarityCardOnAMoonWalkBoxThenCheckT
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 5.
+		to: (aBoxesCollection at: 5).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1115,7 +1115,7 @@ CardsTest >> testC034WhenPlayerPlaysAReversePolarityCardOnAnAtomicBombBoxThenChe
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 5.
+		to: (aBoxesCollection at: 5).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1152,7 +1152,7 @@ CardsTest >> testC035WhenPlayerPlaysAReversePolarityCardOnAHyperJumpBoxThenCheck
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1191,7 +1191,7 @@ CardsTest >> testC036WhenPlayerPlaysAReversePolarityCardOnARandomCardBoxThenChec
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1225,7 +1225,7 @@ CardsTest >> testC037WhenPlayerPlaysAReversePolarityCardOnANoEffectBoxThenCheckT
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1260,11 +1260,11 @@ CardsTest >> testC038WhenPlayerPlaysASpeedBoostCardOnAReversePolarityCardThenChe
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
-		to: (PlayerHand of: 3 with: ReversePolarityCard initializeNew).
+		to: (PlayerHand of: (aBoxesCollection at: 3) with: ReversePolarityCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -1298,11 +1298,11 @@ CardsTest >> testC039WhenPlayerPlaysACancellationCardOnAReversePolarityCardThenC
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: CancellationCard initializeNew)
-		to: (PlayerHand of: 3 with: ReversePolarityCard initializeNew).
+		to: (PlayerHand of: (aBoxesCollection at: 3) with: ReversePolarityCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -1336,10 +1336,10 @@ CardsTest >> testC040WhenPlayerPlaysARedoCardAndTheLastCardPlayedWasAReversePola
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
-		to: 6.
+		to: (aBoxesCollection at: 6).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1374,7 +1374,7 @@ CardsTest >> testC041WhenPlayerPlaysARepeatCardAndTheLastBoxInvokedHasBeenAffect
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
@@ -1410,11 +1410,11 @@ CardsTest >> testC042WhenPlayerPlaysTwoReversePolarityCardsOnTheSameBoxThenCheck
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame
 		apply:
 		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-		to: 3.
+		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -2158,39 +2158,6 @@ CardsTest >> testD019TryToPlayASpeedBoostCardWhenThereAreNoActivePermanentCardsT
 ]
 
 { #category : #tests }
-CardsTest >> testD020TryToPlayAReversePolarityCardOnAOutOfRangeBoxThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
-	aCardsCollection := (ObjectCreator use:
-		                     (OrderedCollection with: (ObjectProbability
-				                       using: ReversePolarityCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: SpeedUpBox initializeNew
-				                       withChanceOf: 100))) create: 10.
-	aBoard := Board
-		          with: aBoxesCollection
-		          measure: (ParsecMeasure worth: 100).
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: aBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply:
-				(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-				to: 11 ]
-		raise: Error
-		withMessage: 'That is not a valid box number'
-]
-
-{ #category : #tests }
 CardsTest >> testD021TryToPlayAReversePolarityCardOnAPlayerObjectiveThenFails [
 
 	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
@@ -2220,7 +2187,7 @@ CardsTest >> testD021TryToPlayAReversePolarityCardOnAPlayerObjectiveThenFails [
 				(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
 				to: 'blue' ]
 		raise: Error
-		withMessage: 'That is not a box number'
+		withMessage: 'That is not a box created at the dupla galactica game'
 ]
 
 { #category : #tests }
@@ -2253,7 +2220,7 @@ CardsTest >> testD022TryToPlayAReversePolarityCardOnACardObjectiveThenFails [
 				(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
 				to: (PlayerHand of: 'red' with: SpeedCard initializeNew) ]
 		raise: Error
-		withMessage: 'That is not a box number'
+		withMessage: 'That is not a box created at the dupla galactica game'
 ]
 
 { #category : #tests }

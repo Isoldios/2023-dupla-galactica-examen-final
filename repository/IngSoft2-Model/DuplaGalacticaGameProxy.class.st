@@ -59,12 +59,6 @@ DuplaGalacticaGameProxy >> initializeWith: aColorsCollection and: aBoard usingTo
 		        using: aCardsCollection
 ]
 
-{ #category : #Information }
-DuplaGalacticaGameProxy >> lightYears [
-
-	^ game lightYears
-]
-
 { #category : #Movement }
 DuplaGalacticaGameProxy >> movePlayer [
 
