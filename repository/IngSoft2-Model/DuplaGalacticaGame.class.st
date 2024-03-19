@@ -113,7 +113,7 @@ DuplaGalacticaGame >> boardLength [
 { #category : #Information }
 DuplaGalacticaGame >> boxesByParsecs [
 
-	^ self parsecs nominalValue // self boardLength
+	^ board boxesByParsecs
 ]
 
 { #category : #Validation }
@@ -229,7 +229,7 @@ DuplaGalacticaGame >> movePlayer [
 ]
 
 { #category : #Information }
-DuplaGalacticaGame >> parsecs [
+DuplaGalacticaGame >> parsecsMeasure [
 
 	^ board parsecs
 ]
@@ -241,7 +241,7 @@ DuplaGalacticaGame >> playersBox [
 ]
 
 { #category : #Information }
-DuplaGalacticaGame >> playersCardInPosetion [
+DuplaGalacticaGame >> playersCardsInPosetion [
 
 	^ cardManager cardsInPosetionOf: players
 ]

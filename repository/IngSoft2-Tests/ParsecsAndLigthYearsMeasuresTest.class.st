@@ -52,7 +52,7 @@ ParsecsAndLigthYearsMeasuresTest >> testG001WhenAGameIsCreaterWithAParsecMeasure
 			                        (OrderedCollection with: aLoadedDie))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
-	self assert: aDuplaGalacticaGame parsecs nominalValue equals: 100
+	self assert: aDuplaGalacticaGame parsecsMeasure equals: 100
 ]
 
 { #category : #tests }
@@ -70,7 +70,7 @@ ParsecsAndLigthYearsMeasuresTest >> testG002WhenAGameIsCreatedWithALightYearMeas
 			                        (OrderedCollection with: aLoadedDie))
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
-	self assert: aDuplaGalacticaGame parsecs nominalValue equals: 100
+	self assert: aDuplaGalacticaGame parsecsMeasure equals: 100
 ]
 
 { #category : #tests }

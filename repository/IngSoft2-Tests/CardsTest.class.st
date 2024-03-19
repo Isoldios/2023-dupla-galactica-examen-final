@@ -1195,7 +1195,7 @@ CardsTest >> testC036WhenPlayerPlaysAReversePolarityCardOnARandomCardBoxThenChec
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
-		assert: aDuplaGalacticaGame playersCardInPosetion
+		assert: aDuplaGalacticaGame playersCardsInPosetion
 		equals: (OrderedCollection with: 3 with: 2)
 ]
 
@@ -1648,7 +1648,7 @@ CardsTest >> testC049WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasARandomCardBo
 		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
 		to: 'blue'.
 	self
-		assert: aDuplaGalacticaGame playersCardInPosetion
+		assert: aDuplaGalacticaGame playersCardsInPosetion
 		equals: (OrderedCollection with: 2 with: 4)
 ]
 
@@ -2155,6 +2155,39 @@ CardsTest >> testD019TryToPlayASpeedBoostCardWhenThereAreNoActivePermanentCardsT
 				to: (PlayerHand of: 'red' with: SpeedCard initializeNew) ]
 		raise: Error
 		withMessage: 'There are no active permanent cards'
+]
+
+{ #category : #tests }
+CardsTest >> testD020TryToPlayAReversePolarityCardOnANoCreatedBoxAtTheGameBoxThenFails [
+
+	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
+	aCardsCollection := (ObjectCreator use:
+		                     (OrderedCollection with: (ObjectProbability
+				                       using: ReversePolarityCard initializeNew
+				                       withChanceOf: 100))) create: 4.
+	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: SpeedUpBox initializeNew
+				                       withChanceOf: 100))) create: 10.
+	aBoard := Board
+		          with: aBoxesCollection
+		          measure: (ParsecMeasure worth: 100).
+	aDuplaGalacticaGame := DuplaGalacticaGameProxy
+		                       with: aColorsCollection
+		                       and: aBoard
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 1 2 3 4 ))))
+		                       winningWhenReach: 1
+		                       using: aCardsCollection.
+	self
+		should: [ 
+			aDuplaGalacticaGame
+				apply:
+				(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+				to: SpeedUpBox initializeNew ]
+		raise: Error
+		withMessage: 'That is not a box created at the dupla galactica game'
 ]
 
 { #category : #tests }

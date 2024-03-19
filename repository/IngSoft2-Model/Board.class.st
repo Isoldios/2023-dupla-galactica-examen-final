@@ -39,6 +39,12 @@ Board class >> with: aBoxesCollection measure: aLengthMeasure [
 	^ self new initializeWith: aBoxesCollection measure: aLengthMeasure
 ]
 
+{ #category : #Information }
+Board >> boxesByParsecs [
+
+	^ self parsecs // self length
+]
+
 { #category : #BoxManager }
 Board >> changePolarityOf: aBox [
 
@@ -94,7 +100,7 @@ Board >> length [
 { #category : #Information }
 Board >> parsecs [
 
-	^ lengthMeasure parsecs
+	^ lengthMeasure parsecs nominalValue
 ]
 
 { #category : #BoxManager }

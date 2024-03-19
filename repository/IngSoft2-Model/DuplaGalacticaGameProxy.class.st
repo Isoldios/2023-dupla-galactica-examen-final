@@ -66,9 +66,9 @@ DuplaGalacticaGameProxy >> movePlayer [
 ]
 
 { #category : #Information }
-DuplaGalacticaGameProxy >> parsecs [
+DuplaGalacticaGameProxy >> parsecsMeasure [
 
-	^ game parsecs
+	^ game parsecsMeasure
 ]
 
 { #category : #Information }
@@ -78,9 +78,9 @@ DuplaGalacticaGameProxy >> playersBox [
 ]
 
 { #category : #Information }
-DuplaGalacticaGameProxy >> playersCardInPosetion [
+DuplaGalacticaGameProxy >> playersCardsInPosetion [
 
-	^ game playersCardInPosetion
+	^ game playersCardsInPosetion
 ]
 
 { #category : #Information }

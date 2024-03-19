@@ -134,7 +134,7 @@ DuplaGalacticaGameFinalVersionTest >> testI002WhenAGameIsCreatedWithRandomCardsP
 	| aDuplaGalacticaGame |
 	aDuplaGalacticaGame := self createDuplaGalacticaGameFinalVersion.
 	self
-		assert: aDuplaGalacticaGame playersCardInPosetion
+		assert: aDuplaGalacticaGame playersCardsInPosetion
 		equals: (OrderedCollection with: 2 with: 2)
 ]
 

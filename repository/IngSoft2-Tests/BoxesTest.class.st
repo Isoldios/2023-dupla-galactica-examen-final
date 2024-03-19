@@ -380,7 +380,7 @@ BoxesTest >> testA013WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMor
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
 	self
-		assert: aDuplaGalacticaGame playersCardInPosetion
+		assert: aDuplaGalacticaGame playersCardsInPosetion
 		equals: (OrderedCollection with: 3 with: 2)
 ]
 
