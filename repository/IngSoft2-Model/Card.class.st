@@ -40,7 +40,7 @@ Card >> boostEffect [
 { #category : #Effect }
 Card >> changePolarityOf: aBoxNumber at: aDuplaGalacticaGame [
 
-	card changePolarityOf: aBoxNumber at: aDuplaGalacticaGame with: flag
+	flag timesRepeat: [ aDuplaGalacticaGame changePolarityOf: aBoxNumber ]
 ]
 
 { #category : #Information }
