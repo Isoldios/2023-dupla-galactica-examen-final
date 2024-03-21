@@ -85,7 +85,7 @@ CardManager >> duplicateEffectOf: anObjectiveCardInAPlayerHand [
 { #category : #Initialization }
 CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 
-	lastCardPlayed := NoEffectCard initializeNew.
+	lastCardPlayed := NullCard initializeNew.
 	activeCardsDeck := ActiveCardsInPlayersHandsDeck createDeck.
 	cardsInPosetionDeck := CardsInPlayersHandsDeck createDeck.
 	self deal: aCardsCollection to: aColorsCollection

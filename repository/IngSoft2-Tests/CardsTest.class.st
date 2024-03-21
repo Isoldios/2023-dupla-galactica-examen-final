@@ -13,7 +13,7 @@ CardsTest >> createBoard [
 	| aBoxesCollection |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			           (ObjectProbability
-				            using: NoEffectBox initializeNew
+				            using: NullBox initializeNew
 				            withChanceOf: 100))) create: 10.
 	^ Board with: aBoxesCollection measure: (ParsecMeasure worth: 100)
 ]
@@ -1209,7 +1209,7 @@ CardsTest >> testC037WhenPlayerPlaysAReversePolarityCardOnANoEffectBoxThenCheckT
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
+				                       using: NullBox initializeNew
 				                       withChanceOf: 100))) create: 10.
 	aBoard := Board
 		          with: aBoxesCollection
@@ -1427,11 +1427,11 @@ CardsTest >> testC043WhenPlayerPlaysANoEffectCardThenCheckThatNoEffectsWereAppli
 	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectCard initializeNew
+				                       using: NullCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
+				                       using: NullBox initializeNew
 				                       withChanceOf: 100))) create: 10.
 	aBoard := Board
 		          with: aBoxesCollection
@@ -1445,7 +1445,7 @@ CardsTest >> testC043WhenPlayerPlaysANoEffectCardThenCheckThatNoEffectsWereAppli
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: NoEffectCard initializeNew)
+		apply: (PlayerHand of: 'red' with: NullCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1662,7 +1662,7 @@ CardsTest >> testC050WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasANoEffectBoxT
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
+				                       using: NullBox initializeNew
 				                       withChanceOf: 100))) create: 10.
 	aBoard := Board
 		          with: aBoxesCollection
@@ -1746,7 +1746,7 @@ CardsTest >> testD003TryToPlayACardThatIsNotACardThenFails [
 	| aDuplaGalacticaGame aCardsCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectCard initializeNew
+				                       using: NullCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
@@ -1843,7 +1843,7 @@ CardsTest >> testD007TryToCreateAGameWithCardsThatAreNotCardsThenFails [
 	| aCardsCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
+				                       using: NullBox initializeNew
 				                       withChanceOf: 100))) create: 4.
 	self
 		should: [ 

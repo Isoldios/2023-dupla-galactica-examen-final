@@ -164,7 +164,7 @@ DiceAndShakersTest >> testL006TryToCreateADiceShakerWithADiceCollectionThatDoesN
 	self
 		should: [ 
 			DiceShaker with:
-				(OrderedCollection with: NoEffectBox initializeNew) ]
+				(OrderedCollection with: NullBox initializeNew) ]
 		raise: Error
 		withMessage: 'Cannot create a dice shaker with that dice collection'.
 	self

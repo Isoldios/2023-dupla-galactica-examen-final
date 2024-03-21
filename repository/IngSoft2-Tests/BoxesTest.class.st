@@ -16,7 +16,7 @@ BoxesTest >> setUp [
 	aColorsCollection := OrderedCollection with: 'red' with: 'blue'.
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectCard initializeNew
+				                       using: NullCard initializeNew
 				                       withChanceOf: 100))) create: 4
 ]
 
@@ -36,7 +36,7 @@ BoxesTest >> testA001WhenPlayerReachesANoEffectBoxThenCheckThatNoEffectsWereAppl
 	| aDuplaGalacticaGame aBoxesCollection aBoard |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
+				                       using: NullBox initializeNew
 				                       withChanceOf: 100))) create: 10.
 	aBoard := Board
 		          with: aBoxesCollection
@@ -364,7 +364,7 @@ BoxesTest >> testA013WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMor
 					                       (RandomCardBox with:
 						                        (OrderedCollection with:
 							                         (ObjectProbability
-								                          using: NoEffectCard initializeNew
+								                          using: NullCard initializeNew
 								                          withChanceOf: 100)))
 				                       withChanceOf: 100))) create: 10.
 	aBoard := Board
@@ -543,7 +543,7 @@ BoxesTest >> testB003TryToCreateABoardWithLessThanFourBoxesThenFails [
 	| aBoxesCollection |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
+				                       using: NullBox initializeNew
 				                       withChanceOf: 100))) create: 3.
 	self
 		should: [ 
@@ -558,7 +558,7 @@ BoxesTest >> testB004TryToCreateABoardWithBoxesThatAreNotBoxesThenFails [
 	| aBoxesCollection |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectCard initializeNew
+				                       using: NullCard initializeNew
 				                       withChanceOf: 100))) create: 10.
 	self
 		should: [ 
@@ -622,7 +622,7 @@ BoxesTest >> testB008TryToCreateABoardWithAMeasureThatIsNotAMeasureThenFails [
 	| aBoxesCollection |
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
+				                       using: NullBox initializeNew
 				                       withChanceOf: 100))) create: 10.
 	self
 		should: [ Board with: aBoxesCollection measure: 'p' ]

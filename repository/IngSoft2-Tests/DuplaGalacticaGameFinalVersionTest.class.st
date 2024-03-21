@@ -45,7 +45,7 @@ DuplaGalacticaGameFinalVersionTest >> createDuplaGalacticaGameFinalVersion [
 	boxesProbabilities := OrderedCollection
 		                      with:
 		                      (ObjectProbability
-			                       using: NoEffectBox initializeNew
+			                       using: NullBox initializeNew
 			                       withChanceOf: 30)
 		                      with:
 		                      (ObjectProbability
@@ -98,16 +98,16 @@ DuplaGalacticaGameFinalVersionTest >> setUp [
 	aLoadedDie := LoadedDie with: #( 1 2 3 4 ).
 	aBoard := Board
 		          with: (OrderedCollection
-				           with: NoEffectBox initializeNew
-				           with: NoEffectBox initializeNew
-				           with: NoEffectBox initializeNew
-				           with: NoEffectBox initializeNew)
+				           with: NullBox initializeNew
+				           with: NullBox initializeNew
+				           with: NullBox initializeNew
+				           with: NullBox initializeNew)
 		          measure: (ParsecMeasure worth: 200).
 	aCardsCollection := OrderedCollection
-		                    with: NoEffectCard initializeNew
-		                    with: NoEffectCard initializeNew
-		                    with: NoEffectCard initializeNew
-		                    with: NoEffectCard initializeNew
+		                    with: NullCard initializeNew
+		                    with: NullCard initializeNew
+		                    with: NullCard initializeNew
+		                    with: NullCard initializeNew
 ]
 
 { #category : #tests }
@@ -196,10 +196,10 @@ DuplaGalacticaGameFinalVersionTest >> testJ003TryToCreateAGameWithALessOrEqualTo
 				with: aColorsCollection
 				and: (Board
 						 with: (OrderedCollection
-								  with: NoEffectBox initializeNew
-								  with: NoEffectBox initializeNew
-								  with: NoEffectBox initializeNew
-								  with: NoEffectBox initializeNew)
+								  with: NullBox initializeNew
+								  with: NullBox initializeNew
+								  with: NullBox initializeNew
+								  with: NullBox initializeNew)
 						 measure: (ParsecMeasure worth: 0))
 				usingToThrow:
 				(DiceShaker with: (OrderedCollection with: aLoadedDie))
@@ -214,10 +214,10 @@ DuplaGalacticaGameFinalVersionTest >> testJ003TryToCreateAGameWithALessOrEqualTo
 				with: aColorsCollection
 				and: (Board
 						 with: (OrderedCollection
-								  with: NoEffectBox initializeNew
-								  with: NoEffectBox initializeNew
-								  with: NoEffectBox initializeNew
-								  with: NoEffectBox initializeNew)
+								  with: NullBox initializeNew
+								  with: NullBox initializeNew
+								  with: NullBox initializeNew
+								  with: NullBox initializeNew)
 						 measure: (ParsecMeasure worth: -50))
 				usingToThrow:
 				(DiceShaker with: (OrderedCollection with: aLoadedDie))
@@ -384,7 +384,7 @@ DuplaGalacticaGameFinalVersionTest >> testJ014TryToCreateLessOrEqualToZeroObject
 	| anObjectCreator |
 	anObjectCreator := ObjectCreator use: (OrderedCollection with:
 			                    (ObjectProbability
-				                     using: NoEffectBox initializeNew
+				                     using: NullBox initializeNew
 				                     withChanceOf: 100)).
 	self
 		should: [ anObjectCreator create: 0 ]
@@ -404,7 +404,7 @@ DuplaGalacticaGameFinalVersionTest >> testJ015TryToCreateANotANumberAmountOfObje
 	| anObjectCreator |
 	anObjectCreator := ObjectCreator use: (OrderedCollection with:
 			                    (ObjectProbability
-				                     using: NoEffectBox initializeNew
+				                     using: NullBox initializeNew
 				                     withChanceOf: 100)).
 	self
 		should: [ anObjectCreator create: 'pepito' ]
@@ -418,7 +418,7 @@ DuplaGalacticaGameFinalVersionTest >> testJ016TryToCreateAnObjectProbabilityWith
 	self
 		should: [ 
 			ObjectProbability
-				using: NoEffectBox initializeNew
+				using: NullBox initializeNew
 				withChanceOf: 'pepito' ]
 		raise: Error
 		withMessage:
@@ -431,7 +431,7 @@ DuplaGalacticaGameFinalVersionTest >> testJ017TryToCreateAnObjectProbabilityWith
 	self
 		should: [ 
 			ObjectProbability
-				using: NoEffectBox initializeNew
+				using: NullBox initializeNew
 				withChanceOf: 150 ]
 		raise: Error
 		withMessage: 'The probability cannot be greater than 100'

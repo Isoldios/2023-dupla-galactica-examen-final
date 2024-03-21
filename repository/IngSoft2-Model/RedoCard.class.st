@@ -19,7 +19,7 @@ RedoCard >> = aCard [
 { #category : #Effect }
 RedoCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	aCardManager lastCardPlay = NoEffectCard initializeNew
+	aCardManager lastCardPlay = NullCard initializeNew
 		ifTrue: [ 
 			Error signal:
 				'Redo card cannot be played because there are no cards that have been played before' ]

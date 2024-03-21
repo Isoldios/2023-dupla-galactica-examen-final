@@ -16,11 +16,11 @@ PlayersTest >> setUp [
 	aColorsCollection := OrderedCollection with: 'red' with: 'blue'.
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectCard initializeNew
+				                       using: NullCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NoEffectBox initializeNew
+				                       using: NullBox initializeNew
 				                       withChanceOf: 100))) create: 10.
 	aDuplaGalacticaGame := DuplaGalacticaGameProxy
 		                       with: aColorsCollection
