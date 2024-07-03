@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'card',
 		'effect',
-		'flag'
+		'polarityEffect'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -34,13 +34,13 @@ Card >> applyEffect [
 Card >> boostEffect [
 
 	effect := effect * 2.
-	flag := flag + 1
+	polarityEffect := polarityEffect + 1
 ]
 
 { #category : #Effect }
 Card >> changePolarityOf: aBoxNumber at: aDuplaGalacticaGame [
 
-	flag timesRepeat: [ aDuplaGalacticaGame changePolarityOf: aBoxNumber ]
+	polarityEffect timesRepeat: [ aDuplaGalacticaGame changePolarityOf: aBoxNumber ]
 ]
 
 { #category : #Information }
@@ -55,7 +55,7 @@ Card >> initializeType: aCard [
 	card := aCard.
 	card isPermanent ifFalse: [ ^ self ].
 	effect := card applyEffect.
-	flag := 1
+	polarityEffect := 1
 ]
 
 { #category : #Information }
