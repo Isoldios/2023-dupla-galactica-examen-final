@@ -14,14 +14,14 @@ DuplaGalacticaGameProxy class >> with: aColorsCollection and: aBoard usingToThro
 		  initializeWith: aColorsCollection
 		  and: aBoard
 		  usingToThrow: aDiceShaker
-		  winningWhen: aNumberOfLaps
+		  winningWhenReach: aNumberOfLaps
 		  using: aCardsCollection
 ]
 
 { #category : #Cards }
-DuplaGalacticaGameProxy >> apply: aCardInHand to: anObjective [
+DuplaGalacticaGameProxy >> apply: aCardInAPlayerHand to: anObjective [
 
-	game apply: aCardInHand to: anObjective
+	game apply: aCardInAPlayerHand to: anObjective
 ]
 
 { #category : #Information }
@@ -37,26 +37,26 @@ DuplaGalacticaGameProxy >> currentPlayer [
 ]
 
 { #category : #Information }
+DuplaGalacticaGameProxy >> diceAmount [
+
+	^ game diceAmount
+]
+
+{ #category : #Information }
 DuplaGalacticaGameProxy >> goalLaps [
 
 	^ game goalLaps
 ]
 
 { #category : #Initialization }
-DuplaGalacticaGameProxy >> initializeWith: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhen: aValue using: cards [
+DuplaGalacticaGameProxy >> initializeWith: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhenReach: aNumberOfLaps using: aCardsCollection [
 
 	game := DuplaGalacticaGame
 		        with: aColorsCollection
 		        and: aBoard
 		        usingToThrow: aDiceShaker
-		        winningWhenReach: aValue
-		        using: cards
-]
-
-{ #category : #Information }
-DuplaGalacticaGameProxy >> lightYears [
-
-	^ game lightYears
+		        winningWhenReach: aNumberOfLaps
+		        using: aCardsCollection
 ]
 
 { #category : #Movement }
@@ -66,9 +66,9 @@ DuplaGalacticaGameProxy >> movePlayer [
 ]
 
 { #category : #Information }
-DuplaGalacticaGameProxy >> parsecs [
+DuplaGalacticaGameProxy >> parsecsMeasure [
 
-	^ game parsecs
+	^ game parsecsMeasure
 ]
 
 { #category : #Information }
@@ -78,9 +78,9 @@ DuplaGalacticaGameProxy >> playersBox [
 ]
 
 { #category : #Information }
-DuplaGalacticaGameProxy >> playersCardInPosetion [
+DuplaGalacticaGameProxy >> playersCardsInPosetion [
 
-	^ game playersCardInPosetion
+	^ game playersCardsInPosetion
 ]
 
 { #category : #Information }

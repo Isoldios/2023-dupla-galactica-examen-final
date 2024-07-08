@@ -2,7 +2,6 @@ Class {
 	#name : #QueueManager,
 	#superclass : #Object,
 	#instVars : [
-		'max',
 		'current',
 		'values'
 	],
@@ -24,7 +23,7 @@ QueueManager >> current [
 { #category : #ManageTurns }
 QueueManager >> goNext [
 
-	current := current == max
+	current := current == values size
 		           ifTrue: [ 1 ]
 		           ifFalse: [ current + 1 ]
 ]
@@ -33,12 +32,11 @@ QueueManager >> goNext [
 QueueManager >> initializeWith: aValuesCollection [
 
 	values	:= aValuesCollection.
-	max := aValuesCollection size.
 	current := 1
 ]
 
 { #category : #Information }
 QueueManager >> valuesOnQueue [
 
-	^ max
+	^ values size
 ]

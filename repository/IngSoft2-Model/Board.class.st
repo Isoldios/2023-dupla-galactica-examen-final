@@ -9,30 +9,61 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-Board class >> with: aBoxesCollection measure: aLengthMeasure [
+{ #category : #Validation }
+Board class >> validateBoxes: aBoxesCollection [
 
-	aLengthMeasure nominalValue <= 0 ifTrue: [ 
-		Error signal:
-			'Cannot create a game with that parsec or lightYear value' ].
 	(aBoxesCollection isKindOf: OrderedCollection) ifFalse: [ 
 		Error signal: 'That is not a boxes collection' ].
 	aBoxesCollection size < 4 ifTrue: [ 
 		Error signal: 'Cannot create a board with that amount of boxes' ].
+	aBoxesCollection do: [ :box | 
+		(box respondsTo: #effect:with:) ifFalse: [ 
+			Error signal: 'That is not a valid box' ] ]
+]
+
+{ #category : #Validation }
+Board class >> validateMeasure: aLengthMeasure [
+
+	([ aLengthMeasure nominalValue ]
+		 on: MessageNotUnderstood
+		 do: [ Error signal: 'That is not a measure' ]) <= 0 ifTrue: [ 
+		Error signal:
+			'Cannot create a game with that parsec or lightYear value' ]
+]
+
+{ #category : #'Instance creation' }
+Board class >> with: aBoxesCollection measure: aLengthMeasure [
+
+	self validateMeasure: aLengthMeasure.
+	self validateBoxes: aBoxesCollection.
 	^ self new initializeWith: aBoxesCollection measure: aLengthMeasure
 ]
 
-{ #category : #BoxManager }
-Board >> changePolarityOf: aBoxNumber [
+{ #category : #Information }
+Board >> boxesByParsecs [
 
-	(boxes at: aBoxNumber) changePolarity
+	^ self parsecs // self length
+]
+
+{ #category : #BoxManager }
+Board >> changePolarityOf: aBox [
+
+	(boxes select: [ :box | aBox = box type ]) do: [ :box | 
+		box changePolarity ]
+]
+
+{ #category : #BoxManager }
+Board >> checkPolarityAt: aDuplaGalacticaGame of: aCardManager [
+
+	aCardManager checkPolarityAt: aDuplaGalacticaGame of: boxes
 ]
 
 { #category : #BoxManager }
 Board >> effectAt: aBoxNumber In: aDuplaGalacticaGame [
 
 	(boxes at: aBoxNumber) effect: aDuplaGalacticaGame.
-	lastBoxInvoked := aBoxNumber
+	lastBoxInvoked := aBoxNumber.
+	self resetPolarities
 ]
 
 { #category : #Initialization }
@@ -41,6 +72,17 @@ Board >> initializeWith: aBoxesCollection measure: aLengthMeasure [
 	lengthMeasure := aLengthMeasure.
 	boxes := aBoxesCollection collect: [ :box | Box type: box ].
 	lastBoxInvoked := 0
+]
+
+{ #category : #Validation }
+Board >> isValidBox: aBox [
+
+	boxes
+		detect: [ :box | box type = aBox ]
+		ifFound: [ :box | ^ boxes indexOf: box ]
+		ifNone: [ 
+			Error signal:
+				'That is not a box created at the dupla galactica game' ]
 ]
 
 { #category : #Information }
@@ -56,15 +98,9 @@ Board >> length [
 ]
 
 { #category : #Information }
-Board >> lightYears [
-
-	^ lengthMeasure lightYears
-]
-
-{ #category : #Information }
 Board >> parsecs [
 
-	^ lengthMeasure parsecs
+	^ lengthMeasure parsecs nominalValue
 ]
 
 { #category : #BoxManager }

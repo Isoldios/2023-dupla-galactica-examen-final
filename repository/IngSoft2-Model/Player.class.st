@@ -9,9 +9,9 @@ Class {
 }
 
 { #category : #'Instance creation' }
-Player class >> with: aSpaceship [
+Player class >> with: anUniqueColorIdentification [
 
-	^ self new initializeWith: aSpaceship
+	^ self new initializeWith: anUniqueColorIdentification
 ]
 
 { #category : #Information }
@@ -34,9 +34,9 @@ Player >> color [
 ]
 
 { #category : #Initialization }
-Player >> initializeWith: aColor [
+Player >> initializeWith: anUniqueColorIdentification [
 
-	color := aColor.
+	color := anUniqueColorIdentification.
 	position := PlayerPosition atTheBeginning
 ]
 

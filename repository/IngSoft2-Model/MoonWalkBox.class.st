@@ -7,9 +7,18 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #Validation }
+MoonWalkBox class >> validateNumber: aValue [
+
+	aValue isNumber ifFalse: [ 
+		Error signal:
+			'Cannot create a Moon Walk Box with a not a number effect value' ]
+]
+
 { #category : #'Instance creation' }
 MoonWalkBox class >> with: aValue [
 
+	self validateNumber: aValue.
 	^ self new initializeWith: aValue
 ]
 

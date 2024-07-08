@@ -7,11 +7,22 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #Validation }
+RandomCardBox class >> validateCardsProbabilities: aCardsProbabilitiesCollection [
+
+	(aCardsProbabilitiesCollection isKindOf: OrderedCollection) ifFalse: [ 
+		Error signal: 'That is not a cards probabilities collection' ].
+	([ aCardsProbabilitiesCollection sum: #probability ]
+		 on: MessageNotUnderstood
+		 do: [ Error signal: 'That is not a valid object probability' ])
+	= 100 ifFalse: [ 
+		Error signal: 'The sum of probabilities must be 100' ]
+]
+
 { #category : #'Instance creation' }
 RandomCardBox class >> with: aCardsProbabilitiesCollection [
 
-	(aCardsProbabilitiesCollection sum: #probability) = 100 ifFalse: [ 
-		Error signal: 'The sum of probabilities must be 100' ].
+	self validateCardsProbabilities: aCardsProbabilitiesCollection.
 	^ self new initializeWith: aCardsProbabilitiesCollection
 ]
 

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'card',
 		'effect',
-		'flag'
+		'polarityEffect'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -34,13 +34,13 @@ Card >> applyEffect [
 Card >> boostEffect [
 
 	effect := effect * 2.
-	flag := flag + 1
+	polarityEffect := polarityEffect + 1
 ]
 
 { #category : #Effect }
 Card >> changePolarityOf: aBoxNumber at: aDuplaGalacticaGame [
 
-	card changePolarityOf: aBoxNumber at: aDuplaGalacticaGame with: flag
+	polarityEffect timesRepeat: [ aDuplaGalacticaGame changePolarityOf: aBoxNumber ]
 ]
 
 { #category : #Information }
@@ -53,23 +53,15 @@ Card >> haveEffect [
 Card >> initializeType: aCard [
 
 	card := aCard.
-	(self isValidCard: aCard) ifFalse: [ ^ self ].
+	card isPermanent ifFalse: [ ^ self ].
 	effect := card applyEffect.
-	flag := 1
+	polarityEffect := 1
 ]
 
 { #category : #Information }
 Card >> isPermanent [
 
 	^ card isPermanent
-]
-
-{ #category : #Information }
-Card >> isValidCard: aCard [
-
-	^ [ aCard isPermanent ]
-		  on: MessageNotUnderstood
-		  do: [ Error signal: 'That is not a valid card' ]
 ]
 
 { #category : #Information }

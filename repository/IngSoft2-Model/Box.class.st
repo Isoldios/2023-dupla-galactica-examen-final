@@ -29,20 +29,18 @@ Box >> effect: aDuplaGalacticaGame [
 { #category : #Initialization }
 Box >> initializeType: aBox [
 
-	box := self isValidBox: aBox.
+	box := aBox.
 	polarity := true
-]
-
-{ #category : #Initialization }
-Box >> isValidBox: aBox [
-
-	(aBox respondsTo: #effect:with:)
-		ifTrue: [ ^ aBox ]
-		ifFalse: [ Error signal: 'That is not a valid box' ]
 ]
 
 { #category : #Effect }
 Box >> resetPolarity [
 
 	polarity := true
+]
+
+{ #category : #Information }
+Box >> type [
+
+	^ box
 ]
