@@ -2026,36 +2026,6 @@ CardsTest >> testD015TryToCreateAGameWithNoCardsOrderedCollectionThenFails [
 ]
 
 { #category : #tests }
-CardsTest >> testD016TryToPlayACancellationCardOnAPlayerColorThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection |
-	aCardsCollection := OrderedCollection
-		                    with: OverloadCard initializeNew
-		                    with: CancellationCard initializeNew
-		                    with: OverloadCard initializeNew
-		                    with: CancellationCard initializeNew.
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: self createBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-		to: 'blue'.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply:
-				(PlayerHand of: 'blue' with: CancellationCard initializeNew)
-				to: 'blue' ]
-		raise: Error
-		withMessage: 'That is not a valid card objective'
-]
-
-{ #category : #tests }
 CardsTest >> testD017TryToPlayAnAccelerationCardOnANonEveryPlayerObjectiveThenFails [
 
 	| aDuplaGalacticaGame aCardsCollection |

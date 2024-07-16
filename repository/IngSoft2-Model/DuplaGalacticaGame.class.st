@@ -118,7 +118,7 @@ DuplaGalacticaGame >> boxesByParsecs [
 { #category : #Validation }
 DuplaGalacticaGame >> canBeUse: aCardInAPlayerHand [
 
-	((aCardInAPlayerHand isPermanent and:
+	((aCardInAPlayerHand card isPermanent and:
 		  aCardInAPlayerHand holder = self currentPlayer) or:
 		 aCardInAPlayerHand card isPermanent not) ifFalse: [ 
 		Error signal:
