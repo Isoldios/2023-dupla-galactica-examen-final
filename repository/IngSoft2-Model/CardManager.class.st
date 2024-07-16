@@ -71,14 +71,12 @@ CardManager >> deal: aCardsCollection to: aColorsCollection [
 { #category : #Managing }
 CardManager >> desactivate: anObjectiveCardInAPlayerHand [
 
-	self isValidCardObjective: anObjectiveCardInAPlayerHand.
 	activeCardsDeck desactivate: anObjectiveCardInAPlayerHand
 ]
 
 { #category : #Managing }
 CardManager >> duplicateEffectOf: anObjectiveCardInAPlayerHand [
 
-	self isValidCardObjective: anObjectiveCardInAPlayerHand.
 	activeCardsDeck duplicateEffectOf: anObjectiveCardInAPlayerHand
 ]
 
@@ -89,14 +87,6 @@ CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 	activeCardsDeck := ActiveCardsInPlayersHandsDeck createDeck.
 	cardsInPosetionDeck := CardsInPlayersHandsDeck createDeck.
 	self deal: aCardsCollection to: aColorsCollection
-]
-
-{ #category : #Validation }
-CardManager >> isValidCardObjective: anObjectiveCardInAPlayerHand [
-
-	^ [ anObjectiveCardInAPlayerHand card ]
-		  on: MessageNotUnderstood
-		  do: [ Error signal: 'That is not a valid card objective' ]
 ]
 
 { #category : #Information }
