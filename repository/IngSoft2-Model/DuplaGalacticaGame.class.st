@@ -99,7 +99,6 @@ DuplaGalacticaGame >> addToOthers: aCardInAPlayerHand [
 { #category : #Cards }
 DuplaGalacticaGame >> apply: aCardInAPlayerHand to: anObjective [
 
-	self isValidCardInAHand: aCardInAPlayerHand.
 	self canBeUse: aCardInAPlayerHand.
 	cardManager apply: aCardInAPlayerHand to: anObjective at: self
 ]
@@ -121,7 +120,7 @@ DuplaGalacticaGame >> canBeUse: aCardInAPlayerHand [
 
 	(((cardManager isValidCardObjective: aCardInAPlayerHand) isPermanent 
 		  and: aCardInAPlayerHand holder = self currentPlayer) or:
-		 aCardInAPlayerHand card isPermanent not) ifFalse: [ 
+		 aCardInAPlayerHand card isPermanent not) ifFalse: [
 		Error signal:
 			'A permanent card can only be use when it is your turn' ]
 ]
@@ -174,17 +173,6 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 DuplaGalacticaGame >> isValidBox: aBoxNumber [
 
 	^ board isValidBox: aBoxNumber.
-]
-
-{ #category : #Validation }
-DuplaGalacticaGame >> isValidCardInAHand: aCardInAPlayerHand [
-
-	self playersColors
-		detect: [ :color | 
-			[ color = aCardInAPlayerHand holder ]
-				on: MessageNotUnderstood
-				do: [ Error signal: 'That is not a valid card to apply' ] ]
-		ifNone: [ Error signal: 'That player does not exist' ]
 ]
 
 { #category : #Validation }

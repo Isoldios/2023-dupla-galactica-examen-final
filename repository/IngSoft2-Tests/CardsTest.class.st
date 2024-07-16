@@ -1741,28 +1741,6 @@ CardsTest >> testD002TryToPlayACancellationCardOnASpeedCardWhenThePlayerHasOnlyA
 ]
 
 { #category : #tests }
-CardsTest >> testD003TryToPlayACardThatIsNotACardThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection |
-	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NullCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: self createBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ aDuplaGalacticaGame apply: 'red' to: 'blue' ]
-		raise: Error
-		withMessage: 'That is not a valid card to apply'
-]
-
-{ #category : #tests }
 CardsTest >> testD004TryToPlayAPermanentCardWhenItIsNotThePlayerTurnThenFails [
 
 	| aDuplaGalacticaGame aCardsCollection |
@@ -2254,29 +2232,4 @@ CardsTest >> testD022TryToPlayAReversePolarityCardOnACardObjectiveThenFails [
 				to: (PlayerHand of: 'red' with: SpeedCard initializeNew) ]
 		raise: Error
 		withMessage: 'That is not a box created at the dupla galactica game'
-]
-
-{ #category : #tests }
-CardsTest >> testD023TryToPlayAnOverloadCardFromANonExistentPlayerHandThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection |
-	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: OverloadCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: self createBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'orange' with: OverloadCard initializeNew)
-				to: 'blue' ]
-		raise: Error
-		withMessage: 'That player does not exist'
 ]
