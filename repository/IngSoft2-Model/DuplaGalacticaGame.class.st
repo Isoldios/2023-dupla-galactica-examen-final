@@ -14,14 +14,6 @@ Class {
 }
 
 { #category : #Validation }
-DuplaGalacticaGame class >> validateBoard: aBoard [
-
-	[ aBoard lastBoxInvoked ]
-		on: MessageNotUnderstood
-		do: [ Error signal: 'Cannot create a game without a board' ]
-]
-
-{ #category : #Validation }
 DuplaGalacticaGame class >> validateCards: aCardsCollection using: aColorsCollection [
 
 	aCardsCollection size // 2 < aColorsCollection size ifTrue: [ 
@@ -64,7 +56,6 @@ DuplaGalacticaGame class >> validateShaker: aDiceShaker [
 DuplaGalacticaGame class >> with: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhenReach: aNumberOfLaps using: aCardsCollection [
 
 	self validateColors: aColorsCollection.
-	self validateBoard: aBoard.
 	self validateShaker: aDiceShaker.
 	self validateLaps: aNumberOfLaps.
 	self validateCards: aCardsCollection using: aColorsCollection.

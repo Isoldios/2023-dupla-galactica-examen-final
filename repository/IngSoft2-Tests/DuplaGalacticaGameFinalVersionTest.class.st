@@ -332,22 +332,6 @@ DuplaGalacticaGameFinalVersionTest >> testJ010TryToCreateAGameWithANoColorsColle
 ]
 
 { #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ011TryToCreateAGameWithoutABoardThenFails [
-
-	self
-		should: [ 
-			DuplaGalacticaGameProxy
-				with: aColorsCollection
-				and: 'pepito'
-				usingToThrow:
-				(DiceShaker with: (OrderedCollection with: aLoadedDie))
-				winningWhenReach: 1
-				using: aCardsCollection ]
-		raise: Error
-		withMessage: 'Cannot create a game without a board'
-]
-
-{ #category : #tests }
 DuplaGalacticaGameFinalVersionTest >> testJ012TryToCreateAGameWithANotANumberAmountOfGoalLapsThenFails [
 
 	self
