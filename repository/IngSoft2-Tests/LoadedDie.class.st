@@ -8,13 +8,19 @@ Class {
 }
 
 { #category : #'Instance creation' }
-LoadedDie class >> with: aValuesCollection [
+LoadedDie class >> validate: aValuesCollection [
 
 	aValuesCollection do: [ :value | 
 		value < 0 ifTrue: [ 
 			Error signal: 'Cannot create with negative values at faces' ] ].
 	aValuesCollection size < 3 ifTrue: [ 
-		Error signal: 'Cannot create with faces less than 3' ].
+		Error signal: 'Cannot create with faces less than 3' ]
+]
+
+{ #category : #'Instance creation' }
+LoadedDie class >> with: aValuesCollection [
+
+	self validate: aValuesCollection.
 	^ self new initializeWith: aValuesCollection
 ]
 
