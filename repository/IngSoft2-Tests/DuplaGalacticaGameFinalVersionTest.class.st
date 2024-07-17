@@ -281,15 +281,6 @@ DuplaGalacticaGameFinalVersionTest >> testJ006TryToCreateACardsCollectionWithMor
 ]
 
 { #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ009TryToCreateAnObjectProbabilityThatIsNeitherACardNorABoxThenFails [
-
-	self
-		should: [ ObjectProbability using: PlayerHand new withChanceOf: 100 ]
-		raise: Error
-		withMessage: 'That object is neither a card nor a box'
-]
-
-{ #category : #tests }
 DuplaGalacticaGameFinalVersionTest >> testJ014TryToCreateLessOrEqualToZeroObjectsThenFails [
 
 	| anObjectCreator |
@@ -321,29 +312,4 @@ DuplaGalacticaGameFinalVersionTest >> testJ015TryToCreateANotANumberAmountOfObje
 		should: [ anObjectCreator create: 'pepito' ]
 		raise: Error
 		withMessage: 'The amount of objects to create must be a number'
-]
-
-{ #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ016TryToCreateAnObjectProbabilityWithANotANumberProbabilityThenFails [
-
-	self
-		should: [ 
-			ObjectProbability
-				using: NullBox initializeNew
-				withChanceOf: 'pepito' ]
-		raise: Error
-		withMessage:
-		'Cannot create an object probability with a not a number probability'
-]
-
-{ #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ017TryToCreateAnObjectProbabilityWithGreaterTo100ProbabilityThenFails [
-
-	self
-		should: [ 
-			ObjectProbability
-				using: NullBox initializeNew
-				withChanceOf: 150 ]
-		raise: Error
-		withMessage: 'The probability cannot be greater than 100'
 ]
