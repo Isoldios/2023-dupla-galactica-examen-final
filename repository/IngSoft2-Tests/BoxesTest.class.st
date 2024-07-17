@@ -541,34 +541,6 @@ BoxesTest >> testB003TryToCreateABoardWithLessThanFourBoxesThenFails [
 ]
 
 { #category : #tests }
-BoxesTest >> testB004TryToCreateABoardWithBoxesThatAreNotBoxesThenFails [
-
-	| aBoxesCollection |
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NullCard initializeNew
-				                       withChanceOf: 100))) create: 10.
-	self
-		should: [ 
-		Board with: aBoxesCollection measure: (ParsecMeasure worth: 100) ]
-		raise: Error
-		withMessage: 'That is not a valid box'
-]
-
-{ #category : #tests }
-BoxesTest >> testB005TryToCreateABoardWithNoBoxesOrderedCollectionThenFails [
-
-	self
-		should: [ Board with: 'blue' measure: (ParsecMeasure worth: 100) ]
-		raise: Error
-		withMessage: 'That is not a boxes collection'.
-	self
-		should: [ Board with: 100 measure: (ParsecMeasure worth: 100) ]
-		raise: Error
-		withMessage: 'That is not a boxes collection'
-]
-
-{ #category : #tests }
 BoxesTest >> testB009TryToCreateAMoonWalkBoxWithANotANumberEffectValueThenFails [
 
 	self

@@ -12,13 +12,8 @@ Class {
 { #category : #Validation }
 Board class >> validateBoxes: aBoxesCollection [
 
-	(aBoxesCollection isKindOf: OrderedCollection) ifFalse: [ 
-		Error signal: 'That is not a boxes collection' ].
 	aBoxesCollection size < 4 ifTrue: [ 
-		Error signal: 'Cannot create a board with that amount of boxes' ].
-	aBoxesCollection do: [ :box | 
-		(box respondsTo: #effect:with:) ifFalse: [ 
-			Error signal: 'That is not a valid box' ] ]
+		Error signal: 'Cannot create a board with that amount of boxes' ]
 ]
 
 { #category : #Validation }
