@@ -19,7 +19,6 @@ RepeatCard >> = aCard [
 { #category : #Effect }
 RepeatCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	aDuplaGalacticaGame isValidPlayer: anObjective.
 	aDuplaGalacticaGame repeatEffectTo: anObjective
 ]
 

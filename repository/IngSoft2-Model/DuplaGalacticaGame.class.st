@@ -140,20 +140,6 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 		               with: aColorsCollection
 ]
 
-{ #category : #Validation }
-DuplaGalacticaGame >> isValidBox: aBoxNumber [
-
-	^ board isValidBox: aBoxNumber.
-]
-
-{ #category : #Validation }
-DuplaGalacticaGame >> isValidPlayer: anObjectivePlayerColor [
-
-	self playersColors
-		detect: [ :color | color = anObjectivePlayerColor ]
-		ifNone: [ Error signal: 'That is not a valid player objective' ]
-]
-
 { #category : #Boxes }
 DuplaGalacticaGame >> moveAllToTheStart [
 
@@ -242,19 +228,12 @@ DuplaGalacticaGame >> winner [
 
 	self winnerExists
 		ifTrue: [ 
-			^ (players detect: [ :player | self wins: player ])
-				  color ]
+		^ (players detect: [ :player | player lap >= self goalLaps ]) color ]
 		ifFalse: [ Error signal: 'There is no winner' ]
 ]
 
 { #category : #Finalization }
 DuplaGalacticaGame >> winnerExists [
 
-	^ players anySatisfy: [ :player | self wins: player ]
-]
-
-{ #category : #Finalization }
-DuplaGalacticaGame >> wins: aPlayer [
-
-	^ aPlayer lap >= self goalLaps
+	^ players anySatisfy: [ :player | player lap >= self goalLaps ]
 ]

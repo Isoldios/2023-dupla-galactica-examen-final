@@ -1791,56 +1791,6 @@ CardsTest >> testD005TryToPlayASpeedCardWhenPlayerDoesNotHaveThatTypeOfCardInPos
 ]
 
 { #category : #tests }
-CardsTest >> testD006TryToPlayAnOverloadCardOnANonPlayerObjectiveThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection |
-	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: OverloadCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: self createBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-				to: (PlayerHand of: 'blue' with: OverloadCard initializeNew) ]
-		raise: Error
-		withMessage: 'That is not a valid player objective'
-]
-
-{ #category : #tests }
-CardsTest >> testD008TryToPlayAnOverloadCardOnANonExistentPlayerThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection |
-	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: OverloadCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: self createBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-				to: 'orange' ]
-		raise: Error
-		withMessage: 'That is not a valid player objective'
-]
-
-{ #category : #tests }
 CardsTest >> testD009TryToCreateAGameWithNoCardsThenFails [
 
 	| aCardsCollection |
@@ -1856,31 +1806,6 @@ CardsTest >> testD009TryToCreateAGameWithNoCardsThenFails [
 				using: aCardsCollection ]
 		raise: Error
 		withMessage: 'Cannot create a game with that amount of cards'
-]
-
-{ #category : #tests }
-CardsTest >> testD010TryToPlayASpeedCardOnANonPlayerObjectiveThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection |
-	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: SpeedCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: self createBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
-				to: (PlayerHand of: 'blue' with: SpeedCard initializeNew) ]
-		raise: Error
-		withMessage: 'That is not a valid player objective'
 ]
 
 { #category : #tests }
@@ -1912,31 +1837,6 @@ CardsTest >> testD011TryToPlayACardWhenPlayerDoesNotHaveAnyMoreCardsAfterPlaying
 				to: 'blue' ]
 		raise: Error
 		withMessage: 'The player does not have that card in posetion'
-]
-
-{ #category : #tests }
-CardsTest >> testD012TryToPlayARepeatCardOnANonPlayerObjectiveThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection |
-	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: RepeatCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: self createBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
-				to: (PlayerHand of: 'blue' with: RepeatCard initializeNew) ]
-		raise: Error
-		withMessage: 'That is not a valid player objective'
 ]
 
 { #category : #tests }
@@ -2038,103 +1938,4 @@ CardsTest >> testD019TryToPlayASpeedBoostCardWhenThereAreNoActivePermanentCardsT
 				to: (PlayerHand of: 'red' with: SpeedCard initializeNew) ]
 		raise: Error
 		withMessage: 'There are no active permanent cards'
-]
-
-{ #category : #tests }
-CardsTest >> testD020TryToPlayAReversePolarityCardOnANoCreatedBoxAtTheGameBoxThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
-	aCardsCollection := (ObjectCreator use:
-		                     (OrderedCollection with: (ObjectProbability
-				                       using: ReversePolarityCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: SpeedUpBox initializeNew
-				                       withChanceOf: 100))) create: 10.
-	aBoard := Board
-		          with: aBoxesCollection
-		          measure: (ParsecMeasure worth: 100).
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: aBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply:
-				(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-				to: SpeedUpBox initializeNew ]
-		raise: Error
-		withMessage: 'That is not a box created at the dupla galactica game'
-]
-
-{ #category : #tests }
-CardsTest >> testD021TryToPlayAReversePolarityCardOnAPlayerObjectiveThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
-	aCardsCollection := (ObjectCreator use:
-		                     (OrderedCollection with: (ObjectProbability
-				                       using: ReversePolarityCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: SpeedUpBox initializeNew
-				                       withChanceOf: 100))) create: 10.
-	aBoard := Board
-		          with: aBoxesCollection
-		          measure: (ParsecMeasure worth: 100).
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: aBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply:
-				(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-				to: 'blue' ]
-		raise: Error
-		withMessage: 'That is not a box created at the dupla galactica game'
-]
-
-{ #category : #tests }
-CardsTest >> testD022TryToPlayAReversePolarityCardOnACardObjectiveThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
-	aCardsCollection := (ObjectCreator use:
-		                     (OrderedCollection with: (ObjectProbability
-				                       using: ReversePolarityCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: SpeedUpBox initializeNew
-				                       withChanceOf: 100))) create: 10.
-	aBoard := Board
-		          with: aBoxesCollection
-		          measure: (ParsecMeasure worth: 100).
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: aBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 1 2 3 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply:
-				(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
-				to: (PlayerHand of: 'red' with: SpeedCard initializeNew) ]
-		raise: Error
-		withMessage: 'That is not a box created at the dupla galactica game'
 ]

@@ -25,19 +25,10 @@ ObjectCreator class >> validateObjectsProbabilities: anObjectsProbabilitiesColle
 ObjectCreator >> create: aNumberOfObjects [
 
 	| anObjectsCollection |
-	aNumberOfObjects isNumber
-		ifTrue: [ 
-			aNumberOfObjects > 0
-				ifTrue: [ 
-					anObjectsCollection := OrderedCollection new.
-					aNumberOfObjects timesRepeat: [ 
-						anObjectsCollection addLast: self oneRandomObject ].
-					^ anObjectsCollection ]
-				ifFalse: [ 
-					Error signal:
-						'The amount of objects to create must be greater than zero' ] ]
-		ifFalse: [ 
-		Error signal: 'The amount of objects to create must be a number' ]
+	anObjectsCollection := OrderedCollection new.
+	aNumberOfObjects timesRepeat: [ 
+		anObjectsCollection addLast: self oneRandomObject ].
+	^ anObjectsCollection
 ]
 
 { #category : #Initialization }

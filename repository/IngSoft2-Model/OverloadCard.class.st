@@ -19,9 +19,7 @@ OverloadCard >> = aCard [
 { #category : #Effect }
 OverloadCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	aDuplaGalacticaGame isValidPlayer: anObjective.
-	aCardManager activate:
-		(PlayerHand of: anObjective with: self initializeNew)
+	aCardManager activate: (PlayerHand of: anObjective with: self)
 ]
 
 { #category : #Effect }

@@ -279,37 +279,3 @@ DuplaGalacticaGameFinalVersionTest >> testJ006TryToCreateACardsCollectionWithMor
 		raise: Error
 		withMessage: 'The sum of probabilities must be 100'
 ]
-
-{ #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ014TryToCreateLessOrEqualToZeroObjectsThenFails [
-
-	| anObjectCreator |
-	anObjectCreator := ObjectCreator use: (OrderedCollection with:
-			                    (ObjectProbability
-				                     using: NullBox initializeNew
-				                     withChanceOf: 100)).
-	self
-		should: [ anObjectCreator create: 0 ]
-		raise: Error
-		withMessage:
-		'The amount of objects to create must be greater than zero'.
-	self
-		should: [ anObjectCreator create: -5 ]
-		raise: Error
-		withMessage:
-		'The amount of objects to create must be greater than zero'
-]
-
-{ #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ015TryToCreateANotANumberAmountOfObjectsThenFails [
-
-	| anObjectCreator |
-	anObjectCreator := ObjectCreator use: (OrderedCollection with:
-			                    (ObjectProbability
-				                     using: NullBox initializeNew
-				                     withChanceOf: 100)).
-	self
-		should: [ anObjectCreator create: 'pepito' ]
-		raise: Error
-		withMessage: 'The amount of objects to create must be a number'
-]

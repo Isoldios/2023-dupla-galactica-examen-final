@@ -67,17 +67,6 @@ Board >> initializeWith: aBoxesCollection measure: aLengthMeasure [
 	lastBoxInvoked := 0
 ]
 
-{ #category : #Validation }
-Board >> isValidBox: aBox [
-
-	boxes
-		detect: [ :box | box type = aBox ]
-		ifFound: [ :box | ^ boxes indexOf: box ]
-		ifNone: [ 
-			Error signal:
-				'That is not a box created at the dupla galactica game' ]
-]
-
 { #category : #Information }
 Board >> lastBoxInvoked [
 
