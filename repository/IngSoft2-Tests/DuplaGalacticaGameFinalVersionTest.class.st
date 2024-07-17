@@ -160,14 +160,14 @@ DuplaGalacticaGameFinalVersionTest >> testJ001TryToCreateAGameWithAnEmptyColorsC
 	self
 		should: [ 
 			DuplaGalacticaGameProxy
-				with: OrderedCollection new
+				with: (OrderedCollection with: 'red')
 				and: aBoard
 				usingToThrow:
 				(DiceShaker with: (OrderedCollection with: aLoadedDie))
 				winningWhenReach: 1
 				using: aCardsCollection ]
 		raise: Error
-		withMessage: 'Cannot create a game with no players'
+		withMessage: 'A game can only be created with two or more players'
 ]
 
 { #category : #tests }
@@ -313,22 +313,6 @@ DuplaGalacticaGameFinalVersionTest >> testJ009TryToCreateAnObjectProbabilityThat
 		should: [ ObjectProbability using: PlayerHand new withChanceOf: 100 ]
 		raise: Error
 		withMessage: 'That object is neither a card nor a box'
-]
-
-{ #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ010TryToCreateAGameWithANoColorsCollectionThenFails [
-
-	self
-		should: [ 
-			DuplaGalacticaGameProxy
-				with: 'red'
-				and: aBoard
-				usingToThrow:
-				(DiceShaker with: (OrderedCollection with: aLoadedDie))
-				winningWhenReach: 1
-				using: aCardsCollection ]
-		raise: Error
-		withMessage: 'That is not a colors collection'
 ]
 
 { #category : #tests }

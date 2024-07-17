@@ -23,10 +23,8 @@ DuplaGalacticaGame class >> validateCards: aCardsCollection using: aColorsCollec
 { #category : #Validation }
 DuplaGalacticaGame class >> validateColors: aColorsCollection [
 
-	(aColorsCollection isKindOf: OrderedCollection) ifFalse: [ 
-		Error signal: 'That is not a colors collection' ].
-	aColorsCollection isEmpty ifTrue: [ 
-		Error signal: 'Cannot create a game with no players' ].
+	aColorsCollection size < 2 ifTrue: [ 
+		Error signal: 'A game can only be created with two or more players' ].
 	aColorsCollection do: [ :colorToTest | 
 		(aColorsCollection select: [ :color | color = colorToTest ]) size
 		> 1 ifTrue: [ 
