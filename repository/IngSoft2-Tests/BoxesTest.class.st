@@ -526,18 +526,6 @@ BoxesTest >> testB001TryToCreateARandomCardBoxWithCardsProbabilitiesNotEqualsTo1
 ]
 
 { #category : #tests }
-BoxesTest >> testB002TryToCreateAHyperJumpBoxWithNoValuesToUseThenFails [
-
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with: (ObjectProbability
-						   using: (HyperJumpBox with: OrderedCollection new)
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'There are no values to use in the hyper jump box'
-]
-
-{ #category : #tests }
 BoxesTest >> testB003TryToCreateABoardWithLessThanFourBoxesThenFails [
 
 	| aBoxesCollection |
@@ -578,42 +566,6 @@ BoxesTest >> testB005TryToCreateABoardWithNoBoxesOrderedCollectionThenFails [
 		should: [ Board with: 100 measure: (ParsecMeasure worth: 100) ]
 		raise: Error
 		withMessage: 'That is not a boxes collection'
-]
-
-{ #category : #tests }
-BoxesTest >> testB006TryToCreateAHyperJumpBoxWithNoMeasuresOrderedCollectionThenFails [
-
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with:
-					  (ObjectProbability
-						   using: (HyperJumpBox with: 'p')
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'That is not a measures collection'.
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with:
-					  (ObjectProbability
-						   using: (HyperJumpBox with: 100)
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'That is not a measures collection'
-]
-
-{ #category : #tests }
-BoxesTest >> testB007TryToCreateAHyperJumpBoxWithMeasuresThatAreNotMeasuresThenFails [
-
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with: (ObjectProbability
-						   using: (HyperJumpBox with: (OrderedCollection
-									     with: (ParsecMeasure worth: 45)
-									     with: 'p'
-									     with: (LigthYearMeasure worth: 60)))
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'Cannot create a hyper jump box with that values'
 ]
 
 { #category : #tests }

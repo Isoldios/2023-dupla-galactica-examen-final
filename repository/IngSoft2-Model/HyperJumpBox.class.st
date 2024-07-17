@@ -7,24 +7,9 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #Validation }
-HyperJumpBox class >> validateMeasures: aMeasuresCollection [
-
-	(aMeasuresCollection isKindOf: OrderedCollection) ifFalse: [ 
-		Error signal: 'That is not a measures collection' ].
-	aMeasuresCollection isEmpty ifTrue: [ 
-		Error signal: 'There are no values to use in the hyper jump box' ].
-	aMeasuresCollection do: [ :measure | 
-		[ measure nominalValue ]
-			on: MessageNotUnderstood
-			do: [ 
-			Error signal: 'Cannot create a hyper jump box with that values' ] ]
-]
-
 { #category : #'Instance creation' }
 HyperJumpBox class >> with: aMeasuresCollection [
 
-	self validateMeasures: aMeasuresCollection.
 	^ self new initializeWith: aMeasuresCollection
 ]
 
