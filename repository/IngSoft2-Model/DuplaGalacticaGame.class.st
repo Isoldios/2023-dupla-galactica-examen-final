@@ -24,14 +24,8 @@ DuplaGalacticaGame class >> validateBoard: aBoard [
 { #category : #Validation }
 DuplaGalacticaGame class >> validateCards: aCardsCollection using: aColorsCollection [
 
-	(aCardsCollection isKindOf: OrderedCollection) ifFalse: [ 
-		Error signal: 'That is not a cards collection' ].
 	aCardsCollection size // 2 < aColorsCollection size ifTrue: [ 
-		Error signal: 'Cannot create a game with that amount of cards' ].
-	aCardsCollection do: [ :card | 
-		[ card isPermanent ]
-			on: MessageNotUnderstood
-			do: [ Error signal: 'That is not a valid card' ] ]
+		Error signal: 'Cannot create a game with that amount of cards' ]
 ]
 
 { #category : #Validation }

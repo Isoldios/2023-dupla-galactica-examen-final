@@ -1816,27 +1816,6 @@ CardsTest >> testD006TryToPlayAnOverloadCardOnANonPlayerObjectiveThenFails [
 ]
 
 { #category : #tests }
-CardsTest >> testD007TryToCreateAGameWithCardsThatAreNotCardsThenFails [
-
-	| aCardsCollection |
-	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NullBox initializeNew
-				                       withChanceOf: 100))) create: 4.
-	self
-		should: [ 
-			DuplaGalacticaGameProxy
-				with: aColorsCollection
-				and: self createBoard
-				usingToThrow: (DiceShaker with:
-						 (OrderedCollection with: (LoadedDie with: #( 1 2 3 4 ))))
-				winningWhenReach: 1
-				using: aCardsCollection ]
-		raise: Error
-		withMessage: 'That is not a valid card'
-]
-
-{ #category : #tests }
 CardsTest >> testD008TryToPlayAnOverloadCardOnANonExistentPlayerThenFails [
 
 	| aDuplaGalacticaGame aCardsCollection |
@@ -2005,24 +1984,6 @@ CardsTest >> testD014TryToPlayARedoCardWhenNoOtherCardsWerePlayedBeforeThenFails
 		raise: Error
 		withMessage:
 		'Redo card cannot be played because there are no cards that have been played before'
-]
-
-{ #category : #tests }
-CardsTest >> testD015TryToCreateAGameWithNoCardsOrderedCollectionThenFails [
-
-	| aCardsCollection |
-	aCardsCollection := 'blue'.
-	self
-		should: [ 
-			DuplaGalacticaGameProxy
-				with: aColorsCollection
-				and: self createBoard
-				usingToThrow: (DiceShaker with:
-						 (OrderedCollection with: (LoadedDie with: #( 1 2 3 4 ))))
-				winningWhenReach: 1
-				using: aCardsCollection ]
-		raise: Error
-		withMessage: 'That is not a cards collection'
 ]
 
 { #category : #tests }
