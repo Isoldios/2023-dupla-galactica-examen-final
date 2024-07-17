@@ -128,7 +128,7 @@ DiceAndShakersTest >> testL003TryToCreateADieWithNegativeNumberOfFacesThenFails 
 		should: [ Die with: -2 ]
 		raise: Error
 		withMessage:
-		'Cannot create with negative values at faces or less than 2 faces'
+		'Cannot create a die with less than three faces'
 ]
 
 { #category : #tests }
@@ -138,5 +138,5 @@ DiceAndShakersTest >> testL004TryToCreateADieWithNumberOfFacesLessThanThreeThenF
 		should: [ Die with: 2 ]
 		raise: Error
 		withMessage:
-		'Cannot create with negative values at faces or less than 2 faces'
+		'Cannot create a die with less than three faces'
 ]
