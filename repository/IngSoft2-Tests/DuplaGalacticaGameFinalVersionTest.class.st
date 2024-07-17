@@ -281,32 +281,6 @@ DuplaGalacticaGameFinalVersionTest >> testJ006TryToCreateACardsCollectionWithMor
 ]
 
 { #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ007TryToCreateAnObjectWithANonObjectProbabilitiesCollectionThenFails [
-
-	self
-		should: [ ObjectCreator use: 1 ]
-		raise: Error
-		withMessage: 'That is not an object probabilities collection'.
-	self
-		should: [ ObjectCreator use: 'p' ]
-		raise: Error
-		withMessage: 'That is not an object probabilities collection'
-]
-
-{ #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ008TryToCreateAnObjectWithoutObjectProbabilitiesThenFails [
-
-	self
-		should: [ ObjectCreator use: (OrderedCollection with: 1) ]
-		raise: Error
-		withMessage: 'That is not a valid object probability'.
-	self
-		should: [ ObjectCreator use: (OrderedCollection with: 'p') ]
-		raise: Error
-		withMessage: 'That is not a valid object probability'
-]
-
-{ #category : #tests }
 DuplaGalacticaGameFinalVersionTest >> testJ009TryToCreateAnObjectProbabilityThatIsNeitherACardNorABoxThenFails [
 
 	self

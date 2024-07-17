@@ -17,13 +17,7 @@ ObjectCreator class >> use: anObjectsProbabilitiesCollection [
 { #category : #Validation }
 ObjectCreator class >> validateObjectsProbabilities: anObjectsProbabilitiesCollection [
 
-	(anObjectsProbabilitiesCollection isKindOf: OrderedCollection) 
-		ifFalse: [ 
-		Error signal: 'That is not an object probabilities collection' ].
-	([ anObjectsProbabilitiesCollection sum: #probability ]
-		 on: MessageNotUnderstood
-		 do: [ Error signal: 'That is not a valid object probability' ])
-	= 100 ifFalse: [ 
+	(anObjectsProbabilitiesCollection sum: #probability) = 100 ifFalse: [ 
 		Error signal: 'The sum of probabilities must be 100' ]
 ]
 
