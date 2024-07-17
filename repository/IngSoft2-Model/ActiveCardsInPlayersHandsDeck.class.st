@@ -23,9 +23,8 @@ ActiveCardsInPlayersHandsDeck >> activate: aCardInAPlayerHand [
 ActiveCardsInPlayersHandsDeck >> calculateEffectOn: aColorPlayer [
 
 	^ ((activeCardsInPlayersHands select: [ :hand | 
-		    hand holder = aColorPlayer or:
-			    hand holder = EveryPlayer initializeNew ]) collect: [ :hand | 
-		   hand card ]) sum: #applyEffect
+		    hand holder = aColorPlayer or: hand holder = 'everyone' ]) 
+		   collect: [ :hand | hand card ]) sum: #applyEffect
 ]
 
 { #category : #Cards }
@@ -55,16 +54,11 @@ ActiveCardsInPlayersHandsDeck >> initializeDeck [
 	activeCardsInPlayersHands := OrderedCollection new
 ]
 
-{ #category : #Validation }
-ActiveCardsInPlayersHandsDeck >> isEmpty [
-
-	activeCardsInPlayersHands isEmpty ifTrue: [ Error signal: 'There are no active permanent cards' ]
-]
-
 { #category : #Information }
 ActiveCardsInPlayersHandsDeck >> searching: anObjectiveCardInAPlayerHand [
 
-	self isEmpty.
+	activeCardsInPlayersHands isEmpty ifTrue: [ 
+		Error signal: 'There are no active permanent cards' ].
 	activeCardsInPlayersHands
 		detect: [ :hand | 
 			(anObjectiveCardInAPlayerHand card type = hand card type and:
