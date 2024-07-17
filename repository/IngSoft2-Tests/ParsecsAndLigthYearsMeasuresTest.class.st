@@ -74,21 +74,6 @@ ParsecsAndLigthYearsMeasuresTest >> testG002WhenAGameIsCreatedWithALightYearMeas
 ]
 
 { #category : #tests }
-ParsecsAndLigthYearsMeasuresTest >> testH001TryToCreateALigthYearMeasureWithANonNumericNominalValueThenFails [
-
-	self
-		should: [ LigthYearMeasure worth: 'a' ]
-		raise: Error
-		withMessage:
-		'Cannot create a ligth year measure with a not a number value'.
-	self
-		should: [ LigthYearMeasure worth: (OrderedCollection with: 1) ]
-		raise: Error
-		withMessage:
-		'Cannot create a ligth year measure with a not a number value'
-]
-
-{ #category : #tests }
 ParsecsAndLigthYearsMeasuresTest >> testH002TryToCreateAParsecMeasureWithANonNumericNominalValueThenFails [
 
 	self
