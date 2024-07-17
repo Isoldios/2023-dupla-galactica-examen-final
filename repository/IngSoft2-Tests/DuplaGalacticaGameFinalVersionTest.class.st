@@ -332,21 +332,6 @@ DuplaGalacticaGameFinalVersionTest >> testJ012TryToCreateAGameWithANotANumberAmo
 ]
 
 { #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ013TryToCreateAGameWithoutADiceShakerThenFails [
-
-	self
-		should: [ 
-			DuplaGalacticaGameProxy
-				with: aColorsCollection
-				and: aBoard
-				usingToThrow: aLoadedDie
-				winningWhenReach: 1
-				using: aCardsCollection ]
-		raise: Error
-		withMessage: 'Cannot create a game without a dice shaker'
-]
-
-{ #category : #tests }
 DuplaGalacticaGameFinalVersionTest >> testJ014TryToCreateLessOrEqualToZeroObjectsThenFails [
 
 	| anObjectCreator |

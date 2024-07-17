@@ -42,19 +42,10 @@ DuplaGalacticaGame class >> validateLaps: aNumberOfLaps [
 		ifFalse: [ Error signal: 'The goal laps must be a number' ]
 ]
 
-{ #category : #Validation }
-DuplaGalacticaGame class >> validateShaker: aDiceShaker [
-
-	[ aDiceShaker diceAmount ]
-		on: MessageNotUnderstood
-		do: [ Error signal: 'Cannot create a game without a dice shaker' ]
-]
-
 { #category : #'Instance creation' }
 DuplaGalacticaGame class >> with: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhenReach: aNumberOfLaps using: aCardsCollection [
 
 	self validateColors: aColorsCollection.
-	self validateShaker: aDiceShaker.
 	self validateLaps: aNumberOfLaps.
 	self validateCards: aCardsCollection using: aColorsCollection.
 	^ self new
