@@ -10,14 +10,9 @@ Class {
 { #category : #Validation }
 Die class >> validateFaces: aNumberOfFaces [
 
-	aNumberOfFaces isNumber
-		ifTrue: [ 
-			aNumberOfFaces < 3 ifTrue: [ 
-				Error signal:
-					'Cannot create with negative values at faces or less than 2 faces' ] ]
-		ifFalse: [ 
-			Error signal:
-				'Cannot create a die with a not a number quantity of faces' ]
+	aNumberOfFaces < 3 ifTrue: [ 
+		Error signal:
+			'Cannot create with negative values at faces or less than 2 faces' ]
 ]
 
 { #category : #'Instance creation' }
