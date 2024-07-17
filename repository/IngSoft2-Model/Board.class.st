@@ -24,9 +24,7 @@ Board class >> validateBoxes: aBoxesCollection [
 { #category : #Validation }
 Board class >> validateMeasure: aLengthMeasure [
 
-	([ aLengthMeasure nominalValue ]
-		 on: MessageNotUnderstood
-		 do: [ Error signal: 'That is not a measure' ]) <= 0 ifTrue: [ 
+	aLengthMeasure nominalValue <= 0 ifTrue: [ 
 		Error signal:
 			'Cannot create a game with that parsec or lightYear value' ]
 ]

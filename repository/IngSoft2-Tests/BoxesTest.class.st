@@ -617,29 +617,6 @@ BoxesTest >> testB007TryToCreateAHyperJumpBoxWithMeasuresThatAreNotMeasuresThenF
 ]
 
 { #category : #tests }
-BoxesTest >> testB008TryToCreateABoardWithAMeasureThatIsNotAMeasureThenFails [
-
-	| aBoxesCollection |
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NullBox initializeNew
-				                       withChanceOf: 100))) create: 10.
-	self
-		should: [ Board with: aBoxesCollection measure: 'p' ]
-		raise: Error
-		withMessage: 'That is not a measure'.
-	self
-		should: [ Board with: aBoxesCollection measure: 100 ]
-		raise: Error
-		withMessage: 'That is not a measure'.
-	self
-		should: [ 
-		Board with: aBoxesCollection measure: (OrderedCollection with: 100) ]
-		raise: Error
-		withMessage: 'That is not a measure'
-]
-
-{ #category : #tests }
 BoxesTest >> testB009TryToCreateAMoonWalkBoxWithANotANumberEffectValueThenFails [
 
 	self
