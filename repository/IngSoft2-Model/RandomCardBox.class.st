@@ -10,12 +10,7 @@ Class {
 { #category : #Validation }
 RandomCardBox class >> validateCardsProbabilities: aCardsProbabilitiesCollection [
 
-	(aCardsProbabilitiesCollection isKindOf: OrderedCollection) ifFalse: [ 
-		Error signal: 'That is not a cards probabilities collection' ].
-	([ aCardsProbabilitiesCollection sum: #probability ]
-		 on: MessageNotUnderstood
-		 do: [ Error signal: 'That is not a valid object probability' ])
-	= 100 ifFalse: [ 
+	(aCardsProbabilitiesCollection sum: #probability) = 100 ifFalse: [ 
 		Error signal: 'The sum of probabilities must be 100' ]
 ]
 

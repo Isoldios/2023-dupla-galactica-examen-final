@@ -577,23 +577,3 @@ BoxesTest >> testB009TryToCreateAMoonWalkBoxWithANotANumberEffectValueThenFails 
 		withMessage:
 		'Cannot create a Moon Walk Box with a not a number effect value'
 ]
-
-{ #category : #tests }
-BoxesTest >> testB010TryToCreateARandomCardBoxWithANoCardsProbabilitiesCollectionThenFails [
-
-	self
-		should: [ RandomCardBox with: OverloadCard initializeNew ]
-		raise: Error
-		withMessage: 'That is not a cards probabilities collection'
-]
-
-{ #category : #tests }
-BoxesTest >> testB011TryToCreateARandomCardBoxWithANoObjectProbabilitiesCollectionThenFails [
-
-	self
-		should: [ 
-			RandomCardBox with:
-				(OrderedCollection with: OverloadCard initializeNew) ]
-		raise: Error
-		withMessage: 'That is not a valid object probability'
-]
