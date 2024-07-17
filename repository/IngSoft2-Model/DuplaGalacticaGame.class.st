@@ -34,12 +34,9 @@ DuplaGalacticaGame class >> validateColors: aColorsCollection [
 { #category : #Validation }
 DuplaGalacticaGame class >> validateLaps: aNumberOfLaps [
 
-	aNumberOfLaps isNumber
-		ifTrue: [ 
-			aNumberOfLaps > 0 ifFalse: [ 
-				Error signal:
-					'Cannot create a game with a nagative value of goal laps' ] ]
-		ifFalse: [ Error signal: 'The goal laps must be a number' ]
+	aNumberOfLaps > 0 ifFalse: [ 
+		Error signal:
+			'Cannot create a game with a nagative value of goal laps' ]
 ]
 
 { #category : #'Instance creation' }

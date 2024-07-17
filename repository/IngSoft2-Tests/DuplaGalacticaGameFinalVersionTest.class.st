@@ -316,22 +316,6 @@ DuplaGalacticaGameFinalVersionTest >> testJ009TryToCreateAnObjectProbabilityThat
 ]
 
 { #category : #tests }
-DuplaGalacticaGameFinalVersionTest >> testJ012TryToCreateAGameWithANotANumberAmountOfGoalLapsThenFails [
-
-	self
-		should: [ 
-			DuplaGalacticaGameProxy
-				with: aColorsCollection
-				and: aBoard
-				usingToThrow:
-				(DiceShaker with: (OrderedCollection with: aLoadedDie))
-				winningWhenReach: 'pepito'
-				using: aCardsCollection ]
-		raise: Error
-		withMessage: 'The goal laps must be a number'
-]
-
-{ #category : #tests }
 DuplaGalacticaGameFinalVersionTest >> testJ014TryToCreateLessOrEqualToZeroObjectsThenFails [
 
 	| anObjectCreator |
