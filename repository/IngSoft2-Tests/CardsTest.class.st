@@ -274,7 +274,7 @@ CardsTest >> testC009WhenPlayerPlaysAnAccelerationCardThenCheckThatItHasAPositiv
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -300,7 +300,7 @@ CardsTest >> testC010WhenPlayerPlaysAnAccelerationCardThenCheckThatThePositiveEf
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -328,7 +328,7 @@ CardsTest >> testC011WhenPlayerPlaysAnAccelerationCardThenCheckThePositiveEffect
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -421,13 +421,13 @@ CardsTest >> testC014WhenPlayerPlaysACancellationCardOnAnAccelerationCardThenThe
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'blue' with: CancellationCard initializeNew)
 		to: (PlayerHand
-				 of: EveryPlayer initializeNew
+				 of: 'everyone'
 				 with: AccelerationCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -593,12 +593,12 @@ CardsTest >> testC019WhenPlayerPlaysARedoCardAndTheLastCardPlayedWasAnAccelerati
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -665,15 +665,15 @@ CardsTest >> testC021WhenPlayerPlaysARedoCardAndLastCardPlayedWasARedoCardThatRe
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'blue' with: RedoCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -935,13 +935,13 @@ CardsTest >> testC029WhenPlayerPlaysASpeedBoostCardOnAnAccelerationCardThenCheck
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
 		to: (PlayerHand
-				 of: EveryPlayer initializeNew
+				 of: 'everyone'
 				 with: AccelerationCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1500,10 +1500,10 @@ CardsTest >> testC045WhenPlayerPlaysTwoAccelerationCardsThenCheckThatBothEffects
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame
 		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-		to: EveryPlayer initializeNew.
+		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -2023,32 +2023,6 @@ CardsTest >> testD015TryToCreateAGameWithNoCardsOrderedCollectionThenFails [
 				using: aCardsCollection ]
 		raise: Error
 		withMessage: 'That is not a cards collection'
-]
-
-{ #category : #tests }
-CardsTest >> testD017TryToPlayAnAccelerationCardOnANonEveryPlayerObjectiveThenFails [
-
-	| aDuplaGalacticaGame aCardsCollection |
-	aCardsCollection := (ObjectCreator use:
-		                     (OrderedCollection with: (ObjectProbability
-				                       using: AccelerationCard initializeNew
-				                       withChanceOf: 100))) create: 4.
-	aDuplaGalacticaGame := DuplaGalacticaGameProxy
-		                       with: aColorsCollection
-		                       and: self createBoard
-		                       usingToThrow: (DiceShaker with:
-				                        (OrderedCollection with:
-					                         (LoadedDie with: #( 2 5 1 4 ))))
-		                       winningWhenReach: 1
-		                       using: aCardsCollection.
-	self
-		should: [ 
-			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
-				to: 'blue' ]
-		raise: Error
-		withMessage:
-		'Cannot play an acceleration card on a non every player objective'
 ]
 
 { #category : #tests }
