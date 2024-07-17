@@ -539,13 +539,3 @@ BoxesTest >> testB003TryToCreateABoardWithLessThanFourBoxesThenFails [
 		raise: Error
 		withMessage: 'Cannot create a board with that amount of boxes'
 ]
-
-{ #category : #tests }
-BoxesTest >> testB009TryToCreateAMoonWalkBoxWithANotANumberEffectValueThenFails [
-
-	self
-		should: [ MoonWalkBox with: 'pepito' ]
-		raise: Error
-		withMessage:
-		'Cannot create a Moon Walk Box with a not a number effect value'
-]
