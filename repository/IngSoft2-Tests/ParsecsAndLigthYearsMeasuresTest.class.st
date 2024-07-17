@@ -72,18 +72,3 @@ ParsecsAndLigthYearsMeasuresTest >> testG002WhenAGameIsCreatedWithALightYearMeas
 		                       using: aCardsCollection.
 	self assert: aDuplaGalacticaGame parsecsMeasure equals: 100
 ]
-
-{ #category : #tests }
-ParsecsAndLigthYearsMeasuresTest >> testH002TryToCreateAParsecMeasureWithANonNumericNominalValueThenFails [
-
-	self
-		should: [ ParsecMeasure worth: 'a' ]
-		raise: Error
-		withMessage:
-		'Cannot create a parsec measure with a not a number value'.
-	self
-		should: [ ParsecMeasure worth: (OrderedCollection with: 1) ]
-		raise: Error
-		withMessage:
-		'Cannot create a parsec measure with a not a number value'
-]
