@@ -64,7 +64,7 @@ DuplaGalacticaGame >> addToOthers: aCardInAPlayerHand [
 
 	(players reject: [ :player | player color == self currentPlayer ]) 
 		do: [ :player | 
-			cardManager add: (PlayerHand of: player color with: aCardInAPlayerHand) ]
+			cardManager add: (CardHolder of: player color with: aCardInAPlayerHand) ]
 ]
 
 { #category : #Cards }
@@ -100,6 +100,15 @@ DuplaGalacticaGame >> canBeUse: aCardInAPlayerHand [
 DuplaGalacticaGame >> changePolarityOf: aBox [
 
 	board changePolarityOf: aBox
+]
+
+{ #category : #Validation }
+DuplaGalacticaGame >> check: aCardHolderPlayerColor canPlay: aCard [
+
+	((aCard isPermanent and: aCardHolderPlayerColor = self currentPlayer) 
+		 or: aCard isPermanent not) ifFalse: [ 
+		Error signal:
+			'A permanent card can only be use when it is your turn' ]
 ]
 
 { #category : #Boxes }
@@ -177,6 +186,17 @@ DuplaGalacticaGame >> movePlayer [
 DuplaGalacticaGame >> parsecsMeasure [
 
 	^ board parsecs
+]
+
+{ #category : #Cards }
+DuplaGalacticaGame >> play: aCard from: aCardHolderPlayerColor toPlayer: anObjectiveColorPlayer [
+
+	self check: aCardHolderPlayerColor canPlay: aCard.
+	cardManager
+		play: aCard
+		from: aCardHolderPlayerColor
+		toPlayer: anObjectiveColorPlayer
+		at: self
 ]
 
 { #category : #Information }

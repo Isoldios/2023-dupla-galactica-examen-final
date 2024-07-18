@@ -20,7 +20,7 @@ NullCard >> = aCard [
 NullCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
 	aCardManager activate:
-		(PlayerHand of: anObjective with: self initializeNew)
+		(CardHolder of: anObjective with: self initializeNew)
 ]
 
 { #category : #Effect }

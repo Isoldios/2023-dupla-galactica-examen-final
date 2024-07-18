@@ -47,6 +47,15 @@ CardsInPlayersHandsDeck >> initializeDeck [
 CardsInPlayersHandsDeck >> takeOut: aCardInAPlayerHand [
 
 	cardsInPlayersHands remove: (cardsInPlayersHands detect: [ :hand | 
-			 hand card type = aCardInAPlayerHand card type and:
+			 hand card = aCardInAPlayerHand card and:
 				 hand holder = aCardInAPlayerHand holder ])
+]
+
+{ #category : #Cards }
+CardsInPlayersHandsDeck >> takeOut: aCard from: aCardHolderPlayerColor [
+
+	cardsInPlayersHands remove:
+		(cardsInPlayersHands detect: [ :cardHolder | 
+			 cardHolder card = aCard and:
+				 cardHolder holder = aCardHolderPlayerColor ])
 ]

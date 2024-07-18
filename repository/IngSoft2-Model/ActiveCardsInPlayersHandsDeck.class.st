@@ -24,7 +24,7 @@ ActiveCardsInPlayersHandsDeck >> calculateEffectOn: aColorPlayer [
 
 	^ ((activeCardsInPlayersHands select: [ :hand | 
 		    hand holder = aColorPlayer or: hand holder = 'everyone' ]) 
-		   collect: [ :hand | hand card ]) sum: #applyEffect
+		   collect: [ :hand | hand ]) sum: #effect
 ]
 
 { #category : #Cards }
@@ -45,7 +45,7 @@ ActiveCardsInPlayersHandsDeck >> desactivate: anObjectiveCardInAPlayerHand [
 { #category : #Cards }
 ActiveCardsInPlayersHandsDeck >> duplicateEffectOf: anObjectiveCardInAPlayerHand [
 
-	(self searching: anObjectiveCardInAPlayerHand) card boostEffect
+	(self searching: anObjectiveCardInAPlayerHand) boostEffect
 ]
 
 { #category : #Initialization }
@@ -61,7 +61,7 @@ ActiveCardsInPlayersHandsDeck >> searching: anObjectiveCardInAPlayerHand [
 		Error signal: 'There are no active permanent cards' ].
 	activeCardsInPlayersHands
 		detect: [ :hand | 
-			(anObjectiveCardInAPlayerHand card type = hand card type and:
+			(anObjectiveCardInAPlayerHand card = hand card and:
 				 anObjectiveCardInAPlayerHand holder = hand holder) or:
 				hand holder = 'everyone' ]
 		ifFound: [ :hand | ^ hand ]

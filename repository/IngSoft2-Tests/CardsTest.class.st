@@ -53,8 +53,9 @@ CardsTest >> testC001WhenPlayerPlaysAnOverloadCardThenCheckTheNegativeEffectAndV
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-		to: 'blue'.
+		play: OverloadCard initializeNew
+		from: 'red'
+		toPlayer: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -79,8 +80,9 @@ CardsTest >> testC002WhenPlayerPlaysAnOverloadCardThenCheckThatTheNegativeEffect
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-		to: 'blue'.
+		play: OverloadCard initializeNew
+		from: 'red'
+		toPlayer: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -107,8 +109,9 @@ CardsTest >> testC003WhenPlayerPlaysAnOverloadCardThenCheckTheNegativeEffectMake
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-		to: 'blue'.
+		play: OverloadCard initializeNew
+		from: 'red'
+		toPlayer: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -136,8 +139,9 @@ CardsTest >> testC004WhenPlayerPlaysAnOverloadCardThenCheckTheNegativeEffectCann
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-		to: 'blue'.
+		play: OverloadCard initializeNew
+		from: 'red'
+		toPlayer: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -162,8 +166,9 @@ CardsTest >> testC005WhenPlayerPlaysASpeedCardThenCheckThePositiveEffectAndValid
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
-		to: 'red'.
+		play: SpeedCard initializeNew
+		from: 'red'
+		toPlayer: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -188,8 +193,9 @@ CardsTest >> testC006WhenPlayerPlaysASpeedCardThenCheckThatThePositiveEffectIsPe
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
-		to: 'red'.
+		play: SpeedCard initializeNew
+		from: 'red'
+		toPlayer: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -215,8 +221,9 @@ CardsTest >> testC007WhenPlayerPlaysASpeedCardThenCheckThePositiveEffectMakesPla
 		                       winningWhenReach: 2
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
-		to: 'red'.
+		play: SpeedCard initializeNew
+		from: 'red'
+		toPlayer: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -244,11 +251,13 @@ CardsTest >> testC008WhenPlayerPlaysTwoOverloadCardsThenCheckThatBothEffectsWere
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-		to: 'blue'.
+		play: OverloadCard initializeNew
+		from: 'red'
+		toPlayer: 'blue'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
-		to: 'blue'.
+		play: OverloadCard initializeNew
+		from: 'red'
+		toPlayer: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -273,8 +282,11 @@ CardsTest >> testC009WhenPlayerPlaysAnAccelerationCardThenCheckThatItHasAPositiv
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
+	"aDuplaGalacticaGame
+		playToEveryone: AccelerationCard initializeNew
+		from: 'red'."
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -299,7 +311,7 @@ CardsTest >> testC010WhenPlayerPlaysAnAccelerationCardThenCheckThatThePositiveEf
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -327,7 +339,7 @@ CardsTest >> testC011WhenPlayerPlaysAnAccelerationCardThenCheckThePositiveEffect
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -357,13 +369,19 @@ CardsTest >> testC012WhenPlayerPlaysACancellationCardOnAnOverloadCardThenTheOver
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: CancellationCard initializeNew)
-		to: (PlayerHand of: 'blue' with: OverloadCard initializeNew).
+		apply: (CardHolder of: 'blue' with: CancellationCard initializeNew)
+		to: (CardHolder of: 'blue' with: OverloadCard initializeNew).
+"	aDuplaGalacticaGame
+		affect: OverloadCard initializeNew
+		targeting: 'blue'
+		atTemporalLocation: 1
+		with: CancellationCard initializeNew
+		from: 'blue'."
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -389,13 +407,13 @@ CardsTest >> testC013WhenPlayerPlaysACancellationCardOnASpeedCardThenTheSpeedCar
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: CancellationCard initializeNew)
-		to: (PlayerHand of: 'red' with: SpeedCard initializeNew).
+		apply: (CardHolder of: 'blue' with: CancellationCard initializeNew)
+		to: (CardHolder of: 'red' with: SpeedCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -420,15 +438,21 @@ CardsTest >> testC014WhenPlayerPlaysACancellationCardOnAnAccelerationCardThenThe
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: CancellationCard initializeNew)
-		to: (PlayerHand
+		apply: (CardHolder of: 'blue' with: CancellationCard initializeNew)
+		to: (CardHolder
 				 of: 'everyone'
 				 with: AccelerationCard initializeNew).
+"	aDuplaGalacticaGame
+		affect: AccelerationCard initializeNew
+		targeting: 'everyone'
+		atTemporalLocation: 1
+		with: CancellationCard initializeNew
+		from: 'blue'."
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -456,16 +480,16 @@ CardsTest >> testC015WhenPlayerPlaysACancellationCardOnASpeedCardAndThereAreTwoA
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: CancellationCard initializeNew)
-		to: (PlayerHand of: 'red' with: SpeedCard initializeNew).
+		apply: (CardHolder of: 'blue' with: CancellationCard initializeNew)
+		to: (CardHolder of: 'red' with: SpeedCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -491,19 +515,19 @@ CardsTest >> testC016WhenPlayerPlaysTwoCancellationCardsOnTwoActiveSpeedCardsThe
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'blue' with: SpeedCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: CancellationCard initializeNew)
-		to: (PlayerHand of: 'red' with: SpeedCard initializeNew).
+		apply: (CardHolder of: 'blue' with: CancellationCard initializeNew)
+		to: (CardHolder of: 'red' with: SpeedCard initializeNew).
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: CancellationCard initializeNew)
-		to: (PlayerHand of: 'blue' with: SpeedCard initializeNew).
+		apply: (CardHolder of: 'red' with: CancellationCard initializeNew)
+		to: (CardHolder of: 'blue' with: SpeedCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -529,13 +553,17 @@ CardsTest >> testC017WhenPlayerPlaysARedoCardAndTheLastCardPlayedWasAnOverloadCa
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'blue' with: RedoCard initializeNew)
 		to: 'red'.
+"	aDuplaGalacticaGame
+		play: RedoCard initializeNew
+		from: 'blue'
+		toPlayer: 'red'."
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -561,12 +589,12 @@ CardsTest >> testC018WhenPlayerPlaysARedoCardAndTheLastCardPlayedWasASpeedCardTh
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'red' with: RedoCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -592,13 +620,14 @@ CardsTest >> testC019WhenPlayerPlaysARedoCardAndTheLastCardPlayedWasAnAccelerati
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'red' with: RedoCard initializeNew)
 		to: 'everyone'.
+	"aDuplaGalacticaGame play: RedoCard initializeNew from: 'red'."
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -626,19 +655,19 @@ CardsTest >> testC020WhenPlayerPlaysARedoCardAndTheLastCardPlayedWasACancellatio
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'blue' with: OverloadCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: CancellationCard initializeNew)
-		to: (PlayerHand of: 'blue' with: OverloadCard initializeNew).
+		apply: (CardHolder of: 'blue' with: CancellationCard initializeNew)
+		to: (CardHolder of: 'blue' with: OverloadCard initializeNew).
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
-		to: (PlayerHand of: 'red' with: OverloadCard initializeNew).
+		apply: (CardHolder of: 'red' with: RedoCard initializeNew)
+		to: (CardHolder of: 'red' with: OverloadCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -664,15 +693,15 @@ CardsTest >> testC021WhenPlayerPlaysARedoCardAndLastCardPlayedWasARedoCardThatRe
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'red' with: RedoCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'blue' with: RedoCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -707,8 +736,12 @@ CardsTest >> testC022WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasASpeedUpBoxTh
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'red'.
+"	aDuplaGalacticaGame
+		play: RepeatCard initializeNew
+		from: 'red'
+		toPlayer: 'red'."
 	self
 		assert: aDuplaGalacticaGame playersBox
 		equals: (OrderedCollection with: 10 with: 7)
@@ -740,7 +773,7 @@ CardsTest >> testC023WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasAWormHoleBoxT
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'blue'.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -773,7 +806,7 @@ CardsTest >> testC024WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasAMoonWalkBoxT
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'red'.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -809,7 +842,7 @@ CardsTest >> testC025WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasAHyperJumpBox
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'red'.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -842,10 +875,10 @@ CardsTest >> testC026WhenPlayerPlaysARedoCardAndTheLastCardPlayedWasARepeatCardT
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'blue' with: RedoCard initializeNew)
 		to: 'blue'.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -870,13 +903,19 @@ CardsTest >> testC027WhenPlayerPlaysASpeedBoostCardOnAnOverloadCardThenCheckThat
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
-		to: (PlayerHand of: 'blue' with: OverloadCard initializeNew).
+		apply: (CardHolder of: 'red' with: SpeedBoostCard initializeNew)
+		to: (CardHolder of: 'blue' with: OverloadCard initializeNew).
+	"	aDuplaGalacticaGame
+		affect: OverloadCard initializeNew
+		targeting: 'blue'
+		atTemporalLocation: 1
+		with: SpeedBoostCard initializeNew
+		from: 'red'."
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -902,13 +941,13 @@ CardsTest >> testC028WhenPlayerPlaysASpeedBoostCardOnASpeedCardThenCheckThatTheS
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
-		to: (PlayerHand of: 'red' with: SpeedCard initializeNew).
+		apply: (CardHolder of: 'red' with: SpeedBoostCard initializeNew)
+		to: (CardHolder of: 'red' with: SpeedCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -934,15 +973,19 @@ CardsTest >> testC029WhenPlayerPlaysASpeedBoostCardOnAnAccelerationCardThenCheck
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
-		to: (PlayerHand
-				 of: 'everyone'
-				 with: AccelerationCard initializeNew).
+		apply: (CardHolder of: 'red' with: SpeedBoostCard initializeNew)
+		to: (CardHolder of: 'everyone' with: AccelerationCard initializeNew).
+	"	aDuplaGalacticaGame
+		affect: AccelerationCard initializeNew
+		targeting: 'everyone'
+		atTemporalLocation: 1
+		with: SpeedBoostCard initializeNew
+		from: 'red'."
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -970,16 +1013,16 @@ CardsTest >> testC030WhenPlayerPlaysACancellationCardOnABoostedPermanentCardThen
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
-		to: (PlayerHand of: 'blue' with: OverloadCard initializeNew).
+		apply: (CardHolder of: 'red' with: SpeedBoostCard initializeNew)
+		to: (CardHolder of: 'blue' with: OverloadCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: CancellationCard initializeNew)
-		to: (PlayerHand of: 'blue' with: OverloadCard initializeNew).
+		apply: (CardHolder of: 'blue' with: CancellationCard initializeNew)
+		to: (CardHolder of: 'blue' with: OverloadCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1012,8 +1055,12 @@ CardsTest >> testC031WhenPlayerPlaysAReversePolarityCardOnASpeedUpBoxThenCheckTh
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 2).
+	"	aDuplaGalacticaGame
+		play: ReversePolarityCard initializeNew
+		from: 'red'
+		toBox: 2."
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1046,7 +1093,7 @@ CardsTest >> testC032WhenPlayerPlaysAReversePolarityCardOnAWormHoleBoxThenCheckT
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 9).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1080,7 +1127,7 @@ CardsTest >> testC033WhenPlayerPlaysAReversePolarityCardOnAMoonWalkBoxThenCheckT
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 5).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1114,7 +1161,7 @@ CardsTest >> testC034WhenPlayerPlaysAReversePolarityCardOnAnAtomicBombBoxThenChe
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 5).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1151,7 +1198,7 @@ CardsTest >> testC035WhenPlayerPlaysAReversePolarityCardOnAHyperJumpBoxThenCheck
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1190,7 +1237,7 @@ CardsTest >> testC036WhenPlayerPlaysAReversePolarityCardOnARandomCardBoxThenChec
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1224,7 +1271,7 @@ CardsTest >> testC037WhenPlayerPlaysAReversePolarityCardOnANoEffectBoxThenCheckT
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1259,12 +1306,12 @@ CardsTest >> testC038WhenPlayerPlaysASpeedBoostCardOnAReversePolarityCardThenChe
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
-		to: (PlayerHand of: (aBoxesCollection at: 3) with: ReversePolarityCard initializeNew).
+		apply: (CardHolder of: 'red' with: SpeedBoostCard initializeNew)
+		to: (CardHolder of: (aBoxesCollection at: 3) with: ReversePolarityCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -1297,12 +1344,12 @@ CardsTest >> testC039WhenPlayerPlaysACancellationCardOnAReversePolarityCardThenC
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: CancellationCard initializeNew)
-		to: (PlayerHand of: (aBoxesCollection at: 3) with: ReversePolarityCard initializeNew).
+		apply: (CardHolder of: 'red' with: CancellationCard initializeNew)
+		to: (CardHolder of: (aBoxesCollection at: 3) with: ReversePolarityCard initializeNew).
 	aDuplaGalacticaGame movePlayer.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -1335,10 +1382,10 @@ CardsTest >> testC040WhenPlayerPlaysARedoCardAndTheLastCardPlayedWasAReversePola
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'red' with: RedoCard initializeNew)
 		to: (aBoxesCollection at: 6).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1373,11 +1420,11 @@ CardsTest >> testC041WhenPlayerPlaysARepeatCardAndTheLastBoxInvokedHasBeenAffect
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'blue'.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -1409,11 +1456,11 @@ CardsTest >> testC042WhenPlayerPlaysTwoReversePolarityCardsOnTheSameBoxThenCheck
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame
 		apply:
-		(PlayerHand of: 'red' with: ReversePolarityCard initializeNew)
+		(CardHolder of: 'red' with: ReversePolarityCard initializeNew)
 		to: (aBoxesCollection at: 3).
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1445,7 +1492,7 @@ CardsTest >> testC043WhenPlayerPlaysANoEffectCardThenCheckThatNoEffectsWereAppli
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: NullCard initializeNew)
+		apply: (CardHolder of: 'red' with: NullCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1471,10 +1518,10 @@ CardsTest >> testC044WhenPlayerPlaysTwoSpeedCardsThenCheckThatBothEffectsWereApp
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	self
@@ -1499,10 +1546,10 @@ CardsTest >> testC045WhenPlayerPlaysTwoAccelerationCardsThenCheckThatBothEffects
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: AccelerationCard initializeNew)
+		apply: (CardHolder of: 'red' with: AccelerationCard initializeNew)
 		to: 'everyone'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1529,15 +1576,15 @@ CardsTest >> testC046WhenPlayerPlaysARedoCardAndLastCardPlayedWasARedoCardThatRe
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'red' with: RedoCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'blue' with: RedoCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1564,15 +1611,15 @@ CardsTest >> testC047WhenPlayerPlaysARedoCardAndLastCardPlayedWasARedoCardThatRe
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+		apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'red' with: RedoCard initializeNew)
 		to: 'red'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'blue' with: RedoCard initializeNew)
+		apply: (CardHolder of: 'blue' with: RedoCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
@@ -1607,7 +1654,7 @@ CardsTest >> testC048WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasAnAtomicBombB
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'red'.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -1645,7 +1692,7 @@ CardsTest >> testC049WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasARandomCardBo
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'blue'.
 	self
 		assert: aDuplaGalacticaGame playersCardsInPosetion
@@ -1678,7 +1725,7 @@ CardsTest >> testC050WhenPlayerPlaysARepeatCardAndLastBoxInvokedWasANoEffectBoxT
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame movePlayer.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: RepeatCard initializeNew)
+		apply: (CardHolder of: 'red' with: RepeatCard initializeNew)
 		to: 'blue'.
 	self
 		assert: aDuplaGalacticaGame playersBox
@@ -1704,8 +1751,8 @@ CardsTest >> testD001TryToPlayACancellationCardOnAnOverloadCardWhenThePlayerDoes
 	self
 		should: [ 
 			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: CancellationCard initializeNew)
-				to: (PlayerHand of: 'red' with: OverloadCard initializeNew) ]
+				apply: (CardHolder of: 'red' with: CancellationCard initializeNew)
+				to: (CardHolder of: 'red' with: OverloadCard initializeNew) ]
 		raise: Error
 		withMessage: 'There are no active permanent cards'
 ]
@@ -1728,14 +1775,14 @@ CardsTest >> testD002TryToPlayACancellationCardOnASpeedCardWhenThePlayerHasOnlyA
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	self
 		should: [ 
 			aDuplaGalacticaGame
 				apply:
-				(PlayerHand of: 'blue' with: CancellationCard initializeNew)
-				to: (PlayerHand of: 'blue' with: SpeedCard initializeNew) ]
+				(CardHolder of: 'blue' with: CancellationCard initializeNew)
+				to: (CardHolder of: 'blue' with: SpeedCard initializeNew) ]
 		raise: Error
 		withMessage: 'There are no cards of that type active in this player'
 ]
@@ -1759,7 +1806,7 @@ CardsTest >> testD004TryToPlayAPermanentCardWhenItIsNotThePlayerTurnThenFails [
 	self
 		should: [ 
 			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'blue' with: OverloadCard initializeNew)
+				apply: (CardHolder of: 'blue' with: OverloadCard initializeNew)
 				to: 'red' ]
 		raise: Error
 		withMessage: 'A permanent card can only be use when it is your turn'
@@ -1784,7 +1831,7 @@ CardsTest >> testD005TryToPlayASpeedCardWhenPlayerDoesNotHaveThatTypeOfCardInPos
 	self
 		should: [ 
 			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: SpeedCard initializeNew)
+				apply: (CardHolder of: 'red' with: SpeedCard initializeNew)
 				to: 'red' ]
 		raise: Error
 		withMessage: 'The player does not have that card in posetion'
@@ -1825,15 +1872,15 @@ CardsTest >> testD011TryToPlayACardWhenPlayerDoesNotHaveAnyMoreCardsAfterPlaying
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	self
 		should: [ 
 			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+				apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 				to: 'blue' ]
 		raise: Error
 		withMessage: 'The player does not have that card in posetion'
@@ -1879,7 +1926,7 @@ CardsTest >> testD014TryToPlayARedoCardWhenNoOtherCardsWerePlayedBeforeThenFails
 	self
 		should: [ 
 			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'blue' with: RedoCard initializeNew)
+				apply: (CardHolder of: 'blue' with: RedoCard initializeNew)
 				to: 'red' ]
 		raise: Error
 		withMessage:
@@ -1904,13 +1951,13 @@ CardsTest >> testD018TryToPlayASpeedBoostCardOnASpeedCardWhenTheOnlyActivePerman
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		apply: (PlayerHand of: 'red' with: OverloadCard initializeNew)
+		apply: (CardHolder of: 'red' with: OverloadCard initializeNew)
 		to: 'blue'.
 	self
 		should: [ 
 			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
-				to: (PlayerHand of: 'blue' with: SpeedCard initializeNew) ]
+				apply: (CardHolder of: 'red' with: SpeedBoostCard initializeNew)
+				to: (CardHolder of: 'blue' with: SpeedCard initializeNew) ]
 		raise: Error
 		withMessage: 'There are no cards of that type active in this player'
 ]
@@ -1934,8 +1981,8 @@ CardsTest >> testD019TryToPlayASpeedBoostCardWhenThereAreNoActivePermanentCardsT
 	self
 		should: [ 
 			aDuplaGalacticaGame
-				apply: (PlayerHand of: 'red' with: SpeedBoostCard initializeNew)
-				to: (PlayerHand of: 'red' with: SpeedCard initializeNew) ]
+				apply: (CardHolder of: 'red' with: SpeedBoostCard initializeNew)
+				to: (CardHolder of: 'red' with: SpeedCard initializeNew) ]
 		raise: Error
 		withMessage: 'There are no active permanent cards'
 ]

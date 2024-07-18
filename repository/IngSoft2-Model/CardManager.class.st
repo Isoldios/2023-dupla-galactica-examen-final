@@ -30,7 +30,6 @@ CardManager >> add: aCardInAPlayerHand [
 { #category : #Managing }
 CardManager >> apply: aCardInAPlayerHand to: anObjective at: aDuplaGalacticaGame [
 
-	cardsInPosetionDeck hasBeenGiven: aCardInAPlayerHand.
 	aCardInAPlayerHand card haveEffect ifTrue: [ 
 		lastCardPlayed := aCardInAPlayerHand card ].
 	aCardInAPlayerHand card
@@ -65,7 +64,7 @@ CardManager >> deal: aCardsCollection to: aColorsCollection [
 	cardsPerColor := aCardsCollection size // aColorsCollection size.
 	aColorsCollection do: [ :color | 
 		cardsPerColor timesRepeat: [ 
-			self add: (PlayerHand of: color with: aCardsCollection removeFirst) ] ]
+			self add: (CardHolder of: color with: aCardsCollection removeFirst) ] ]
 ]
 
 { #category : #Managing }
@@ -93,4 +92,15 @@ CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 CardManager >> lastCardPlay [
 
 	^ lastCardPlayed
+]
+
+{ #category : #Managing }
+CardManager >> play: aCard from: aCardHolderPlayerColor toPlayer: anObjectiveColorPlayer at: aDuplaGalacticaGame [
+
+	aCard haveEffect ifTrue: [ lastCardPlayed := aCard ].
+	aCard
+		applyCardUsing: self
+		to: anObjectiveColorPlayer
+		at: aDuplaGalacticaGame.
+	cardsInPosetionDeck takeOut: aCard from: aCardHolderPlayerColor
 ]

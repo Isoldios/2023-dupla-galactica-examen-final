@@ -71,6 +71,15 @@ DuplaGalacticaGameProxy >> parsecsMeasure [
 	^ game parsecsMeasure
 ]
 
+{ #category : #Cards }
+DuplaGalacticaGameProxy >> play: aCard from: aCardHolderColorPlayer toPlayer: anObjectiveColorPlayer [
+
+	game
+		play: aCard
+		from: aCardHolderColorPlayer
+		toPlayer: anObjectiveColorPlayer
+]
+
 { #category : #Information }
 DuplaGalacticaGameProxy >> playersBox [
 

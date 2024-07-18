@@ -26,7 +26,7 @@ RandomCardBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
 
 	aPolarityValue
 		ifTrue: [ 
-			aDuplaGalacticaGame add: (PlayerHand
+			aDuplaGalacticaGame add: (CardHolder
 					 of: aDuplaGalacticaGame currentPlayer
 					 with:
 					 ((ObjectCreator use: cardsProbabilities) create: 1) removeFirst) ]
