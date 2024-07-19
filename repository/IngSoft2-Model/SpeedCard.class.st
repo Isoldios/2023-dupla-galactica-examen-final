@@ -17,10 +17,10 @@ SpeedCard >> = aCard [
 ]
 
 { #category : #Effect }
-SpeedCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+SpeedCard >> applyCardUsing: aCardManager to: anObjectivePlayerColor at: aDuplaGalacticaGame [
 
 	aCardManager activateToPlayer:
-		(CardTargetPlayer of: anObjective with: self)
+		(CardTargetPlayer of: anObjectivePlayerColor with: self)
 ]
 
 { #category : #Effect }

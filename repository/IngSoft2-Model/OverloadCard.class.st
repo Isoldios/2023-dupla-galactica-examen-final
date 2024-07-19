@@ -17,10 +17,10 @@ OverloadCard >> = aCard [
 ]
 
 { #category : #Effect }
-OverloadCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+OverloadCard >> applyCardUsing: aCardManager to: anObjectivePlayerColor at: aDuplaGalacticaGame [
 
 	aCardManager activateToPlayer:
-		(CardTargetPlayer of: anObjective with: self)
+		(CardTargetPlayer of: anObjectivePlayerColor with: self)
 ]
 
 { #category : #Effect }

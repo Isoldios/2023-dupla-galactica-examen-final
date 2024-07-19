@@ -17,10 +17,10 @@ NullCard >> = aCard [
 ]
 
 { #category : #Effect }
-NullCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+NullCard >> applyCardUsing: aCardManager to: anObjectivePlayerColor at: aDuplaGalacticaGame [
 
 	aCardManager activateToPlayer:
-		(CardTargetPlayer of: anObjective with: self initializeNew)
+		(CardTargetPlayer of: anObjectivePlayerColor with: self initializeNew)
 ]
 
 { #category : #Effect }

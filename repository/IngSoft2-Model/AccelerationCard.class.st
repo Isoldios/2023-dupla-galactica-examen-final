@@ -17,10 +17,10 @@ AccelerationCard >> = aCard [
 ]
 
 { #category : #Effect }
-AccelerationCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+AccelerationCard >> applyCardUsing: aCardManager to: anObjectivePlayerColor at: aDuplaGalacticaGame [
 
 	aCardManager activateToPlayer:
-		(CardTargetPlayer of: anObjective with: self)
+		(CardTargetPlayer of: anObjectivePlayerColor with: self)
 ]
 
 { #category : #Effect }

@@ -36,12 +36,12 @@ RedoCard >> applyCardUsing: aCardManager to: anObjectiveBox [
 ]
 
 { #category : #Effect }
-RedoCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+RedoCard >> applyCardUsing: aCardManager to: anObjectivePlayerColor at: aDuplaGalacticaGame [
 
 	aCardManager checkLastCardPlayed.
 	aCardManager lastCardPlay
 		applyCardUsing: aCardManager
-		to: anObjective
+		to: anObjectivePlayerColor
 		at: aDuplaGalacticaGame
 ]
 
