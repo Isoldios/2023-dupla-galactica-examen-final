@@ -84,12 +84,6 @@ CardManager >> checkLastCardPlayed [
 			'Redo card cannot be played because there are no cards that have been played before' ]
 ]
 
-{ #category : #Managing }
-CardManager >> checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection [
-
-	activeCardsTargetingPlayersDeck checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection
-]
-
 { #category : #Initialization }
 CardManager >> deal: aCardsCollection to: aColorsCollection [
 

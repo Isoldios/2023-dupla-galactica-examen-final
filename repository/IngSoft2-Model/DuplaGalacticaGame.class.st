@@ -104,16 +104,6 @@ DuplaGalacticaGame >> boxesByParsecs [
 ]
 
 { #category : #Validation }
-DuplaGalacticaGame >> canBeUse: aCardInAPlayerHand [
-
-	((aCardInAPlayerHand card isPermanent and:
-		  aCardInAPlayerHand holder = self currentPlayer) or:
-		 aCardInAPlayerHand card isPermanent not) ifFalse: [ 
-		Error signal:
-			'A permanent card can only be use when it is your turn' ]
-]
-
-{ #category : #Validation }
 DuplaGalacticaGame >> check: aCardHolderPlayerColor canPlay: aCard [
 
 	((aCard isPermanent and: aCardHolderPlayerColor = self currentPlayer) 

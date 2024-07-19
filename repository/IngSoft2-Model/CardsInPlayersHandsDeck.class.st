@@ -26,29 +26,10 @@ CardsInPlayersHandsDeck >> cardsOf: aPlayersCollection [
 		  (cardsInPlayersHands select: [ :hand | hand holder = player color ]) size ]
 ]
 
-{ #category : #Validation }
-CardsInPlayersHandsDeck >> hasBeenGiven: aCardInAPlayerHand [
-
-	cardsInPlayersHands
-		detect: [ :hand | 
-			hand card type = aCardInAPlayerHand card type and:
-				hand holder = aCardInAPlayerHand holder ]
-		ifNone: [ 
-		Error signal: 'The player does not have that card in posetion' ]
-]
-
 { #category : #Initialization }
 CardsInPlayersHandsDeck >> initializeDeck [
 
 	cardsInPlayersHands := OrderedCollection new
-]
-
-{ #category : #Cards }
-CardsInPlayersHandsDeck >> takeOut: aCardInAPlayerHand [
-
-	cardsInPlayersHands remove: (cardsInPlayersHands detect: [ :hand | 
-			 hand card = aCardInAPlayerHand card and:
-				 hand holder = aCardInAPlayerHand holder ])
 ]
 
 { #category : #Cards }

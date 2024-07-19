@@ -27,15 +27,6 @@ ActiveCardsTargetingPlayersDeck >> calculateEffectOn: aColorPlayer [
 		   collect: [ :hand | hand ]) sum: #effect
 ]
 
-{ #category : #Cards }
-ActiveCardsTargetingPlayersDeck >> checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection [
-
-	activeCardsTargetingPlayers do: [ :hand | 
-		(aBoxesCollection anySatisfy: [ :box | hand holder = box type ]) 
-			ifTrue: [ 
-			hand card changePolarityOf: hand holder at: aDuplaGalacticaGame ] ]
-]
-
 { #category : #cambiar }
 ActiveCardsTargetingPlayersDeck >> desactivate: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder [
 
