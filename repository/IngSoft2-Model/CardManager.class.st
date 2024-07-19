@@ -16,25 +16,25 @@ CardManager class >> using: aCardsCollection with: aColorsCollection [
 	^ self new initializeUsing: aCardsCollection with: aColorsCollection
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 CardManager >> activateToBox: aCardTargetingBox [
 
 	activeCardsTargetingBoxesDeck activateToBox: aCardTargetingBox
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> activateToPlayer: aCardInAPlayerHand [
 
 	activeCardsTargetingPlayersDeck activateToPlayer: aCardInAPlayerHand
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> add: aCardInAPlayerHand [
 
 	cardsInPosetionDeck add: aCardInAPlayerHand
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> affect: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder with: aCard from: aCardHolderPlayerColor [
 
 	aCard haveEffect ifTrue: [ lastCardPlayed := aCard ].
@@ -46,7 +46,7 @@ CardManager >> affect: anObjectiveCard targetingBox: anObjectiveBox atTemporalLo
 	cardsInPosetionDeck takeOut: aCard from: aCardHolderPlayerColor
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder with: aCard from: aCardHolderPlayerColor [
 
 	aCard haveEffect ifTrue: [ lastCardPlayed := aCard ].
@@ -58,7 +58,7 @@ CardManager >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer a
 	cardsInPosetionDeck takeOut: aCard from: aCardHolderPlayerColor
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> calculateEffectOn: aColorPlayer [
 
 	^ activeCardsTargetingPlayersDeck calculateEffectOn: aColorPlayer
@@ -70,13 +70,13 @@ CardManager >> cardsInPosetionOf: aPlayersCollection [
 	^ cardsInPosetionDeck cardsOf: aPlayersCollection
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 CardManager >> checkEffects [
 
 	activeCardsTargetingBoxesDeck checkEffects
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> checkLastCardPlayed [
 
 	lastCardPlayed = NullCard initializeNew ifTrue: [ 
@@ -94,7 +94,7 @@ CardManager >> deal: aCardsCollection to: aColorsCollection [
 			self add: (CardHolder of: color with: aCardsCollection removeFirst) ] ]
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 CardManager >> desactivate: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder [
 
 	activeCardsTargetingBoxesDeck
@@ -103,7 +103,7 @@ CardManager >> desactivate: anObjectiveCard targetingBox: anObjectiveBox atTempo
 		atTemporalLocation: aPlayedCardOrder
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> desactivate: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder [
 
 	activeCardsTargetingPlayersDeck
@@ -112,7 +112,7 @@ CardManager >> desactivate: anObjectiveCard targetingPlayer: anObjectiveColorPla
 		atTemporalLocation: aPlayedCardOrder
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 CardManager >> duplicateEffectOf: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder [
 
 	activeCardsTargetingBoxesDeck
@@ -121,7 +121,7 @@ CardManager >> duplicateEffectOf: anObjectiveCard targetingBox: anObjectiveBox a
 		atTemporalLocation: aPlayedCardOrder
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> duplicateEffectOf: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder [
 
 	activeCardsTargetingPlayersDeck
@@ -148,7 +148,7 @@ CardManager >> lastCardPlay [
 	^ lastCardPlayed
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> play: aCard from: aCardHolderPlayerColor toBox: anObjectiveBox [
 
 	aCard haveEffect ifTrue: [ lastCardPlayed := aCard ].
@@ -156,7 +156,7 @@ CardManager >> play: aCard from: aCardHolderPlayerColor toBox: anObjectiveBox [
 	cardsInPosetionDeck takeOut: aCard from: aCardHolderPlayerColor
 ]
 
-{ #category : #Managing }
+{ #category : #Cards }
 CardManager >> play: aCard from: aCardHolderPlayerColor toPlayer: anObjectiveColorPlayer at: aDuplaGalacticaGame [
 
 	aCard haveEffect ifTrue: [ lastCardPlayed := aCard ].

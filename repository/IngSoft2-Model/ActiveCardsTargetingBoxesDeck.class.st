@@ -14,13 +14,13 @@ ActiveCardsTargetingBoxesDeck class >> createDeck [
 	^ self new initializeDeck
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 ActiveCardsTargetingBoxesDeck >> activateToBox: aCardTargetingBox [
 
 	actionPendingCardsTargetingBoxes addLast: aCardTargetingBox
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 ActiveCardsTargetingBoxesDeck >> checkEffects [
 
 	actionPendingCardsTargetingBoxes do: [ :cardTargetBox | 
@@ -29,7 +29,7 @@ ActiveCardsTargetingBoxesDeck >> checkEffects [
 	actionPendingCardsTargetingBoxes removeAll
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 ActiveCardsTargetingBoxesDeck >> desactivate: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder [
 
 	| cardToCancell |
@@ -41,7 +41,7 @@ ActiveCardsTargetingBoxesDeck >> desactivate: anObjectiveCard targetingBox: anOb
 	actionPendingCardsTargetingBoxes addLast: cardToCancell
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 ActiveCardsTargetingBoxesDeck >> duplicateEffectOf: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder [
 
 	| cardToBoost |

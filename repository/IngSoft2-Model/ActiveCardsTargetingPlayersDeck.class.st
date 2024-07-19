@@ -23,25 +23,25 @@ ActiveCardsTargetingPlayersDeck >> activateToPlayer: aCardTargetingPlayer [
 ActiveCardsTargetingPlayersDeck >> calculateEffectOn: aColorPlayer [
 
 	^ ((activeCardsTargetingPlayers select: [ :hand | 
-		    hand holder = aColorPlayer or: hand holder = 'everyone' ]) 
+		    hand target = aColorPlayer or: hand target = 'everyone' ]) 
 		   collect: [ :hand | hand ]) sum: #effect
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 ActiveCardsTargetingPlayersDeck >> desactivate: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder [
 
 	activeCardsTargetingPlayers remove:
 		((activeCardsTargetingPlayers select: [ :hand | 
 			  hand card = anObjectiveCard and:
-				  hand holder = anObjectiveColorPlayer ]) at: aPlayedCardOrder)
+				  hand target = anObjectiveColorPlayer ]) at: aPlayedCardOrder)
 ]
 
-{ #category : #cambiar }
+{ #category : #Cards }
 ActiveCardsTargetingPlayersDeck >> duplicateEffectOf: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder [
 
 	((activeCardsTargetingPlayers select: [ :hand | 
 		  hand card = anObjectiveCard and:
-			  hand holder = anObjectiveColorPlayer ]) at: aPlayedCardOrder)
+			  hand target = anObjectiveColorPlayer ]) at: aPlayedCardOrder)
 		boostEffect
 ]
 

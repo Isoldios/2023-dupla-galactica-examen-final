@@ -16,7 +16,7 @@ RedoCard >> = aCard [
 	^ aCard isKindOf: self class
 ]
 
-{ #category : #cambiar }
+{ #category : #Effect }
 RedoCard >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder at: aCardManager [
 
 	aCardManager checkLastCardPlayed.
@@ -27,7 +27,7 @@ RedoCard >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTe
 		at: aCardManager
 ]
 
-{ #category : #cambiar }
+{ #category : #Effect }
 RedoCard >> applyCardUsing: aCardManager to: anObjectiveBox [
 
 	aCardManager lastCardPlay

@@ -14,13 +14,13 @@ CardTargetBox class >> of: anObjectiveBox with: aCard [
 	^ self new initializeOf: anObjectiveBox with: aCard
 ]
 
-{ #category : #card }
+{ #category : #information }
 CardTargetBox >> box [
 
 	^ box
 ]
 
-{ #category : #card }
+{ #category : #information }
 CardTargetBox >> card [
 
 	^ card

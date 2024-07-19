@@ -33,16 +33,16 @@ CardTargetPlayer >> effect [
 	^ effect
 ]
 
-{ #category : #information }
-CardTargetPlayer >> holder [
-
-	^ target
-]
-
 { #category : #initialization }
 CardTargetPlayer >> initilizeOf: anObjective with: aCard [
 
 	target := anObjective.
 	card := aCard.
 	effect := card applyEffect
+]
+
+{ #category : #information }
+CardTargetPlayer >> target [
+
+	^ target
 ]

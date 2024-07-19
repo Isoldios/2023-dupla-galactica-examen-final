@@ -16,7 +16,7 @@ SpeedBoostCard >> = aCard [
 	^ aCard isKindOf: self class
 ]
 
-{ #category : #cambiar }
+{ #category : #Effect }
 SpeedBoostCard >> affect: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder at: aCardManager [
 
 	aCardManager
@@ -25,7 +25,7 @@ SpeedBoostCard >> affect: anObjectiveCard targetingBox: anObjectiveBox atTempora
 		atTemporalLocation: aPlayedCardOrder
 ]
 
-{ #category : #cambiar }
+{ #category : #Effect }
 SpeedBoostCard >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder at: aCardManager [
 
 	aCardManager

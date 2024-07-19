@@ -16,7 +16,7 @@ CancellationCard >> = aCard [
 	^ aCard isKindOf: self class
 ]
 
-{ #category : #cambiar }
+{ #category : #Effect }
 CancellationCard >> affect: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder at: aCardManager [
 
 	aCardManager

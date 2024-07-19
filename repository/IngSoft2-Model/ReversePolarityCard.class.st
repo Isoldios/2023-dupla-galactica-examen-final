@@ -16,14 +16,14 @@ ReversePolarityCard >> = aCard [
 	^ aCard isKindOf: self class
 ]
 
-{ #category : #cambiar }
+{ #category : #Effect }
 ReversePolarityCard >> applyCardUsing: aCardManager to: anObjectiveBox [
 
 	aCardManager activateToBox:
 		(CardTargetBox of: anObjectiveBox with: self)
 ]
 
-{ #category : #cambiar }
+{ #category : #Effect }
 ReversePolarityCard >> applyEffect: anObjectiveBox [
 
 	anObjectiveBox reversePolarity
