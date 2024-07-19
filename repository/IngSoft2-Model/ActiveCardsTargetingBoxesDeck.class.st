@@ -22,7 +22,7 @@ ActiveCardsTargetingBoxesDeck >> activateToBox: aCardTargetingBox [
 ]
 
 { #category : #Cards }
-ActiveCardsTargetingBoxesDeck >> cardToModify: anObjectiveCard playedAt: aPlayedCardOrder targeting: anObjectiveBox [
+ActiveCardsTargetingBoxesDeck >> cardToModify: anObjectiveCard playedAt: aPlayedCardOrder targetingBox: anObjectiveBox [
 
 	| card |
 	card := (activeCardsTargetingBoxes select: [ :cardTargetBox | 
@@ -49,7 +49,7 @@ ActiveCardsTargetingBoxesDeck >> desactivate: anObjectiveCard targetingBox: anOb
 	self
 		cardToModify: anObjectiveCard
 		playedAt: aPlayedCardOrder
-		targeting: anObjectiveBox.
+		targetingBox: anObjectiveBox.
 	self checkEffects
 ]
 
@@ -60,7 +60,7 @@ ActiveCardsTargetingBoxesDeck >> duplicateEffectOf: anObjectiveCard targetingBox
 	cardToBoost := self
 		               cardToModify: anObjectiveCard
 		               playedAt: aPlayedCardOrder
-		               targeting: anObjectiveBox.
+		               targetingBox: anObjectiveBox.
 	cardToBoost boostEffect.
 	actionPendingCardsTargetingBoxes addLast: cardToBoost.
 	self checkEffects
