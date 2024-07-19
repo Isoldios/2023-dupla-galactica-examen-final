@@ -2,9 +2,10 @@ Class {
 	#name : #CardManager,
 	#superclass : #Object,
 	#instVars : [
-		'activeCardsDeck',
 		'cardsInPosetionDeck',
-		'lastCardPlayed'
+		'lastCardPlayed',
+		'activeCardsTargetingPlayersDeck',
+		'activeCardsTargetingBoxesDeck'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -15,10 +16,16 @@ CardManager class >> using: aCardsCollection with: aColorsCollection [
 	^ self new initializeUsing: aCardsCollection with: aColorsCollection
 ]
 
-{ #category : #Managing }
-CardManager >> activate: aCardInAPlayerHand [
+{ #category : #cambiar }
+CardManager >> activateToBox: aCardTargetingBox [
 
-	activeCardsDeck activate: aCardInAPlayerHand
+	activeCardsTargetingBoxesDeck activateToBox: aCardTargetingBox
+]
+
+{ #category : #Managing }
+CardManager >> activateToPlayer: aCardInAPlayerHand [
+
+	activeCardsTargetingPlayersDeck activateToPlayer: aCardInAPlayerHand
 ]
 
 { #category : #Managing }
@@ -28,21 +35,33 @@ CardManager >> add: aCardInAPlayerHand [
 ]
 
 { #category : #Managing }
-CardManager >> apply: aCardInAPlayerHand to: anObjective at: aDuplaGalacticaGame [
+CardManager >> affect: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder with: aCard from: aCardHolderPlayerColor [
 
-	aCardInAPlayerHand card haveEffect ifTrue: [ 
-		lastCardPlayed := aCardInAPlayerHand card ].
-	aCardInAPlayerHand card
-		applyCardUsing: self
-		to: anObjective
-		at: aDuplaGalacticaGame.
-	cardsInPosetionDeck takeOut: aCardInAPlayerHand
+	aCard haveEffect ifTrue: [ lastCardPlayed := aCard ].
+	aCard
+		affect: anObjectiveCard
+		targetingBox: anObjectiveBox
+		atTemporalLocation: aPlayedCardOrder
+		at: self.
+	cardsInPosetionDeck takeOut: aCard from: aCardHolderPlayerColor
+]
+
+{ #category : #Managing }
+CardManager >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder with: aCard from: aCardHolderPlayerColor [
+
+	aCard haveEffect ifTrue: [ lastCardPlayed := aCard ].
+	aCard
+		affect: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
+		at: self.
+	cardsInPosetionDeck takeOut: aCard from: aCardHolderPlayerColor
 ]
 
 { #category : #Managing }
 CardManager >> calculateEffectOn: aColorPlayer [
 
-	^ activeCardsDeck calculateEffectOn: aColorPlayer
+	^ activeCardsTargetingPlayersDeck calculateEffectOn: aColorPlayer
 ]
 
 { #category : #Information }
@@ -51,10 +70,24 @@ CardManager >> cardsInPosetionOf: aPlayersCollection [
 	^ cardsInPosetionDeck cardsOf: aPlayersCollection
 ]
 
+{ #category : #cambiar }
+CardManager >> checkEffects [
+
+	activeCardsTargetingBoxesDeck checkEffects
+]
+
+{ #category : #Managing }
+CardManager >> checkLastCardPlayed [
+
+	lastCardPlayed = NullCard initializeNew ifTrue: [ 
+		Error signal:
+			'Redo card cannot be played because there are no cards that have been played before' ]
+]
+
 { #category : #Managing }
 CardManager >> checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection [
 
-	activeCardsDeck checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection
+	activeCardsTargetingPlayersDeck checkPolarityAt: aDuplaGalacticaGame of: aBoxesCollection
 ]
 
 { #category : #Initialization }
@@ -67,23 +100,50 @@ CardManager >> deal: aCardsCollection to: aColorsCollection [
 			self add: (CardHolder of: color with: aCardsCollection removeFirst) ] ]
 ]
 
-{ #category : #Managing }
-CardManager >> desactivate: anObjectiveCardInAPlayerHand [
+{ #category : #cambiar }
+CardManager >> desactivate: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder [
 
-	activeCardsDeck desactivate: anObjectiveCardInAPlayerHand
+	activeCardsTargetingBoxesDeck
+		desactivate: anObjectiveCard
+		targetingBox: anObjectiveBox
+		atTemporalLocation: aPlayedCardOrder
 ]
 
 { #category : #Managing }
-CardManager >> duplicateEffectOf: anObjectiveCardInAPlayerHand [
+CardManager >> desactivate: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder [
 
-	activeCardsDeck duplicateEffectOf: anObjectiveCardInAPlayerHand
+	activeCardsTargetingPlayersDeck
+		desactivate: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
+]
+
+{ #category : #cambiar }
+CardManager >> duplicateEffectOf: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder [
+
+	activeCardsTargetingBoxesDeck
+		duplicateEffectOf: anObjectiveCard
+		targetingBox: anObjectiveBox
+		atTemporalLocation: aPlayedCardOrder
+]
+
+{ #category : #Managing }
+CardManager >> duplicateEffectOf: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder [
+
+	activeCardsTargetingPlayersDeck
+		duplicateEffectOf: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
 ]
 
 { #category : #Initialization }
 CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 
 	lastCardPlayed := NullCard initializeNew.
-	activeCardsDeck := ActiveCardsInPlayersHandsDeck createDeck.
+	activeCardsTargetingPlayersDeck := ActiveCardsTargetingPlayersDeck
+		                                   createDeck.
+	activeCardsTargetingBoxesDeck := ActiveCardsTargetingBoxesDeck
+		                                 createDeck.
 	cardsInPosetionDeck := CardsInPlayersHandsDeck createDeck.
 	self deal: aCardsCollection to: aColorsCollection
 ]
@@ -92,6 +152,14 @@ CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 CardManager >> lastCardPlay [
 
 	^ lastCardPlayed
+]
+
+{ #category : #Managing }
+CardManager >> play: aCard from: aCardHolderPlayerColor toBox: anObjectiveBox [
+
+	aCard haveEffect ifTrue: [ lastCardPlayed := aCard ].
+	aCard applyCardUsing: self to: anObjectiveBox.
+	cardsInPosetionDeck takeOut: aCard from: aCardHolderPlayerColor
 ]
 
 { #category : #Managing }

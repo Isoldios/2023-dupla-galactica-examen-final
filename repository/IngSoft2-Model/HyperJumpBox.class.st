@@ -2,7 +2,8 @@ Class {
 	#name : #HyperJumpBox,
 	#superclass : #Object,
 	#instVars : [
-		'measureManager'
+		'measureManager',
+		'state'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -14,17 +15,15 @@ HyperJumpBox class >> with: aMeasuresCollection [
 ]
 
 { #category : #Effect }
-HyperJumpBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
+HyperJumpBox >> changeStateTo: aNewState [
 
-	aPolarityValue
-		ifTrue: [ 
-			aDuplaGalacticaGame moveCurrent:
-				measureManager current parsecs nominalValue
-				// aDuplaGalacticaGame boxesByParsecs ]
-		ifFalse: [ 
-			aDuplaGalacticaGame moveOthers:
-				measureManager current parsecs nominalValue
-				// aDuplaGalacticaGame boxesByParsecs ].
+	state := aNewState
+]
+
+{ #category : #Effect }
+HyperJumpBox >> effect: aDuplaGalacticaGame [
+
+	state affect: aDuplaGalacticaGame using: measureManager.
 	measureManager goNext
 ]
 
@@ -37,5 +36,12 @@ HyperJumpBox >> initializeWith: aMeasuresCollection [
 		                             :value2 | 
 		                             value2 parsecs nominalValue
 		                             < value1 parsecs nominalValue ].
-	measureManager := QueueManager with: aParsecsCollectionOrdered
+	measureManager := QueueManager with: aParsecsCollectionOrdered.
+	state := UnreversedPolarityHyperJumpBoxState new
+]
+
+{ #category : #Effect }
+HyperJumpBox >> reversePolarity [
+
+	state changeState: self
 ]

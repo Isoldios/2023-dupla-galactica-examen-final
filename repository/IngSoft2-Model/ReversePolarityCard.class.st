@@ -16,16 +16,17 @@ ReversePolarityCard >> = aCard [
 	^ aCard isKindOf: self class
 ]
 
-{ #category : #Effect }
-ReversePolarityCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+{ #category : #cambiar }
+ReversePolarityCard >> applyCardUsing: aCardManager to: anObjectiveBox [
 
-	aCardManager activate: (CardTargetBox of: anObjective with: self)
+	aCardManager activateToBox:
+		(CardTargetBox of: anObjectiveBox with: self)
 ]
 
-{ #category : #Effect }
-ReversePolarityCard >> applyEffect [
+{ #category : #cambiar }
+ReversePolarityCard >> applyEffect: anObjectiveBox [
 
-	^ 0
+	anObjectiveBox reversePolarity
 ]
 
 { #category : #Information }

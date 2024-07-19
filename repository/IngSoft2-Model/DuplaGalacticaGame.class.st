@@ -68,10 +68,27 @@ DuplaGalacticaGame >> addToOthers: aCardInAPlayerHand [
 ]
 
 { #category : #Cards }
-DuplaGalacticaGame >> apply: aCardInAPlayerHand to: anObjective [
+DuplaGalacticaGame >> affect: anObjectiveCard targetingBox: anObjectiveBoxNumber atTemporalLocation: aPlayedCardOrder with: aCard from: aCardHolderPlayerColor [
 
-	self canBeUse: aCardInAPlayerHand.
-	cardManager apply: aCardInAPlayerHand to: anObjective at: self
+	self check: aCardHolderPlayerColor canPlay: aCard.
+	cardManager
+		affect: anObjectiveCard
+		targetingBox: (board boxes at: anObjectiveBoxNumber)
+		atTemporalLocation: aPlayedCardOrder
+		with: aCard
+		from: aCardHolderPlayerColor
+]
+
+{ #category : #Cards }
+DuplaGalacticaGame >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder with: aCard from: aCardHolderPlayerColor [
+
+	self check: aCardHolderPlayerColor canPlay: aCard.
+	cardManager
+		affect: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
+		with: aCard
+		from: aCardHolderPlayerColor
 ]
 
 { #category : #Information }
@@ -96,12 +113,6 @@ DuplaGalacticaGame >> canBeUse: aCardInAPlayerHand [
 			'A permanent card can only be use when it is your turn' ]
 ]
 
-{ #category : #Boxes }
-DuplaGalacticaGame >> changePolarityOf: aBox [
-
-	board changePolarityOf: aBox
-]
-
 { #category : #Validation }
 DuplaGalacticaGame >> check: aCardHolderPlayerColor canPlay: aCard [
 
@@ -109,12 +120,6 @@ DuplaGalacticaGame >> check: aCardHolderPlayerColor canPlay: aCard [
 		 or: aCard isPermanent not) ifFalse: [ 
 		Error signal:
 			'A permanent card can only be use when it is your turn' ]
-]
-
-{ #category : #Boxes }
-DuplaGalacticaGame >> checkPolarity [
-
-	board checkPolarityAt: self of: cardManager
 ]
 
 { #category : #Information }
@@ -177,8 +182,7 @@ DuplaGalacticaGame >> movePlayer [
 	boxesToMove := diceShaker throwDice
 	               + (cardManager calculateEffectOn: currentPlayer color).
 	currentPlayer move: boxesToMove andUpdateLap: self boardLength.
-	self checkPolarity.
-	board effectAt: currentPlayer box In: self.
+	board apllyEffectsIn: currentPlayer box using: cardManager at: self.
 	currentPlayer := playersTurnManager goNext current
 ]
 
@@ -189,6 +193,16 @@ DuplaGalacticaGame >> parsecsMeasure [
 ]
 
 { #category : #Cards }
+DuplaGalacticaGame >> play: aCard from: aCardHolderPlayerColor toBox: anObjectiveBoxNumber [
+
+	self check: aCardHolderPlayerColor canPlay: aCard.
+	cardManager
+		play: aCard
+		from: aCardHolderPlayerColor
+		toBox: (board boxes at: anObjectiveBoxNumber)
+]
+
+{ #category : #Cards }
 DuplaGalacticaGame >> play: aCard from: aCardHolderPlayerColor toPlayer: anObjectiveColorPlayer [
 
 	self check: aCardHolderPlayerColor canPlay: aCard.
@@ -196,6 +210,17 @@ DuplaGalacticaGame >> play: aCard from: aCardHolderPlayerColor toPlayer: anObjec
 		play: aCard
 		from: aCardHolderPlayerColor
 		toPlayer: anObjectiveColorPlayer
+		at: self
+]
+
+{ #category : #Cards }
+DuplaGalacticaGame >> playToEveryone: aCard from: aCardHolderPlayerColor [
+
+	self check: aCardHolderPlayerColor canPlay: aCard.
+	cardManager
+		play: aCard
+		from: aCardHolderPlayerColor
+		toPlayer: 'everyone'
 		at: self
 ]
 
@@ -237,9 +262,11 @@ DuplaGalacticaGame >> ranking [
 DuplaGalacticaGame >> repeatEffectTo: anObjectivePlayerColor [
 
 	currentPlayer := players detect: [ :player | 
-		           player color = anObjectivePlayerColor ].
-	self checkPolarity.
-	board effectAt: board lastBoxInvoked In: self.
+		                 player color = anObjectivePlayerColor ].
+	board
+		apllyEffectsIn: board lastBoxInvoked
+		using: cardManager
+		at: self.
 	currentPlayer := playersTurnManager current
 ]
 

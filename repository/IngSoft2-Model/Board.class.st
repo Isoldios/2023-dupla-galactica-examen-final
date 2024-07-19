@@ -32,38 +32,31 @@ Board class >> with: aBoxesCollection measure: aLengthMeasure [
 	^ self new initializeWith: aBoxesCollection measure: aLengthMeasure
 ]
 
+{ #category : #BoxManager }
+Board >> apllyEffectsIn: aBoxNumber using: aCardManager at: aDuplaGalacticaGame [
+
+	aCardManager checkEffects.
+	(boxes at: aBoxNumber) effect: aDuplaGalacticaGame.
+	lastBoxInvoked := aBoxNumber
+]
+
+{ #category : #Information }
+Board >> boxes [
+
+	^ boxes
+]
+
 { #category : #Information }
 Board >> boxesByParsecs [
 
 	^ self parsecs // self length
 ]
 
-{ #category : #BoxManager }
-Board >> changePolarityOf: aBox [
-
-	(boxes select: [ :box | aBox = box type ]) do: [ :box | 
-		box changePolarity ]
-]
-
-{ #category : #BoxManager }
-Board >> checkPolarityAt: aDuplaGalacticaGame of: aCardManager [
-
-	aCardManager checkPolarityAt: aDuplaGalacticaGame of: boxes
-]
-
-{ #category : #BoxManager }
-Board >> effectAt: aBoxNumber In: aDuplaGalacticaGame [
-
-	(boxes at: aBoxNumber) effect: aDuplaGalacticaGame.
-	lastBoxInvoked := aBoxNumber.
-	self resetPolarities
-]
-
 { #category : #Initialization }
 Board >> initializeWith: aBoxesCollection measure: aLengthMeasure [
 
 	lengthMeasure := aLengthMeasure.
-	boxes := aBoxesCollection collect: [ :box | Box type: box ].
+	boxes := aBoxesCollection.
 	lastBoxInvoked := 0
 ]
 
@@ -83,10 +76,4 @@ Board >> length [
 Board >> parsecs [
 
 	^ lengthMeasure parsecs nominalValue
-]
-
-{ #category : #BoxManager }
-Board >> resetPolarities [
-
-	boxes do: [ :box | box resetPolarity ]
 ]

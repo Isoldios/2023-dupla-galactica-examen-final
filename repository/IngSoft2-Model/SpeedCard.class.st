@@ -19,7 +19,8 @@ SpeedCard >> = aCard [
 { #category : #Effect }
 SpeedCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	aCardManager activate: (CardTargetPlayer of: anObjective with: self)
+	aCardManager activateToPlayer:
+		(CardTargetPlayer of: anObjective with: self)
 ]
 
 { #category : #Effect }

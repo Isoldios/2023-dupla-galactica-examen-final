@@ -19,8 +19,8 @@ NullCard >> = aCard [
 { #category : #Effect }
 NullCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	aCardManager activate:
-		(CardHolder of: anObjective with: self initializeNew)
+	aCardManager activateToPlayer:
+		(CardTargetPlayer of: anObjective with: self initializeNew)
 ]
 
 { #category : #Effect }

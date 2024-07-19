@@ -15,15 +15,15 @@ CardTargetBox class >> of: anObjectiveBox with: aCard [
 ]
 
 { #category : #card }
-CardTargetBox >> card [
+CardTargetBox >> box [
 
-	^ card
+	^ box
 ]
 
 { #category : #card }
-CardTargetBox >> holder [
+CardTargetBox >> card [
 
-	^ box
+	^ card
 ]
 
 { #category : #initialization }

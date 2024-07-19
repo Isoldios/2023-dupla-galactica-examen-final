@@ -2,7 +2,8 @@ Class {
 	#name : #MoonWalkBox,
 	#superclass : #Object,
 	#instVars : [
-		'effect'
+		'effect',
+		'state'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -14,15 +15,26 @@ MoonWalkBox class >> with: aValue [
 ]
 
 { #category : #Effect }
-MoonWalkBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
+MoonWalkBox >> changeStateTo: aNewState [
 
-	aPolarityValue
-		ifTrue: [ aDuplaGalacticaGame moveOthers: effect ]
-		ifFalse: [ aDuplaGalacticaGame moveCurrent: effect ]
+	state := aNewState
+]
+
+{ #category : #Effect }
+MoonWalkBox >> effect: aDuplaGalacticaGame [
+
+	state affect: aDuplaGalacticaGame using: effect
 ]
 
 { #category : #Initialization }
 MoonWalkBox >> initializeWith: aValue [
 
-	effect := aValue
+	effect := aValue.
+	state := UnreversedPolarityMoonWalkBoxState new
+]
+
+{ #category : #Effect }
+MoonWalkBox >> reversePolarity [
+
+	state changeState: self
 ]

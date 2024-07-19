@@ -1,6 +1,9 @@
 Class {
 	#name : #AtomicBombBox,
 	#superclass : #Object,
+	#instVars : [
+		'state'
+	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -11,11 +14,25 @@ AtomicBombBox class >> initializeNew [
 ]
 
 { #category : #Effect }
-AtomicBombBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
+AtomicBombBox >> changeStateTo: aNewState [
 
-	aPolarityValue ifTrue: [ aDuplaGalacticaGame moveAllToTheStart ]
+	state := aNewState
+]
+
+{ #category : #Effect }
+AtomicBombBox >> effect: aDuplaGalacticaGame [
+
+	state affect: aDuplaGalacticaGame
 ]
 
 { #category : #Initialization }
 AtomicBombBox >> initializeNew [
+
+	state := UnreversedPolarityAtomicBombBoxState new
+]
+
+{ #category : #Effect }
+AtomicBombBox >> reversePolarity [
+
+	state changeState: self
 ]

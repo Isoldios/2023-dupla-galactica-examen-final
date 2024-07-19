@@ -2,7 +2,8 @@ Class {
 	#name : #RandomCardBox,
 	#superclass : #Object,
 	#instVars : [
-		'cardsProbabilities'
+		'cardsProbabilities',
+		'state'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -22,21 +23,26 @@ RandomCardBox class >> with: aCardsProbabilitiesCollection [
 ]
 
 { #category : #Effect }
-RandomCardBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
+RandomCardBox >> changeStateTo: aNewState [
 
-	aPolarityValue
-		ifTrue: [ 
-			aDuplaGalacticaGame add: (CardHolder
-					 of: aDuplaGalacticaGame currentPlayer
-					 with:
-					 ((ObjectCreator use: cardsProbabilities) create: 1) removeFirst) ]
-		ifFalse: [ 
-			aDuplaGalacticaGame addToOthers:
-				((ObjectCreator use: cardsProbabilities) create: 1) removeFirst ]
+	state := aNewState
+]
+
+{ #category : #Effect }
+RandomCardBox >> effect: aDuplaGalacticaGame [
+
+	state affect: aDuplaGalacticaGame using: cardsProbabilities
 ]
 
 { #category : #Initialization }
 RandomCardBox >> initializeWith: aCardsProbabilitiesCollection [
 
-	cardsProbabilities := aCardsProbabilitiesCollection
+	cardsProbabilities := aCardsProbabilitiesCollection.
+	state := UnreversedPolarityRandomCardBoxState new
+]
+
+{ #category : #Effect }
+RandomCardBox >> reversePolarity [
+
+	state changeState: self
 ]

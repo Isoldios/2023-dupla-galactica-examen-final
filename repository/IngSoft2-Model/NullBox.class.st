@@ -1,6 +1,9 @@
 Class {
 	#name : #NullBox,
 	#superclass : #Object,
+	#instVars : [
+		'state'
+	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -11,11 +14,17 @@ NullBox class >> initializeNew [
 ]
 
 { #category : #Effect }
-NullBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
+NullBox >> effect: aDuplaGalacticaGame [
 
 	
 ]
 
 { #category : #Initialization }
 NullBox >> initializeNew [
+]
+
+{ #category : #Effect }
+NullBox >> reversePolarity [
+
+	
 ]

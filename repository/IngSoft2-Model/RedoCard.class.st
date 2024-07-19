@@ -16,18 +16,33 @@ RedoCard >> = aCard [
 	^ aCard isKindOf: self class
 ]
 
+{ #category : #cambiar }
+RedoCard >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder at: aCardManager [
+
+	aCardManager checkLastCardPlayed.
+	aCardManager lastCardPlay
+		affect: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
+		at: aCardManager
+]
+
+{ #category : #cambiar }
+RedoCard >> applyCardUsing: aCardManager to: anObjectiveBox [
+
+	aCardManager lastCardPlay
+		applyCardUsing: aCardManager
+		to: anObjectiveBox
+]
+
 { #category : #Effect }
 RedoCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
 
-	aCardManager lastCardPlay = NullCard initializeNew
-		ifTrue: [ 
-			Error signal:
-				'Redo card cannot be played because there are no cards that have been played before' ]
-		ifFalse: [ 
-			aCardManager lastCardPlay
-				applyCardUsing: aCardManager
-				to: anObjective
-				at: aDuplaGalacticaGame ]
+	aCardManager checkLastCardPlayed.
+	aCardManager lastCardPlay
+		applyCardUsing: aCardManager
+		to: anObjective
+		at: aDuplaGalacticaGame
 ]
 
 { #category : #Information }

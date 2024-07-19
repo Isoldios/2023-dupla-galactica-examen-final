@@ -16,10 +16,22 @@ SpeedBoostCard >> = aCard [
 	^ aCard isKindOf: self class
 ]
 
-{ #category : #Effect }
-SpeedBoostCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+{ #category : #cambiar }
+SpeedBoostCard >> affect: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder at: aCardManager [
 
-	aCardManager duplicateEffectOf: anObjective
+	aCardManager
+		duplicateEffectOf: anObjectiveCard
+		targetingBox: anObjectiveBox
+		atTemporalLocation: aPlayedCardOrder
+]
+
+{ #category : #cambiar }
+SpeedBoostCard >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder at: aCardManager [
+
+	aCardManager
+		duplicateEffectOf: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
 ]
 
 { #category : #Information }

@@ -16,10 +16,22 @@ CancellationCard >> = aCard [
 	^ aCard isKindOf: self class
 ]
 
-{ #category : #Effect }
-CancellationCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+{ #category : #cambiar }
+CancellationCard >> affect: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder at: aCardManager [
 
-	aCardManager desactivate: anObjective
+	aCardManager
+		desactivate: anObjectiveCard
+		targetingBox: anObjectiveBox
+		atTemporalLocation: aPlayedCardOrder
+]
+
+{ #category : #Effect }
+CancellationCard >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder at: aCardManager [
+
+	aCardManager
+		desactivate: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
 ]
 
 { #category : #Information }
