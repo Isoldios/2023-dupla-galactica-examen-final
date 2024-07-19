@@ -30,9 +30,9 @@ CardManager >> activateToPlayer: aCardTargetingPlayer [
 ]
 
 { #category : #Cards }
-CardManager >> add: aCardAHolderPlayerColor [
+CardManager >> add: aCardWithAHolderPlayerColor [
 
-	cardsInPosetionDeck add: aCardAHolderPlayerColor
+	cardsInPosetionDeck add: aCardWithAHolderPlayerColor
 ]
 
 { #category : #Cards }
@@ -80,7 +80,7 @@ CardManager >> checkEffects [
 { #category : #Cards }
 CardManager >> checkLastCardPlayed [
 
-	lastCardPlayed = NullCard initializeNew ifTrue: [ 
+	lastCardPlayed = NullEffectCard initializeNew ifTrue: [ 
 		Error signal:
 			'Redo card cannot be played because there are no cards that have been played before' ]
 ]
@@ -134,7 +134,7 @@ CardManager >> duplicateEffectOf: anObjectiveCard targetingPlayer: anObjectiveCo
 { #category : #Initialization }
 CardManager >> initializeUsing: aCardsCollection with: aColorsCollection [
 
-	lastCardPlayed := NullCard initializeNew.
+	lastCardPlayed := NullEffectCard initializeNew.
 	activeCardsTargetingPlayersDeck := ActiveCardsTargetingPlayersDeck
 		                                   createDeck.
 	activeCardsTargetingBoxesDeck := ActiveCardsTargetingBoxesDeck

@@ -104,10 +104,10 @@ DuplaGalacticaGameFinalVersionTest >> setUp [
 				           with: NullBox initializeNew)
 		          measure: (ParsecMeasure worth: 200).
 	aCardsCollection := OrderedCollection
-		                    with: NullCard initializeNew
-		                    with: NullCard initializeNew
-		                    with: NullCard initializeNew
-		                    with: NullCard initializeNew
+		                    with: NullEffectCard initializeNew
+		                    with: NullEffectCard initializeNew
+		                    with: NullEffectCard initializeNew
+		                    with: NullEffectCard initializeNew
 ]
 
 { #category : #tests }

@@ -15,6 +15,5 @@ ReversedPolarityRandomCardBoxState >> affect: aDuplaGalacticaGame using: aCardsP
 { #category : #Effect }
 ReversedPolarityRandomCardBoxState >> changeState: aRandomCardBox [
 
-	aRandomCardBox changeStateTo:
-		UnreversedPolarityRandomCardBoxState new
+	aRandomCardBox changeStateTo: UnreversedPolarityRandomCardBoxState new
 ]

@@ -13,7 +13,7 @@ DuplaGalacticaGameTurnManagerTest >> gameWithLoadedDie [
 	| aBoard aBoxesCollection aCardsCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NullCard initializeNew
+				                       using: NullEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
@@ -37,7 +37,7 @@ DuplaGalacticaGameTurnManagerTest >> gameWithTwoLoadedDie [
 	| aBoard aBoxesCollection aCardsCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NullCard initializeNew
+				                       using: NullEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability

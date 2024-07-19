@@ -1,46 +1,46 @@
 Class {
-	#name : #NullCard,
+	#name : #NullEffectCard,
 	#superclass : #Object,
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-NullCard class >> initializeNew [
+NullEffectCard class >> initializeNew [
 
 	^ self new initializeNew
 ]
 
 { #category : #Information }
-NullCard >> = aCard [
+NullEffectCard >> = aCard [
 
 	^ aCard isKindOf: self class
 ]
 
 { #category : #Effect }
-NullCard >> applyCardUsing: aCardManager to: anObjectivePlayerColor at: aDuplaGalacticaGame [
+NullEffectCard >> applyCardUsing: aCardManager to: anObjectivePlayerColor at: aDuplaGalacticaGame [
 
 	aCardManager activateToPlayer:
 		(CardTargetPlayer of: anObjectivePlayerColor with: self)
 ]
 
 { #category : #Effect }
-NullCard >> applyEffect [
+NullEffectCard >> applyEffect [
 
 	^ 0
 ]
 
 { #category : #Information }
-NullCard >> haveEffect [
+NullEffectCard >> haveEffect [
 
 	^ true
 ]
 
 { #category : #Initialization }
-NullCard >> initializeNew [
+NullEffectCard >> initializeNew [
 ]
 
 { #category : #Information }
-NullCard >> isPermanent [
+NullEffectCard >> isPermanent [
 
 	^ true
 ]

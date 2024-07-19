@@ -13,6 +13,5 @@ ReversedPolarityAtomicBombBoxState >> affect: aDuplaGalacticaGame [
 { #category : #Effect }
 ReversedPolarityAtomicBombBoxState >> changeState: anAtomicBombBox [
 
-	anAtomicBombBox changeStateTo:
-		UnreversedPolarityAtomicBombBoxState new
+	anAtomicBombBox changeStateTo: UnreversedPolarityAtomicBombBoxState new
 ]

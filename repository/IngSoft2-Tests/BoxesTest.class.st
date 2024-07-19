@@ -16,7 +16,7 @@ BoxesTest >> setUp [
 	aColorsCollection := OrderedCollection with: 'red' with: 'blue'.
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NullCard initializeNew
+				                       using: NullEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4
 ]
 
@@ -364,7 +364,7 @@ BoxesTest >> testA013WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMor
 					                       (RandomCardBox with:
 						                        (OrderedCollection with:
 							                         (ObjectProbability
-								                          using: NullCard initializeNew
+								                          using: NullEffectCard initializeNew
 								                          withChanceOf: 100)))
 				                       withChanceOf: 100))) create: 10.
 	aBoard := Board

@@ -1497,7 +1497,7 @@ CardsTest >> testC043WhenPlayerPlaysANoEffectCardThenCheckThatNoEffectsWereAppli
 	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NullCard initializeNew
+				                       using: NullEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
@@ -1515,7 +1515,7 @@ CardsTest >> testC043WhenPlayerPlaysANoEffectCardThenCheckThatNoEffectsWereAppli
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	aDuplaGalacticaGame
-		play: NullCard initializeNew
+		play: NullEffectCard initializeNew
 		from: 'red'
 		toPlayer: 'blue'.
 	aDuplaGalacticaGame movePlayer.

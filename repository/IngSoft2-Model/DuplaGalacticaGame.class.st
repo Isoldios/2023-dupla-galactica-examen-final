@@ -54,17 +54,18 @@ DuplaGalacticaGame class >> with: aColorsCollection and: aBoard usingToThrow: aD
 ]
 
 { #category : #Cards }
-DuplaGalacticaGame >> add: aCardInAPlayerHand [
+DuplaGalacticaGame >> add: aCardWithAHolderPlayerColor [
 
-	cardManager add: aCardInAPlayerHand
+	cardManager add: aCardWithAHolderPlayerColor
 ]
 
 { #category : #Cards }
-DuplaGalacticaGame >> addToOthers: aCardInAPlayerHand [
+DuplaGalacticaGame >> addToOthers: aCardWithAHolderPlayerColor [
 
 	(players reject: [ :player | player color == self currentPlayer ]) 
 		do: [ :player | 
-			cardManager add: (CardHolder of: player color with: aCardInAPlayerHand) ]
+			cardManager add:
+				(CardHolder of: player color with: aCardWithAHolderPlayerColor) ]
 ]
 
 { #category : #Cards }
