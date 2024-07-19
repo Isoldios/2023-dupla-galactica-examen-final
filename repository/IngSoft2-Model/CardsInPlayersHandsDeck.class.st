@@ -2,7 +2,7 @@ Class {
 	#name : #CardsInPlayersHandsDeck,
 	#superclass : #Object,
 	#instVars : [
-		'cardsInPlayersHands'
+		'cardsWithHolderPlayerColor'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -14,29 +14,30 @@ CardsInPlayersHandsDeck class >> createDeck [
 ]
 
 { #category : #Cards }
-CardsInPlayersHandsDeck >> add: aCardInAPlayerHand [
+CardsInPlayersHandsDeck >> add: aCardAHolderPlayerColor [
 
-	cardsInPlayersHands addLast: aCardInAPlayerHand
+	cardsWithHolderPlayerColor addLast: aCardAHolderPlayerColor
 ]
 
 { #category : #Information }
 CardsInPlayersHandsDeck >> cardsOf: aPlayersCollection [
 
 	^ aPlayersCollection collect: [ :player | 
-		  (cardsInPlayersHands select: [ :hand | hand holder = player color ]) size ]
+		  (cardsWithHolderPlayerColor select: [ :aCardHolder | 
+			   aCardHolder holder = player color ]) size ]
 ]
 
 { #category : #Initialization }
 CardsInPlayersHandsDeck >> initializeDeck [
 
-	cardsInPlayersHands := OrderedCollection new
+	cardsWithHolderPlayerColor := OrderedCollection new
 ]
 
 { #category : #Cards }
 CardsInPlayersHandsDeck >> takeOut: aCard from: aCardHolderPlayerColor [
 
-	cardsInPlayersHands remove:
-		(cardsInPlayersHands detect: [ :cardHolder | 
+	cardsWithHolderPlayerColor remove:
+		(cardsWithHolderPlayerColor detect: [ :cardHolder | 
 			 cardHolder card = aCard and:
 				 cardHolder holder = aCardHolderPlayerColor ])
 ]
