@@ -17,14 +17,28 @@ ActiveCardsTargetingBoxesDeck class >> createDeck [
 { #category : #Cards }
 ActiveCardsTargetingBoxesDeck >> activateToBox: aCardTargetingBox [
 
-	actionPendingCardsTargetingBoxes addLast: aCardTargetingBox
+	actionPendingCardsTargetingBoxes addLast: aCardTargetingBox.
+	self checkEffects
+]
+
+{ #category : #Cards }
+ActiveCardsTargetingBoxesDeck >> cardToModify: anObjectiveCard playedAt: aPlayedCardOrder targeting: anObjectiveBox [
+
+	| card |
+	card := (activeCardsTargetingBoxes select: [ :cardTargetBox | 
+		         cardTargetBox card = anObjectiveCard and:
+			         cardTargetBox box = anObjectiveBox ]) at: aPlayedCardOrder.
+	activeCardsTargetingBoxes remove: card.
+	card effect timesRepeat: [ card card applyEffect: card box ].
+	^ card
 ]
 
 { #category : #Cards }
 ActiveCardsTargetingBoxesDeck >> checkEffects [
 
 	actionPendingCardsTargetingBoxes do: [ :cardTargetBox | 
-		cardTargetBox card applyEffect: cardTargetBox box.
+		cardTargetBox effect timesRepeat: [ 
+			cardTargetBox card applyEffect: cardTargetBox box ].
 		activeCardsTargetingBoxes addLast: cardTargetBox ].
 	actionPendingCardsTargetingBoxes removeAll
 ]
@@ -32,25 +46,24 @@ ActiveCardsTargetingBoxesDeck >> checkEffects [
 { #category : #Cards }
 ActiveCardsTargetingBoxesDeck >> desactivate: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder [
 
-	| cardToCancell |
-	cardToCancell := (activeCardsTargetingBoxes select: [ :cardTargetBox | 
-		                  cardTargetBox card = anObjectiveCard and:
-			                  cardTargetBox box = anObjectiveBox ]) at:
-		                 aPlayedCardOrder.
-	activeCardsTargetingBoxes remove: cardToCancell.
-	actionPendingCardsTargetingBoxes addLast: cardToCancell
+	self
+		cardToModify: anObjectiveCard
+		playedAt: aPlayedCardOrder
+		targeting: anObjectiveBox.
+	self checkEffects
 ]
 
 { #category : #Cards }
 ActiveCardsTargetingBoxesDeck >> duplicateEffectOf: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder [
 
 	| cardToBoost |
-	cardToBoost := (activeCardsTargetingBoxes select: [ :cardTargetBox | 
-		                cardTargetBox card = anObjectiveCard and:
-			                cardTargetBox box = anObjectiveBox ]) at:
-		               aPlayedCardOrder.
-	activeCardsTargetingBoxes remove: cardToBoost.
-	actionPendingCardsTargetingBoxes addLast: cardToBoost
+	cardToBoost := self
+		               cardToModify: anObjectiveCard
+		               playedAt: aPlayedCardOrder
+		               targeting: anObjectiveBox.
+	cardToBoost boostEffect.
+	actionPendingCardsTargetingBoxes addLast: cardToBoost.
+	self checkEffects
 ]
 
 { #category : #Initialization }

@@ -27,7 +27,7 @@ CardTargetPlayer >> card [
 	^ card
 ]
 
-{ #category : #card }
+{ #category : #information }
 CardTargetPlayer >> effect [
 
 	^ effect

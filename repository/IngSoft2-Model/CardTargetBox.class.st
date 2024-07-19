@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'box',
-		'card'
+		'card',
+		'effect'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -12,6 +13,12 @@ Class {
 CardTargetBox class >> of: anObjectiveBox with: aCard [
 
 	^ self new initializeOf: anObjectiveBox with: aCard
+]
+
+{ #category : #card }
+CardTargetBox >> boostEffect [
+
+	effect := effect + 1
 ]
 
 { #category : #information }
@@ -26,9 +33,16 @@ CardTargetBox >> card [
 	^ card
 ]
 
+{ #category : #information }
+CardTargetBox >> effect [
+
+	^ effect
+]
+
 { #category : #initialization }
 CardTargetBox >> initializeOf: anObjectiveBox with: aCard [
 
 	box := anObjectiveBox.
-	card := aCard
+	card := aCard.
+	effect := 1
 ]

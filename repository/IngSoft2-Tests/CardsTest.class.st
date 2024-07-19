@@ -1961,6 +1961,101 @@ CardsTest >> testC055WhenPlayerPlaysTwoReversePolarityCardsOnTheSameWormHoleBoxT
 ]
 
 { #category : #tests }
+CardsTest >> testC056WhenPlayerPlaysTwoReversePolarityCardsOnTheSameSpeedUpBoxThenPlaysACancellationCardToOneReversePolarityCardThenCheckThatTheEffectWasNotReversedAndValidPlayersPositions [
+
+	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
+	aCardsCollection := OrderedCollection
+		                    with: ReversePolarityCard initializeNew
+		                    with: ReversePolarityCard initializeNew
+		                    with: CancellationCard initializeNew
+		                    with: ReversePolarityCard initializeNew
+		                    with: ReversePolarityCard initializeNew
+		                    with: CancellationCard initializeNew.
+	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: SpeedUpBox initializeNew
+				                       withChanceOf: 100))) create: 10.
+	aBoard := Board
+		          with: aBoxesCollection
+		          measure: (ParsecMeasure worth: 100).
+	aDuplaGalacticaGame := DuplaGalacticaGameProxy
+		                       with: aColorsCollection
+		                       and: aBoard
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 2 1 3 4 ))))
+		                       winningWhenReach: 1
+		                       using: aCardsCollection.
+	aDuplaGalacticaGame
+		play: ReversePolarityCard initializeNew
+		from: 'red'
+		toBox: 3.
+	aDuplaGalacticaGame
+		play: ReversePolarityCard initializeNew
+		from: 'red'
+		toBox: 3.
+	aDuplaGalacticaGame
+		affect: ReversePolarityCard initializeNew
+		targetingBox: 3
+		atTemporalLocation: 1
+		with: CancellationCard initializeNew
+		from: 'blue'.
+	aDuplaGalacticaGame movePlayer.
+	self
+		assert: aDuplaGalacticaGame playersBox
+		equals: (OrderedCollection with: 3 with: 5)
+]
+
+{ #category : #tests }
+CardsTest >> testC057WhenPlayerPlaysAReversePolarityCardThenPlaysASpeedBoostCardOnItThenACancellationCardOnItThenCheckThereAreNoBoxesReversedPolarityAndValidPlayersPositions [
+
+	| aDuplaGalacticaGame aCardsCollection aBoxesCollection aBoard |
+	aCardsCollection := OrderedCollection
+		                    with: ReversePolarityCard initializeNew
+		                    with: SpeedBoostCard initializeNew
+		                    with: CancellationCard initializeNew
+		                    with: ReversePolarityCard initializeNew
+		                    with: SpeedBoostCard initializeNew
+		                    with: CancellationCard initializeNew.
+	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
+			                      (ObjectProbability
+				                       using: SpeedUpBox initializeNew
+				                       withChanceOf: 100))) create: 10.
+	aBoard := Board
+		          with: aBoxesCollection
+		          measure: (ParsecMeasure worth: 100).
+	aDuplaGalacticaGame := DuplaGalacticaGameProxy
+		                       with: aColorsCollection
+		                       and: aBoard
+		                       usingToThrow: (DiceShaker with:
+				                        (OrderedCollection with:
+					                         (LoadedDie with: #( 2 8 3 4 ))))
+		                       winningWhenReach: 1
+		                       using: aCardsCollection.
+	aDuplaGalacticaGame
+		play: ReversePolarityCard initializeNew
+		from: 'red'
+		toBox: 3.
+	aDuplaGalacticaGame movePlayer.
+	aDuplaGalacticaGame
+		affect: ReversePolarityCard initializeNew
+		targetingBox: 3
+		atTemporalLocation: 1
+		with: SpeedBoostCard initializeNew
+		from: 'red'.
+	aDuplaGalacticaGame
+		affect: ReversePolarityCard initializeNew
+		targetingBox: 3
+		atTemporalLocation: 1
+		with: CancellationCard initializeNew
+		from: 'blue'.
+	aDuplaGalacticaGame movePlayer.
+	self
+		assert: aDuplaGalacticaGame playersBox
+		equals: (OrderedCollection with: 3 with: 7)
+]
+
+{ #category : #tests }
 CardsTest >> testD004TryToPlayAPermanentCardWhenItIsNotThePlayerTurnThenFails [
 
 	| aDuplaGalacticaGame aCardsCollection |
