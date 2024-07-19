@@ -23,15 +23,16 @@ CardManager >> activateToBox: aCardTargetingBox [
 ]
 
 { #category : #Cards }
-CardManager >> activateToPlayer: aCardInAPlayerHand [
+CardManager >> activateToPlayer: aCardTargetingPlayer [
 
-	activeCardsTargetingPlayersDeck activateToPlayer: aCardInAPlayerHand
+	activeCardsTargetingPlayersDeck activateToPlayer:
+		aCardTargetingPlayer
 ]
 
 { #category : #Cards }
-CardManager >> add: aCardInAPlayerHand [
+CardManager >> add: aCardAHolderPlayerColor [
 
-	cardsInPosetionDeck add: aCardInAPlayerHand
+	cardsInPosetionDeck add: aCardAHolderPlayerColor
 ]
 
 { #category : #Cards }

@@ -23,8 +23,8 @@ ActiveCardsTargetingPlayersDeck >> activateToPlayer: aCardTargetingPlayer [
 ActiveCardsTargetingPlayersDeck >> calculateEffectOn: aColorPlayer [
 
 	^ (activeCardsTargetingPlayers select: [ :cardTargetPlayer | 
-		   cardTargetPlayer target = aColorPlayer or:
-			   cardTargetPlayer target = 'everyone' ]) sum: #effect
+		   cardTargetPlayer targetPlayer = aColorPlayer or:
+			   cardTargetPlayer targetPlayer = 'everyone' ]) sum: #effect
 ]
 
 { #category : #Cards }
@@ -32,7 +32,7 @@ ActiveCardsTargetingPlayersDeck >> cardToModify: anObjectiveCard playedAt: anObj
 
 	^ (activeCardsTargetingPlayers select: [ :cardTargetPlayer | 
 		   cardTargetPlayer card = anObjectiveCard and:
-			   cardTargetPlayer target = anObjectiveColorPlayer ]) at:
+			   cardTargetPlayer targetPlayer = anObjectiveColorPlayer ]) at:
 		  aPlayedCardOrder
 ]
 

@@ -2,17 +2,17 @@ Class {
 	#name : #CardTargetPlayer,
 	#superclass : #Object,
 	#instVars : [
-		'target',
 		'card',
-		'effect'
+		'effect',
+		'targetPlayer'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'instance creation' }
-CardTargetPlayer class >> of: anObjective with: aCard [
+CardTargetPlayer class >> of: anObjectivePlayer with: aCard [
 
-	^ self new initilizeOf: anObjective with: aCard
+	^ self new initializeOf: anObjectivePlayer with: aCard
 ]
 
 { #category : #card }
@@ -34,15 +34,15 @@ CardTargetPlayer >> effect [
 ]
 
 { #category : #initialization }
-CardTargetPlayer >> initilizeOf: anObjective with: aCard [
+CardTargetPlayer >> initializeOf: anObjectivePlayer with: aCard [
 
-	target := anObjective.
+	targetPlayer := anObjectivePlayer.
 	card := aCard.
 	effect := card applyEffect
 ]
 
 { #category : #information }
-CardTargetPlayer >> target [
+CardTargetPlayer >> targetPlayer [
 
-	^ target
+	^ targetPlayer
 ]

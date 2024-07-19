@@ -27,9 +27,10 @@ ActiveCardsTargetingBoxesDeck >> cardToModify: anObjectiveCard playedAt: aPlayed
 	| card |
 	card := (activeCardsTargetingBoxes select: [ :cardTargetBox | 
 		         cardTargetBox card = anObjectiveCard and:
-			         cardTargetBox box = anObjectiveBox ]) at: aPlayedCardOrder.
+			         cardTargetBox targetBox = anObjectiveBox ]) at:
+		        aPlayedCardOrder.
 	activeCardsTargetingBoxes remove: card.
-	card effect timesRepeat: [ card card applyEffect: card box ].
+	card effect timesRepeat: [ card card applyEffect: card targetBox ].
 	^ card
 ]
 
@@ -38,7 +39,7 @@ ActiveCardsTargetingBoxesDeck >> checkEffects [
 
 	actionPendingCardsTargetingBoxes do: [ :cardTargetBox | 
 		cardTargetBox effect timesRepeat: [ 
-			cardTargetBox card applyEffect: cardTargetBox box ].
+			cardTargetBox card applyEffect: cardTargetBox targetBox ].
 		activeCardsTargetingBoxes addLast: cardTargetBox ].
 	actionPendingCardsTargetingBoxes removeAll
 ]
