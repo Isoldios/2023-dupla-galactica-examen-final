@@ -9,9 +9,9 @@ Class {
 }
 
 { #category : #'Instance creation' }
-CardHolder class >> of: aColor with: aCard [
+CardHolder class >> of: aPlayerColor with: aCard [
 
-	^ self new initializeOf: aColor with: aCard
+	^ self new initializeOf: aPlayerColor with: aCard
 ]
 
 { #category : #Information }
@@ -27,8 +27,8 @@ CardHolder >> holder [
 ]
 
 { #category : #Initialization }
-CardHolder >> initializeOf: aColor with: aCard [
+CardHolder >> initializeOf: aPlayerColor with: aCard [
 
-	holder := aColor.
+	holder := aPlayerColor.
 	card := aCard
 ]
