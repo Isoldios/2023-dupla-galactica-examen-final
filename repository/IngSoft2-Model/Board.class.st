@@ -35,7 +35,6 @@ Board class >> with: aBoxesCollection measure: aLengthMeasure [
 { #category : #BoxManager }
 Board >> apllyEffectsIn: aBoxNumber using: aCardManager at: aDuplaGalacticaGame [
 
-	aCardManager checkEffects.
 	(boxes at: aBoxNumber) effect: aDuplaGalacticaGame.
 	lastBoxInvoked := aBoxNumber
 ]

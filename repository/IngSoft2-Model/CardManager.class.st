@@ -72,12 +72,6 @@ CardManager >> cardsInPosetionOf: aPlayersCollection [
 ]
 
 { #category : #Cards }
-CardManager >> checkEffects [
-
-	activeCardsTargetingBoxesDeck checkEffects
-]
-
-{ #category : #Cards }
 CardManager >> checkLastCardPlayed [
 
 	lastCardPlayed = NullEffectCard initializeNew ifTrue: [ 
