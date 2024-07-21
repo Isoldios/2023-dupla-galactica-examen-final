@@ -19,9 +19,25 @@ DuplaGalacticaGameProxy class >> with: aColorsCollection and: aBoard usingToThro
 ]
 
 { #category : #Cards }
-DuplaGalacticaGameProxy >> apply: aCardInAPlayerHand to: anObjective [
+DuplaGalacticaGameProxy >> affect: anObjectiveCard targetingBox: anObjectiveBoxNumber atTemporalLocation: aPlayedCardOrder with: aCard from: aCardHolderPlayerColor [
 
-	game apply: aCardInAPlayerHand to: anObjective
+	game
+		affect: anObjectiveCard
+		targetingBox: anObjectiveBoxNumber
+		atTemporalLocation: aPlayedCardOrder
+		with: aCard
+		from: aCardHolderPlayerColor
+]
+
+{ #category : #Cards }
+DuplaGalacticaGameProxy >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder with: aCard from: aCardHolderPlayerColor [
+
+	game
+		affect: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
+		with: aCard
+		from: aCardHolderPlayerColor
 ]
 
 { #category : #Information }
@@ -69,6 +85,27 @@ DuplaGalacticaGameProxy >> movePlayer [
 DuplaGalacticaGameProxy >> parsecsMeasure [
 
 	^ game parsecsMeasure
+]
+
+{ #category : #Cards }
+DuplaGalacticaGameProxy >> play: aCard from: aCardHolderPlayerColor toBox: aBoxNumber [
+
+	game play: aCard from: aCardHolderPlayerColor toBox: aBoxNumber
+]
+
+{ #category : #Cards }
+DuplaGalacticaGameProxy >> play: aCard from: aCardHolderColorPlayer toPlayer: anObjectiveColorPlayer [
+
+	game
+		play: aCard
+		from: aCardHolderColorPlayer
+		toPlayer: anObjectiveColorPlayer
+]
+
+{ #category : #Cards }
+DuplaGalacticaGameProxy >> playToEveryone: aCard from: aCardHolderPlayerColor [
+
+	game playToEveryone: aCard from: aCardHolderPlayerColor
 ]
 
 { #category : #Information }

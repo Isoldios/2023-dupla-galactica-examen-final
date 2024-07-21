@@ -17,9 +17,21 @@ SpeedBoostCard >> = aCard [
 ]
 
 { #category : #Effect }
-SpeedBoostCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+SpeedBoostCard >> affect: anObjectiveCard targetingBox: anObjectiveBox atTemporalLocation: aPlayedCardOrder at: aCardManager [
 
-	aCardManager duplicateEffectOf: anObjective
+	aCardManager
+		duplicateEffectOf: anObjectiveCard
+		targetingBox: anObjectiveBox
+		atTemporalLocation: aPlayedCardOrder
+]
+
+{ #category : #Effect }
+SpeedBoostCard >> affect: anObjectiveCard targetingPlayer: anObjectiveColorPlayer atTemporalLocation: aPlayedCardOrder at: aCardManager [
+
+	aCardManager
+		duplicateEffectOf: anObjectiveCard
+		targetingPlayer: anObjectiveColorPlayer
+		atTemporalLocation: aPlayedCardOrder
 ]
 
 { #category : #Information }

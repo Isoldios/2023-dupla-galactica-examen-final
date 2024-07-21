@@ -2,44 +2,28 @@ Class {
 	#name : #HyperJumpBox,
 	#superclass : #Object,
 	#instVars : [
-		'measureManager'
+		'measureManager',
+		'state'
 	],
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #Validation }
-HyperJumpBox class >> validateMeasures: aMeasuresCollection [
-
-	(aMeasuresCollection isKindOf: OrderedCollection) ifFalse: [ 
-		Error signal: 'That is not a measures collection' ].
-	aMeasuresCollection isEmpty ifTrue: [ 
-		Error signal: 'There are no values to use in the hyper jump box' ].
-	aMeasuresCollection do: [ :measure | 
-		[ measure nominalValue ]
-			on: MessageNotUnderstood
-			do: [ 
-			Error signal: 'Cannot create a hyper jump box with that values' ] ]
-]
-
 { #category : #'Instance creation' }
 HyperJumpBox class >> with: aMeasuresCollection [
 
-	self validateMeasures: aMeasuresCollection.
 	^ self new initializeWith: aMeasuresCollection
 ]
 
 { #category : #Effect }
-HyperJumpBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
+HyperJumpBox >> changeStateTo: aNewState [
 
-	aPolarityValue
-		ifTrue: [ 
-			aDuplaGalacticaGame moveCurrent:
-				measureManager current parsecs nominalValue
-				// aDuplaGalacticaGame boxesByParsecs ]
-		ifFalse: [ 
-			aDuplaGalacticaGame moveOthers:
-				measureManager current parsecs nominalValue
-				// aDuplaGalacticaGame boxesByParsecs ].
+	state := aNewState
+]
+
+{ #category : #Effect }
+HyperJumpBox >> effect: aDuplaGalacticaGame [
+
+	state affect: aDuplaGalacticaGame using: measureManager.
 	measureManager goNext
 ]
 
@@ -52,5 +36,12 @@ HyperJumpBox >> initializeWith: aMeasuresCollection [
 		                             :value2 | 
 		                             value2 parsecs nominalValue
 		                             < value1 parsecs nominalValue ].
-	measureManager := QueueManager with: aParsecsCollectionOrdered
+	measureManager := QueueManager with: aParsecsCollectionOrdered.
+	state := UnreversedPolarityHyperJumpBoxState new
+]
+
+{ #category : #Effect }
+HyperJumpBox >> reversePolarity [
+
+	state changeState: self
 ]

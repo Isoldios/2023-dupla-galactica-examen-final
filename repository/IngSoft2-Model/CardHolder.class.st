@@ -1,5 +1,5 @@
 Class {
-	#name : #PlayerHand,
+	#name : #CardHolder,
 	#superclass : #Object,
 	#instVars : [
 		'card',
@@ -9,26 +9,26 @@ Class {
 }
 
 { #category : #'Instance creation' }
-PlayerHand class >> of: aColor with: aCard [
+CardHolder class >> of: aPlayerColor with: aCard [
 
-	^ self new initializeOf: aColor with: aCard
+	^ self new initializeOf: aPlayerColor with: aCard
 ]
 
 { #category : #Information }
-PlayerHand >> card [
+CardHolder >> card [
 
 	^ card
 ]
 
 { #category : #Information }
-PlayerHand >> holder [
+CardHolder >> holder [
 
 	^ holder
 ]
 
 { #category : #Initialization }
-PlayerHand >> initializeOf: aColor with: aCard [
+CardHolder >> initializeOf: aPlayerColor with: aCard [
 
-	holder := aColor.
-	card := Card type: aCard
+	holder := aPlayerColor.
+	card := aCard
 ]

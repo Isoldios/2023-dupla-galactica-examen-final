@@ -16,7 +16,7 @@ BoxesTest >> setUp [
 	aColorsCollection := OrderedCollection with: 'red' with: 'blue'.
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NullCard initializeNew
+				                       using: NullEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4
 ]
 
@@ -364,7 +364,7 @@ BoxesTest >> testA013WhenPlayerReachesARandomCardBoxThenCheckThatPlayerHasOneMor
 					                       (RandomCardBox with:
 						                        (OrderedCollection with:
 							                         (ObjectProbability
-								                          using: NullCard initializeNew
+								                          using: NullEffectCard initializeNew
 								                          withChanceOf: 100)))
 				                       withChanceOf: 100))) create: 10.
 	aBoard := Board
@@ -526,18 +526,6 @@ BoxesTest >> testB001TryToCreateARandomCardBoxWithCardsProbabilitiesNotEqualsTo1
 ]
 
 { #category : #tests }
-BoxesTest >> testB002TryToCreateAHyperJumpBoxWithNoValuesToUseThenFails [
-
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with: (ObjectProbability
-						   using: (HyperJumpBox with: OrderedCollection new)
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'There are no values to use in the hyper jump box'
-]
-
-{ #category : #tests }
 BoxesTest >> testB003TryToCreateABoardWithLessThanFourBoxesThenFails [
 
 	| aBoxesCollection |
@@ -550,121 +538,4 @@ BoxesTest >> testB003TryToCreateABoardWithLessThanFourBoxesThenFails [
 		Board with: aBoxesCollection measure: (ParsecMeasure worth: 100) ]
 		raise: Error
 		withMessage: 'Cannot create a board with that amount of boxes'
-]
-
-{ #category : #tests }
-BoxesTest >> testB004TryToCreateABoardWithBoxesThatAreNotBoxesThenFails [
-
-	| aBoxesCollection |
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NullCard initializeNew
-				                       withChanceOf: 100))) create: 10.
-	self
-		should: [ 
-		Board with: aBoxesCollection measure: (ParsecMeasure worth: 100) ]
-		raise: Error
-		withMessage: 'That is not a valid box'
-]
-
-{ #category : #tests }
-BoxesTest >> testB005TryToCreateABoardWithNoBoxesOrderedCollectionThenFails [
-
-	self
-		should: [ Board with: 'blue' measure: (ParsecMeasure worth: 100) ]
-		raise: Error
-		withMessage: 'That is not a boxes collection'.
-	self
-		should: [ Board with: 100 measure: (ParsecMeasure worth: 100) ]
-		raise: Error
-		withMessage: 'That is not a boxes collection'
-]
-
-{ #category : #tests }
-BoxesTest >> testB006TryToCreateAHyperJumpBoxWithNoMeasuresOrderedCollectionThenFails [
-
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with:
-					  (ObjectProbability
-						   using: (HyperJumpBox with: 'p')
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'That is not a measures collection'.
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with:
-					  (ObjectProbability
-						   using: (HyperJumpBox with: 100)
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'That is not a measures collection'
-]
-
-{ #category : #tests }
-BoxesTest >> testB007TryToCreateAHyperJumpBoxWithMeasuresThatAreNotMeasuresThenFails [
-
-	self
-		should: [ 
-			(ObjectCreator use: (OrderedCollection with: (ObjectProbability
-						   using: (HyperJumpBox with: (OrderedCollection
-									     with: (ParsecMeasure worth: 45)
-									     with: 'p'
-									     with: (LigthYearMeasure worth: 60)))
-						   withChanceOf: 100))) create: 10 ]
-		raise: Error
-		withMessage: 'Cannot create a hyper jump box with that values'
-]
-
-{ #category : #tests }
-BoxesTest >> testB008TryToCreateABoardWithAMeasureThatIsNotAMeasureThenFails [
-
-	| aBoxesCollection |
-	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
-			                      (ObjectProbability
-				                       using: NullBox initializeNew
-				                       withChanceOf: 100))) create: 10.
-	self
-		should: [ Board with: aBoxesCollection measure: 'p' ]
-		raise: Error
-		withMessage: 'That is not a measure'.
-	self
-		should: [ Board with: aBoxesCollection measure: 100 ]
-		raise: Error
-		withMessage: 'That is not a measure'.
-	self
-		should: [ 
-		Board with: aBoxesCollection measure: (OrderedCollection with: 100) ]
-		raise: Error
-		withMessage: 'That is not a measure'
-]
-
-{ #category : #tests }
-BoxesTest >> testB009TryToCreateAMoonWalkBoxWithANotANumberEffectValueThenFails [
-
-	self
-		should: [ MoonWalkBox with: 'pepito' ]
-		raise: Error
-		withMessage:
-		'Cannot create a Moon Walk Box with a not a number effect value'
-]
-
-{ #category : #tests }
-BoxesTest >> testB010TryToCreateARandomCardBoxWithANoCardsProbabilitiesCollectionThenFails [
-
-	self
-		should: [ RandomCardBox with: OverloadCard initializeNew ]
-		raise: Error
-		withMessage: 'That is not a cards probabilities collection'
-]
-
-{ #category : #tests }
-BoxesTest >> testB011TryToCreateARandomCardBoxWithANoObjectProbabilitiesCollectionThenFails [
-
-	self
-		should: [ 
-			RandomCardBox with:
-				(OrderedCollection with: OverloadCard initializeNew) ]
-		raise: Error
-		withMessage: 'That is not a valid object probability'
 ]

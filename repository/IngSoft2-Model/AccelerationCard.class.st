@@ -17,12 +17,10 @@ AccelerationCard >> = aCard [
 ]
 
 { #category : #Effect }
-AccelerationCard >> applyCardUsing: aCardManager to: anObjective at: aDuplaGalacticaGame [
+AccelerationCard >> applyCardUsing: aCardManager to: anObjectivePlayerColor at: aDuplaGalacticaGame [
 
-	anObjective = 'everyone' ifFalse: [ 
-		Error signal: 'Cannot play an acceleration card on a non every player objective' ].
-	aCardManager activate:
-		(PlayerHand of: anObjective with: self initializeNew)
+	aCardManager activateToPlayer:
+		(CardTargetPlayer of: anObjectivePlayerColor with: self)
 ]
 
 { #category : #Effect }

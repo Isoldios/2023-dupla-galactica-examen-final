@@ -1,6 +1,9 @@
 Class {
 	#name : #SpeedUpBox,
 	#superclass : #Object,
+	#instVars : [
+		'state'
+	],
 	#category : #'IngSoft2-Model'
 }
 
@@ -11,13 +14,25 @@ SpeedUpBox class >> initializeNew [
 ]
 
 { #category : #Effect }
-SpeedUpBox >> effect: aDuplaGalacticaGame with: aPolarityValue [
+SpeedUpBox >> changeStateTo: aNewState [
 
-	aPolarityValue
-		ifTrue: [ aDuplaGalacticaGame moveCurrent: 4 ]
-		ifFalse: [ aDuplaGalacticaGame moveOthers: 4 ]
+	state := aNewState
+]
+
+{ #category : #Effect }
+SpeedUpBox >> effect: aDuplaGalacticaGame [
+
+	state affect: aDuplaGalacticaGame
 ]
 
 { #category : #Initialization }
 SpeedUpBox >> initializeNew [
+
+	state := UnreversedPolaritySpeedUpBoxState new
+]
+
+{ #category : #Effect }
+SpeedUpBox >> reversePolarity [
+
+	state changeState: self
 ]

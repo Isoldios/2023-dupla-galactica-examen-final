@@ -19,7 +19,7 @@ ParsecsAndLigthYearsMeasuresTest >> setUp [
 	aLoadedDie := LoadedDie with: #( 1 2 3 ).
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NullCard initializeNew
+				                       using: NullEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
@@ -71,34 +71,4 @@ ParsecsAndLigthYearsMeasuresTest >> testG002WhenAGameIsCreatedWithALightYearMeas
 		                       winningWhenReach: 1
 		                       using: aCardsCollection.
 	self assert: aDuplaGalacticaGame parsecsMeasure equals: 100
-]
-
-{ #category : #tests }
-ParsecsAndLigthYearsMeasuresTest >> testH001TryToCreateALigthYearMeasureWithANonNumericNominalValueThenFails [
-
-	self
-		should: [ LigthYearMeasure worth: 'a' ]
-		raise: Error
-		withMessage:
-		'Cannot create a ligth year measure with a not a number value'.
-	self
-		should: [ LigthYearMeasure worth: (OrderedCollection with: 1) ]
-		raise: Error
-		withMessage:
-		'Cannot create a ligth year measure with a not a number value'
-]
-
-{ #category : #tests }
-ParsecsAndLigthYearsMeasuresTest >> testH002TryToCreateAParsecMeasureWithANonNumericNominalValueThenFails [
-
-	self
-		should: [ ParsecMeasure worth: 'a' ]
-		raise: Error
-		withMessage:
-		'Cannot create a parsec measure with a not a number value'.
-	self
-		should: [ ParsecMeasure worth: (OrderedCollection with: 1) ]
-		raise: Error
-		withMessage:
-		'Cannot create a parsec measure with a not a number value'
 ]

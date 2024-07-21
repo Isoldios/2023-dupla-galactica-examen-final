@@ -13,7 +13,7 @@ DuplaGalacticaGameFinalizationTest >> gameWithOneLap: aLoadedDie [
 	| aDuplaGalacticaGame aBoard aCardsCollection aBoxesCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NullCard initializeNew
+				                       using: NullEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
@@ -39,7 +39,7 @@ DuplaGalacticaGameFinalizationTest >> gameWithTwoLaps: aLoadedDie [
 	| aBoard aDuplaGalacticaGame aCardsCollection aBoxesCollection |
 	aCardsCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability
-				                       using: NullCard initializeNew
+				                       using: NullEffectCard initializeNew
 				                       withChanceOf: 100))) create: 4.
 	aBoxesCollection := (ObjectCreator use: (OrderedCollection with:
 			                      (ObjectProbability

@@ -12,21 +12,14 @@ Class {
 { #category : #Validation }
 Board class >> validateBoxes: aBoxesCollection [
 
-	(aBoxesCollection isKindOf: OrderedCollection) ifFalse: [ 
-		Error signal: 'That is not a boxes collection' ].
 	aBoxesCollection size < 4 ifTrue: [ 
-		Error signal: 'Cannot create a board with that amount of boxes' ].
-	aBoxesCollection do: [ :box | 
-		(box respondsTo: #effect:with:) ifFalse: [ 
-			Error signal: 'That is not a valid box' ] ]
+		Error signal: 'Cannot create a board with that amount of boxes' ]
 ]
 
 { #category : #Validation }
 Board class >> validateMeasure: aLengthMeasure [
 
-	([ aLengthMeasure nominalValue ]
-		 on: MessageNotUnderstood
-		 do: [ Error signal: 'That is not a measure' ]) <= 0 ifTrue: [ 
+	aLengthMeasure nominalValue <= 0 ifTrue: [ 
 		Error signal:
 			'Cannot create a game with that parsec or lightYear value' ]
 ]
@@ -39,50 +32,31 @@ Board class >> with: aBoxesCollection measure: aLengthMeasure [
 	^ self new initializeWith: aBoxesCollection measure: aLengthMeasure
 ]
 
+{ #category : #BoxManager }
+Board >> apllyEffectsIn: aBoxNumber using: aCardManager at: aDuplaGalacticaGame [
+
+	(boxes at: aBoxNumber) effect: aDuplaGalacticaGame.
+	lastBoxInvoked := aBoxNumber
+]
+
+{ #category : #Information }
+Board >> boxes [
+
+	^ boxes
+]
+
 { #category : #Information }
 Board >> boxesByParsecs [
 
 	^ self parsecs // self length
 ]
 
-{ #category : #BoxManager }
-Board >> changePolarityOf: aBox [
-
-	(boxes select: [ :box | aBox = box type ]) do: [ :box | 
-		box changePolarity ]
-]
-
-{ #category : #BoxManager }
-Board >> checkPolarityAt: aDuplaGalacticaGame of: aCardManager [
-
-	aCardManager checkPolarityAt: aDuplaGalacticaGame of: boxes
-]
-
-{ #category : #BoxManager }
-Board >> effectAt: aBoxNumber In: aDuplaGalacticaGame [
-
-	(boxes at: aBoxNumber) effect: aDuplaGalacticaGame.
-	lastBoxInvoked := aBoxNumber.
-	self resetPolarities
-]
-
 { #category : #Initialization }
 Board >> initializeWith: aBoxesCollection measure: aLengthMeasure [
 
 	lengthMeasure := aLengthMeasure.
-	boxes := aBoxesCollection collect: [ :box | Box type: box ].
+	boxes := aBoxesCollection.
 	lastBoxInvoked := 0
-]
-
-{ #category : #Validation }
-Board >> isValidBox: aBox [
-
-	boxes
-		detect: [ :box | box type = aBox ]
-		ifFound: [ :box | ^ boxes indexOf: box ]
-		ifNone: [ 
-			Error signal:
-				'That is not a box created at the dupla galactica game' ]
 ]
 
 { #category : #Information }
@@ -101,10 +75,4 @@ Board >> length [
 Board >> parsecs [
 
 	^ lengthMeasure parsecs nominalValue
-]
-
-{ #category : #BoxManager }
-Board >> resetPolarities [
-
-	boxes do: [ :box | box resetPolarity ]
 ]

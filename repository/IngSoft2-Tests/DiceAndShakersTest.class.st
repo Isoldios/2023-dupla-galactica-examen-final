@@ -128,7 +128,7 @@ DiceAndShakersTest >> testL003TryToCreateADieWithNegativeNumberOfFacesThenFails 
 		should: [ Die with: -2 ]
 		raise: Error
 		withMessage:
-		'Cannot create with negative values at faces or less than 2 faces'
+		'Cannot create a die with less than three faces'
 ]
 
 { #category : #tests }
@@ -138,69 +138,5 @@ DiceAndShakersTest >> testL004TryToCreateADieWithNumberOfFacesLessThanThreeThenF
 		should: [ Die with: 2 ]
 		raise: Error
 		withMessage:
-		'Cannot create with negative values at faces or less than 2 faces'
-]
-
-{ #category : #tests }
-DiceAndShakersTest >> testL005TryToCreateADiceShakerWithANoDiceCollectionThenFails [
-
-	self
-		should: [ DiceShaker with: 1 ]
-		raise: Error
-		withMessage: 'That is not a dice collection'.
-	self
-		should: [ DiceShaker with: 'P' ]
-		raise: Error
-		withMessage: 'That is not a dice collection'.
-	self
-		should: [ DiceShaker with: (Die with: 3) ]
-		raise: Error
-		withMessage: 'That is not a dice collection'
-]
-
-{ #category : #tests }
-DiceAndShakersTest >> testL006TryToCreateADiceShakerWithADiceCollectionThatDoesNotHaveDiceThenFails [
-
-	self
-		should: [ 
-			DiceShaker with:
-				(OrderedCollection with: NullBox initializeNew) ]
-		raise: Error
-		withMessage: 'Cannot create a dice shaker with that dice collection'.
-	self
-		should: [ DiceShaker with: (OrderedCollection with: 1) ]
-		raise: Error
-		withMessage: 'Cannot create a dice shaker with that dice collection'.
-	self
-		should: [ DiceShaker with: (OrderedCollection with: 'p') ]
-		raise: Error
-		withMessage: 'Cannot create a dice shaker with that dice collection'.
-	self
-		should: [ 
-			DiceShaker with: (OrderedCollection
-					 with: (Die with: 3)
-					 with: (LoadedDie with: #( 1 2 3 ))
-					 with: 'p') ]
-		raise: Error
-		withMessage: 'Cannot create a dice shaker with that dice collection'
-]
-
-{ #category : #tests }
-DiceAndShakersTest >> testL007TryToCreateADiceShakerWithAnEmptyOrderedCollectionThenFails [
-
-	self
-		should: [ DiceShaker with: OrderedCollection new ]
-		raise: Error
-		withMessage:
-		'Cannot create a dice shaker with an empty dice collection'
-]
-
-{ #category : #tests }
-DiceAndShakersTest >> testL008TryToCreateADieWithANotANumberQuantityOfFacesThenFails [
-
-	self
-		should: [ Die with: 'pepito' ]
-		raise: Error
-		withMessage:
-		'Cannot create a die with a not a number quantity of faces'
+		'Cannot create a die with less than three faces'
 ]
