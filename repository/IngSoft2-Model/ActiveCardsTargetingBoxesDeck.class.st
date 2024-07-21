@@ -63,8 +63,7 @@ ActiveCardsTargetingBoxesDeck >> duplicateEffectOf: anObjectiveCard targetingBox
 		               playedAt: aPlayedCardOrder
 		               targetingBox: anObjectiveBox.
 	cardToBoost boostEffect.
-	actionPendingCardsTargetingBoxes addLast: cardToBoost.
-	self checkEffects
+	self activateToBox: cardToBoost
 ]
 
 { #category : #Initialization }
